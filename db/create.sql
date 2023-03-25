@@ -1,0 +1,31 @@
+CREATE DATABASE cursos;
+
+USE cursos;
+
+CREATE TABLE respuesta (
+    id INT(1) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    respuesta BLOB(500),
+    tipo INT(1),
+    pregunta INT(5),
+    CONSTRAINT fk_pregunta FOREIGN KEY(pregunta) REFERENCES pregunta(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE pregunta (
+    id INT(5) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    pregunta BLOB(1000),
+    orden INT(3),
+    test INT(3),
+    CONSTRAINT fk_test FOREIGN KEY(test) REFERENCES test(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE test (
+    id INT(3) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre CHAR(250),
+    modulo INT(3),
+    CONSTRAINT fk_modulo FOREIGN KEY(modulo) REFERENCES modulo(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE modulo (
+    id INT(3) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre CHAR(250)
+);
