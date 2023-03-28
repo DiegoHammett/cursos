@@ -1,14 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import Question from './Question';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Proyecto "Cursos de preparación para examen de admisión"
-        </p>
+        <Question id='1'/>
+        <Question id='2'/>
       </header>
     </div>
   );

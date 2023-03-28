@@ -1,0 +1,12 @@
+INSERT INTO modulo VALUES (1, 'Módulo 1');
+INSERT INTO test VALUES (1, 'Módulo 1',1);
+INSERT INTO pregunta VALUES (1, '¿Cuánto es 2+2?',1,1);
+INSERT INTO pregunta VALUES (2, '¿En qué año se inició la independencia de México?',1,1);
+INSERT INTO respuesta VALUES (null, '1',0,1);
+INSERT INTO respuesta VALUES (null, '2',0,1);
+INSERT INTO respuesta VALUES (null, '3',0,1);
+INSERT INTO respuesta VALUES (null, '4',1,1);
+INSERT INTO respuesta VALUES (null, '1910',0,2);
+INSERT INTO respuesta VALUES (null, '1914',0,2);
+INSERT INTO respuesta VALUES (null, '1810',1,2);
+INSERT INTO respuesta VALUES (null, '1492',0,2);
