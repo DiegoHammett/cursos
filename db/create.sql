@@ -17,6 +17,7 @@ CREATE TABLE test (
 CREATE TABLE pregunta (
     id INT(5) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     pregunta VARCHAR(1000),
+    retro VARCHAR(1000),
     orden INT(3),
     test INT(3),
     CONSTRAINT fk_test FOREIGN KEY(test) REFERENCES test(id) ON DELETE CASCADE ON UPDATE CASCADE

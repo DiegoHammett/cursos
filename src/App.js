@@ -1,12 +1,17 @@
 import './App.css';
-import Question from './Question';
+import Test from './Test';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Question id='1'/>
-        <Question id='2'/>
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" />
+            <Route exact path="/test" element={<Test id='3' type={true}/>} />
+          </Routes>
+        </BrowserRouter>
       </header>
     </div>
   );

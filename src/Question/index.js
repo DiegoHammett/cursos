@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../dbconnect';
 
-function Question({ id }) {
+function Question({ id, retro, suma }) {
 
     const [question, setQuestion] = useState([])
     const [options, setOptions] = useState([])
@@ -29,24 +29,33 @@ function Question({ id }) {
     const handleAnswer = () => {
         fetch(db.url + '?table=respuesta&column=tipo&where=id IN (' + answer + ')')
             .then(res => res.json())
-            .then(res => setCorrect(res[0].tipo))
+            .then(res => {
+                setCorrect(res[0].tipo)
+                suma(res[0].tipo)
+            })
             .catch(err => setError(true))
     }
 
     return (
         <React.Fragment>
             <div>
-                <h2>{question.pregunta}</h2>
+                <h4>{question.pregunta}</h4>
                 {options.map(op => (
                     <div key={op.id}>
-                        <input type="radio" name="answer" value={op.id} onChange={(e) => { setAnswer(e.target.value) }} />
+                        <input type="radio" name={question.id} value={op.id} onChange={(e) => { setAnswer(e.target.value) }} />
                         <label htmlFor="contactChoice1">{op.respuesta}</label>
                     </div>
                 ))}
-                <button onClick={handleAnswer}>Enviar</button>
+                {!(correct === 1 || correct === 0) && <button id={question.id} onClick={handleAnswer}>Aceptar</button>}
             </div>
-            {correct === 1 && <p>EL RESULTADO ES CORRECTO</p>}
-            {correct === 0 && <p>EL RESULTADO ES INCORRECTO</p>}
+            {!!retro &&
+                <div>
+                    {correct === 1 && <p>CORRECTO</p>}
+                    {correct === 0 && <p>INCORRECTO</p>}
+                    <p>{(correct === 1 || correct === 0) && question.retro}</p>
+                </div>
+            }
+            <hr/>
         </React.Fragment>
     );
 }
