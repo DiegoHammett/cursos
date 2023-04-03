@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import '../App.css';
 import { db } from '../dbconnect'
 import Question from '../Question'
 import TestResult from '../TestResult'
+import Navbar from '../Navbar';
 
 function Test({ id, type }) {
 
@@ -34,17 +36,24 @@ function Test({ id, type }) {
 
     return (
         <React.Fragment>
-            <h1>{test.nombre}</h1>
-            {!finish && <div>
-                {questions.map(q => (
-                    <div key={q.id}>
-                        <Question id={q.id} retro={type} suma={suma} />
+            <Navbar></Navbar>
+            <br/><br/><br/>
+            <div className='App'>
+                <div className='App-header'>
+                    <h1>{test.nombre}</h1>
+                    {!finish && <div>
+                        {questions.map(q => (
+                            <div key={q.id}>
+                                <Question id={q.id} retro={type} suma={suma} />
+                            </div>
+                        ))}
+                        <button onClick={() => { setFinish(true) }}>Terminar intento</button>
                     </div>
-                ))}
-                <button onClick={() => {setFinish(true)}}>Terminar intento</button>
+                    }
+                    <TestResult result={total} total={questions.length} />
+                </div>
             </div>
-            }
-            {!!finish && <TestResult result={total} total={questions.length} />}
+            <br/><br/><br/>
         </React.Fragment>
     );
 }
