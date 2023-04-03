@@ -1,13 +1,14 @@
-import './App.css';
+
 import Question from './Question';
+import Landing from './Landing';
+import Navbar from './Navbar';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Question id='1'/>
-        <Question id='2'/>
-      </header>
+      <body>
+        <Landing />
+      </body>
     </div>
   );
 }

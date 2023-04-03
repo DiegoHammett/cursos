@@ -45,8 +45,8 @@ function Question({ id }) {
                 ))}
                 <button onClick={handleAnswer}>Enviar</button>
             </div>
-            {correct === 1 && <p>EL RESULTADO ES CORRECTO</p>}
-            {correct === 0 && <p>EL RESULTADO ES INCORRECTO</p>}
+            {correct === '1' && <p>EL RESULTADO ES CORRECTO</p>}
+            {correct === '0' && <p>EL RESULTADO ES INCORRECTO</p>}
         </React.Fragment>
     );
 }
