@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../dbconnect';
+import './question_styles.css';
 
 function Question({ id, retro, suma }) {
 
@@ -34,28 +35,53 @@ function Question({ id, retro, suma }) {
                 suma(res[0].tipo)
             })
             .catch(err => setError(true))
+
+        const map = new Map(Object.entries(options))
+        for (let [key, value] of map) {
+
+            document.getElementById(value.id).disabled = true
+            document.getElementById(value.id).style.opacity = 0.75
+
+        }
+    }
+
+    const handleSelectOption = (e) => {
+        const map = new Map(Object.entries(options))
+        for (let [key, value] of map) {
+            if (value.id === e.target.id) {
+                setAnswer(value.id)
+                document.getElementById(value.id).style.background = "#9d2053"
+            } else {
+                document.getElementById(value.id).style.background = "rgb(29, 29, 29)"
+            }
+
+        }
     }
 
     return (
         <React.Fragment>
-            <div>
-                <h4>{question.pregunta}</h4>
+            <div className='question-container'>
+                <h4 className='question-pregunta'>{question.pregunta}</h4>
                 {options.map(op => (
-                    <div key={op.id}>
-                        <input type="radio" name={question.id} value={op.id} onChange={(e) => { setAnswer(e.target.value) }} />
-                        <label htmlFor="contactChoice1">{op.respuesta}</label>
-                    </div>
+                    <button className='question-respuesta' key={op.id} name={question.id} value={op.id} id={op.id} onClick={handleSelectOption}>
+                        {op.respuesta}
+                    </button>
                 ))}
-                {!(correct === 1 || correct === 0) && <button id={question.id} onClick={handleAnswer}>Aceptar</button>}
+                {!(correct === "1" || correct === "0") &&
+                    <div className='question-validate'>
+                        <button className='question-button-validate' id={question.id} onClick={handleAnswer}>Enviar respuesta</button>
+                    </div>
+
+                }
+
+                {(retro === true) && (correct === "1" || correct === "0") &&
+                    <div className='question-retro'>
+                        {correct === "1" && <p className='question-retro-c'><i class='bx bx-check bx-tada' ></i> CORRECTO</p>}
+                        {correct === "0" && <p className='question-retro-i'><i class='bx bx-x bx-tada' ></i> INCORRECTO</p>}
+                        <p className='question-retro-r'>{(correct === "1" || correct === "0") && question.retro}</p>
+                    </div>
+                }
             </div>
-            {!!retro &&
-                <div>
-                    {correct === 1 && <p>CORRECTO</p>}
-                    {correct === 0 && <p>INCORRECTO</p>}
-                    <p>{(correct === 1 || correct === 0) && question.retro}</p>
-                </div>
-            }
-            <hr/>
         </React.Fragment>
     );
 }

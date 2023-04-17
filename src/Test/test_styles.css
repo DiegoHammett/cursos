@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+:root {
+    --color-0: #111625;
+    --color-1: #341931;
+    --color-2: #571b3c;
+    --color-3: #7a1e48;
+    --color-4: #9d2053;
+    --color-5: #ffffff;
+    --color-6: #24252A;
+    --text-color: #222;
+
+}
+
+.test-body {
+    box-sizing: border-box;
+    padding: 7.5rem 10rem;
+    margin: 0;
+    background: var(--color-6);
+}
+
+.test-container {
+    padding: 3rem 5rem;
+    border-radius: .5rem;
+    box-shadow: 0px 0px 21px 5px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 0px 21px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 21px 5px rgba(0, 0, 0, 0.3);
+}
+
+.test-title {
+    color: white;
+    font-size: 2rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.test-description {
+    color: whitesmoke;
+    letter-spacing: .05rem;
+}
+

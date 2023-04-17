@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { toPascalCase, checkEmail } from '../utils.js'
 import { db } from '../dbconnect.js';
 import md5 from 'md5';
+import Navbar from '../Navbar';
+import './register_styles.css'
 
 function Register() {
 
@@ -69,6 +71,139 @@ function Register() {
 
     return (
         <React.Fragment>
+            <Navbar />
+            <div className='register-body'>
+                <div className='register-container'>
+
+                    <div className='register-header'>
+                        <div className='register-header_logo'>
+                            <i className='bx bx-cube'> </i><span>Logo</span>
+                        </div>
+                        <h1>Bienvenido a <b>MARCA</b></h1>
+                        <p>A continuación, llene todos los campos con su información. Al finalizar, presione 'Registrarse'.</p>
+                    </div>
+
+                    <div className='register-left'>
+
+                        <form className='register-form'>
+                            <div className='register-form_content'>
+                                <span className='register-form_subtitle'>Información personal</span>
+
+                                <div className='register-form_item'>
+                                    <label className='input-label'>Nombre/s:</label>
+                                    <input
+                                        className='input-text'
+                                        name="nombre"
+                                        type='text'
+                                        required
+                                        onChange={handleChange}
+                                        id="inputName" />
+
+                                </div>
+
+                                <div className='register-form_item'>
+                                    <label className='input-label'>Primer apellido:</label>
+                                    <input
+                                        className='input-text'
+                                        name="apellido_p"
+                                        type='text'
+                                        required
+                                        onChange={handleChange}
+                                        id="inputLName1"
+                                    />
+                                </div>
+
+                                <div className='register-form_item'>
+                                    <label className='input-label'>Segundo apellido:</label>
+                                    <input
+                                        className='input-text'
+                                        name="apellido_m"
+                                        type='text'
+                                        required
+                                        onChange={handleChange}
+                                        id="inputLName2"
+                                    />
+                                </div>
+
+                                {/* <div className='error-msg_label' hidden={logAlert}>
+                                    <i class='bx bxs-error-circle bx-flashing' ></i>
+                                    <label>
+                                        <b>Error</b>·<span>Usuario o contraseña incorrectos.</span>
+                                    </label>
+                                </div> */}
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div className='register-right'>
+                        <form className='register-form'>
+                            <div className='register-form_content'>
+                                <span className='register-form_subtitle'>Información de la cuenta</span>
+
+                                <div className='register-form_item'>
+                                    <label className='input-label'>Crea una contraseña</label>
+                                    <input
+                                        className='input-text'
+                                        name="nombre"
+                                        type='text'
+                                        required
+                                        onChange={handleChange}
+                                        id="inputName" />
+
+                                </div>
+
+                                <div className='register-form_item'>
+                                    <label className='input-label'>Confirma la contraseña</label>
+                                    <input
+                                        className='input-text'
+                                        name="apellido_p"
+                                        type='text'
+                                        required
+                                        onChange={handleChange}
+                                        id="inputLName1"
+                                    />
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <div className='register-pricing'>
+                        <span className='register-form_subtitle'>Paquetes disponibles</span>
+                    </div>
+
+                    <div className='register-footer'>
+                        <h6
+                            className='error-msg_label'
+                            hidden={!fillAlert}
+                        >
+
+                            <i class='bx bxs-error-circle bx-flashing' ></i>
+                            <label>
+                                <b>Error</b>·<span>Debes llenar todos los campos.</span>
+                            </label>
+
+                        </h6>
+
+                        <button className='register-button' type="button" >
+                            Registrarse
+                        </button>
+
+                        <span>¿Ya tienes una cuenta?</span>
+                        <a href='/login'>
+                            Inicia sesión <i class='bx bxs-chevrons-right bx-fade-right' ></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
             <header><h1>Registro</h1></header>
             <form action='#'>
                 <div>

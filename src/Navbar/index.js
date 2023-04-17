@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import './navbar_styles.css'
 
+
 function Navbar() {
 
     // change nav color when scrolling
     const [color, setColor] = useState(false)
     const changeColor = () => {
-        if (window.scrollY >= 90) {
+        if (window.scrollY >= 10) {
             setColor(true)
         } else {
             setColor(false)
@@ -36,8 +37,8 @@ function Navbar() {
                     </ul>
                 </nav>
                 <nav className='navbar-buttons_2'>
-                    <a href='/' className='navbar-links_item-2'>Regístrate</a>
-                    <a href='/' className='navbar-links_item-3'>Iniciar sesión</a>
+                    <a href='/registro' className='navbar-links_item-2'>Regístrate</a>
+                    <a href='/login' className='navbar-links_item-3'>Iniciar sesión</a>
                 </nav>
             </header>
         </div>

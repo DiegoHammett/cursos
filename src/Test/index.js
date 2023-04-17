@@ -4,6 +4,7 @@ import { db } from '../dbconnect'
 import Question from '../Question'
 import TestResult from '../TestResult'
 import Navbar from '../Navbar';
+import './test_styles.css'
 
 function Test({ id, type }) {
 
@@ -31,30 +32,52 @@ function Test({ id, type }) {
     }, [id])
 
     const suma = (val) => {
-        setTotal(total + val)
+        setTotal(total + parseInt(val))
+    }
+
+    const iterateTest = () => {
+
     }
 
     return (
         <React.Fragment>
             <Navbar></Navbar>
-            <br/><br/><br/>
-            <div className='App'>
-                <div className='App-header'>
-                    <h1>{test.nombre}</h1>
-                    {!finish && <div>
-                        {questions.map(q => (
-                            <div key={q.id}>
-                                <Question id={q.id} retro={type} suma={suma} />
+
+            <div className='test-body'>
+                <div className='test-container'>
+                    <div className='test-title'>
+                        {test.nombre}
+                    </div>
+                    {!finish &&
+                        <React.Fragment>
+                            <div className='test-description'>
+                                <p>Seleccione la respuesta que considere correcta y presione 'Enviar respuesta'. <br />Al finalizar, presione el botón 'Terminar intento' cuando se active.</p>
                             </div>
-                        ))}
-                        <button onClick={() => { setFinish(true) }}>Terminar intento</button>
+                            <div className='test-questions-container'>
+                                <div>
+                                    {questions.map(q => (
+                                        <div key={q.id}>
+                                            <Question id={q.id} retro={type} suma={suma} />
+                                        </div>
+                                    ))}
+                                    <div className='question-validate'>
+                                        <button className='question-button-validate' onClick={() => { setFinish(true) }}>Terminar intento</button>
+                                    </div>
+                                    <TestResult result={total} total={questions.length} />
+                                </div>
+                                </div>
+                        </React.Fragment>
+
+
+                    }
+                    {!!finish && <div>
+                        <h1 className='test-description'>Has completado el test satisfactoriamente, con un resultado de: {total}/{questions.length} </h1>
                     </div>
                     }
-                    <TestResult result={total} total={questions.length} />
                 </div>
             </div>
-            <br/><br/><br/>
-        </React.Fragment>
+
+        </React.Fragment >
     );
 }
 
