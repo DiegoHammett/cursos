@@ -35,10 +35,6 @@ function Test({ id, type }) {
         setTotal(total + parseInt(val))
     }
 
-    const iterateTest = () => {
-
-    }
-
     return (
         <React.Fragment>
             <Navbar></Navbar>
@@ -71,7 +67,8 @@ function Test({ id, type }) {
 
                     }
                     {!!finish && <div>
-                        <h1 className='test-description'>Has completado el test satisfactoriamente, con un resultado de: {total}/{questions.length} </h1>
+                        <h2 className='test-description'>Has completado el test con una calificación de <strong> {total*10/questions.length} </strong></h2>
+                        <h2 className='test-description'>Preguntas contestadas correctamente: <strong> {total} de {questions.length} </strong></h2>
                     </div>
                     }
                 </div>

@@ -38,17 +38,16 @@ function Question({ id, retro, suma }) {
 
         const map = new Map(Object.entries(options))
         for (let [key, value] of map) {
-
             document.getElementById(value.id).disabled = true
             document.getElementById(value.id).style.opacity = 0.75
-
         }
     }
 
     const handleSelectOption = (e) => {
+        
         const map = new Map(Object.entries(options))
         for (let [key, value] of map) {
-            if (value.id === e.target.id) {
+            if (parseInt(value.id) === parseInt(e.target.id)) {
                 setAnswer(value.id)
                 document.getElementById(value.id).style.background = "#9d2053"
             } else {
@@ -67,18 +66,18 @@ function Question({ id, retro, suma }) {
                         {op.respuesta}
                     </button>
                 ))}
-                {!(correct === "1" || correct === "0") &&
+                {!(correct === 1 || correct === 0) &&
                     <div className='question-validate'>
                         <button className='question-button-validate' id={question.id} onClick={handleAnswer}>Enviar respuesta</button>
                     </div>
 
                 }
 
-                {(retro === true) && (correct === "1" || correct === "0") &&
+                {(retro === true) && (correct === 1 || correct === 0) &&
                     <div className='question-retro'>
-                        {correct === "1" && <p className='question-retro-c'><i class='bx bx-check bx-tada' ></i> CORRECTO</p>}
-                        {correct === "0" && <p className='question-retro-i'><i class='bx bx-x bx-tada' ></i> INCORRECTO</p>}
-                        <p className='question-retro-r'>{(correct === "1" || correct === "0") && question.retro}</p>
+                        {correct === 1 && <p className='question-retro-c'><i className='bx bx-check bx-tada' ></i> CORRECTO</p>}
+                        {correct === 0 && <p className='question-retro-i'><i className='bx bx-x bx-tada' ></i> INCORRECTO</p>}
+                        <p className='question-retro-r'>{(correct === 1 || correct === 0) && question.retro}</p>
                     </div>
                 }
             </div>
