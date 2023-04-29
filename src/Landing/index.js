@@ -14,7 +14,7 @@ function Landing() {
                             <p className='landing-hero_description'>
                                 Aprovecha el poder del aprendizaje digital y el acompañamiento de profesores para conseguir tu primera opción.
                             </p>
-                            <a className='landing-hero_button' href='/'>¡Comienza ahora!</a>
+                            <a className='landing-hero_button' href='/registro'>¡Comienza ahora!</a>
                             <a className='landing-hero_button-2' href='#beneficios'>Conoce más </a>
                         </div>
                     </div>

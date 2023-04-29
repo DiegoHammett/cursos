@@ -4,6 +4,7 @@ import { db } from '../dbconnect.js';
 import md5 from 'md5';
 import Navbar from '../Navbar';
 import './register_styles.css'
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
 
@@ -14,6 +15,7 @@ function Register() {
     const [passAlert, setPassAlert] = useState(false)
     const [fillAlert, setFillAlert] = useState(false)
     const [user, setUser] = useState([])
+    const nav = useNavigate()
 
     const handleChange = e => {
         if (e.target.name === "password") {
@@ -52,7 +54,7 @@ function Register() {
 
         const map = new Map(Object.entries(user))
         for (let [key, value] of map) { formData.append(key, value) }
-
+        
         fetch(db.url + '?mode=insert&table=usuario', {
             method: 'POST',
             body: formData
@@ -62,6 +64,7 @@ function Register() {
                     setDupEmail(true)
                 } else if (res === 'OK') {
                     setOk(true)
+                    nav("/login")
                 } else {
                     setError(true)
                 }
@@ -81,6 +84,7 @@ function Register() {
                         </div>
                         <h1>Bienvenido a <b>MARCA</b></h1>
                         <p>A continuación, llene todos los campos con su información. Al finalizar, presione 'Registrarse'.</p>
+                        <p>Todos los campos son obligatrios.</p>
                     </div>
 
                     <div className='register-left'>
@@ -136,6 +140,18 @@ function Register() {
                                 <span className='register-form_subtitle'>Información de la cuenta</span>
 
                                 <div className='register-form_item'>
+                                    <label className='input-label'>Correo electrónico</label>
+                                    <input
+                                        className='input-text'
+                                        name="email"
+                                        onChange={handleChange}
+                                        type="text"
+                                        id="inputEmail"
+                                        required
+                                    />
+                                </div>
+
+                                <div className='register-form_item'>
                                     <label className='input-label'>Crea una contraseña</label>
                                     <input
                                         className='input-text'
@@ -147,7 +163,7 @@ function Register() {
                                     />
                                     <p className='error-msg_label' hidden={!passAlert}>
                                         <label>
-                                            <i class='bx bx-x bx-tada' ></i><span>Las contraseñas no coinciden</span>
+                                            <i className='bx bx-x bx-tada' ></i><span>Las contraseñas no coinciden</span>
                                         </label>
                                     </p>
                                 </div>
@@ -163,7 +179,7 @@ function Register() {
                                     />
                                     <p className='error-msg_label' hidden={!passAlert}>
                                         <label>
-                                            <i class='bx bx-x bx-tada' ></i><span>Las contraseñas no coinciden</span>
+                                            <i className='bx bx-x bx-tada' ></i><span>Las contraseñas no coinciden</span>
                                         </label>
 
                                     </p>
@@ -183,20 +199,32 @@ function Register() {
                             hidden={!fillAlert}
                         >
 
-                            <i class='bx bxs-error-circle bx-flashing' ></i>
+                            <i className='bx bxs-error-circle bx-flashing' ></i>
                             <label>
                                 <b>Error</b>·<span>Debes llenar todos los campos.</span>
                             </label>
 
                         </h6>
 
-                        <button className='register-button' type="button" >
+                        <h6
+                            className='error-msg_label'
+                            hidden={!dupEmail}
+                        >
+
+                            <i className='bx bxs-error-circle bx-flashing' ></i>
+                            <label>
+                                <b>Error</b>·<span>El email introducido ya está registrado en la plataforma</span>
+                            </label>
+
+                        </h6>
+
+                        <button className='register-button' type="button" onClick={handleSubmit}>
                             Registrarse
                         </button>
 
                         <span>¿Ya tienes una cuenta?</span>
                         <a href='/login'>
-                            Inicia sesión <i class='bx bxs-chevrons-right bx-fade-right' ></i>
+                            Inicia sesión <i className='bx bxs-chevrons-right bx-fade-right' ></i>
                         </a>
                     </div>
 

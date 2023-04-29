@@ -28,11 +28,9 @@ function Login() {
         }).then(res => res.text()).then(res => {
             console.log(res)
             if (res === "CORRECT")
-                nav("/dashboard")
+                nav("/test")
             else {
-                setLogAlert(false)
-                document.getElementById("typePassword").value = ""
-                document.getElementById("typeEmail").value = ""
+                setLogAlert(true)
             }
         }).catch(err => setError(true))
     }
@@ -59,7 +57,7 @@ function Login() {
                                         className='input-text'
                                         type="email"
                                         id="typeEmail"
-                                        onChange={(e) => { setUser(e.target.value); setLogAlert(true) }}
+                                        onChange={(e) => { setUser(e.target.value); setLogAlert(false) }}
                                     />
 
                                 </div>
@@ -70,14 +68,14 @@ function Login() {
                                         className='input-text'
                                         type="password"
                                         id="typePassword"
-                                        onChange={(e) => { setPass(e.target.value); setLogAlert(true) }}
+                                        onChange={(e) => { setPass(e.target.value); setLogAlert(false) }}
                                     />
 
                                 </div>
 
                                 <div hidden={!logAlert}>
                                     <div className='error-msg_label'>
-                                        <i class='bx bxs-error-circle bx-flashing' ></i>
+                                        <i className='bx bxs-error-circle bx-flashing' ></i>
                                         <label>
                                             <b>Error</b>·<span>Usuario o contraseña incorrectos.</span>
                                         </label>
@@ -93,7 +91,7 @@ function Login() {
                                 <div className='login-footer'>
                                     <span>¿Aún no tienes una cuenta?</span>
                                     <a href='/registro'>
-                                        Regístrate aquí <i class='bx bxs-chevrons-right bx-fade-right' ></i>
+                                        Regístrate aquí <i className='bx bxs-chevrons-right bx-fade-right' ></i>
                                     </a>
                                 </div>
 

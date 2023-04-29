@@ -155,7 +155,7 @@
 }
 
 .error-msg_label {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
     border: 1px solid rgb(177, 0, 0);

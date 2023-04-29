@@ -42,7 +42,7 @@
 }
 
 .login-right {
-    background-color: #eee;
+    background-color: var(--color-6);
     display: flex;
     justify-content: center;
 }
