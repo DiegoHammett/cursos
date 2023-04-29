@@ -14,7 +14,7 @@ function Landing() {
                             <p className='landing-hero_description'>
                                 Aprovecha el poder del aprendizaje digital y el acompañamiento de profesores para conseguir tu primera opción.
                             </p>
-                            <a className='landing-hero_button' href='/registro'>¡Comienza ahora!</a>
+                            <a className='btn3' href='/registro'>¡Comienza ahora!</a>
                             <a className='landing-hero_button-2' href='#beneficios'>Conoce más </a>
                         </div>
                     </div>
@@ -29,7 +29,7 @@ function Landing() {
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
                         <div className='beneficios_boxes-container'>
-                            <div className='beneficios_box-1'>
+                            <div className='beneficios_box-1 inset'>
                                 <div className='box-1_content'>
                                     <div className='box-1_icon'><i class='bx bx-cube'></i></div>
                                     <div className='box-1_text'>
@@ -40,7 +40,7 @@ function Landing() {
                                 </div>
                             </div>
 
-                            <div className='beneficios_box-1'>
+                            <div className='beneficios_box-1 inset'>
                                 <div className='box-1_content'>
                                     <div className='box-1_icon'><i class='bx bx-cube'></i></div>
                                     <div className='box-1_text'>
@@ -51,7 +51,7 @@ function Landing() {
                                 </div>
                             </div>
 
-                            <div className='beneficios_box-1'>
+                            <div className='beneficios_box-1 inset'>
                                 <div className='box-1_content'>
                                     <div className='box-1_icon'><i class='bx bx-cube'></i></div>
                                     <div className='box-1_text'>
