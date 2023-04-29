@@ -50,7 +50,7 @@ function Test({ id, type }) {
                     </div>
                     {!finish &&
                         <React.Fragment>
-                            <div className='test-description'>
+                            <div className='test-description inset'>
                                 <p>Seleccione la respuesta que considere correcta y presione 'Enviar respuesta'. <br />Al finalizar, presione el botón 'Terminar intento' cuando se active.</p>
                             </div>
                             <div className='test-questions-container'>

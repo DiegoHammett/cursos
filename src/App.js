@@ -4,6 +4,8 @@ import Landing from './Landing';
 import Register from './Register';
 import Login from './Login';
 
+import './styles/palette.css';
+
 function App() {
   return (
     <BrowserRouter>
