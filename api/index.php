@@ -39,6 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     bindAllValues($statement, $input);
     try{
         $statement->execute();
+        $sql = $dbConn->prepare("SELECT @@IDENTITY as ID");
+        $sql->execute();
+        $row = $sql->fetch(PDO::FETCH_NUM);
+        $IDINSERTED = json_encode($row[0]);
     }catch (Exception $e){
         echo $e;
     }
@@ -46,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         move_uploaded_file($_FILES[$param]['tmp_name'], "./docs/".$_FILES[$param]['name']);
     }
-    echo "OK";
+    $arr = array('status' => 'OK','id' => $IDINSERTED);
+    echo json_encode($arr);
     header("HTTP/1.1 200 OK");
     exit();
 }
