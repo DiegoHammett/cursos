@@ -5,9 +5,16 @@ function TestResult({ result, total }) {
     return (
         <React.Fragment>
             <div className='testresult-body'>
-                <div className='testresult-container'>
-                    <h3>Has obtenido</h3>
-                    <h1>{result}/{total}</h1>
+
+                <div className='testresult-container inset'>
+                    <span className='title'><b>PROGRESO</b></span>
+                    <div className='testresult-score'>
+                        <span className='lbl'>Has obtenido</span> 
+                        <span className='title'>
+                            <b>{result} de {total}</b>
+                        </span>
+                    </div>
+
                 </div>
             </div>
 
