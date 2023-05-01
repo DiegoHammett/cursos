@@ -77,7 +77,7 @@ function EditTest({ testID }) {
 
                     </div>
 
-                    
+
 
                     <div className='et-footer'>
 
@@ -85,22 +85,26 @@ function EditTest({ testID }) {
                 </div>
 
                 <div className='et-content-2'>
-                        {questions.map(q => (
-                            <div key={q.id}>
-                                <p>{q.pregunta}</p>
-                            </div>
-                        ))
-                        }
-                        {!create &&
-                            <button className='btn' onClick={handleAddQuest}><i class='bx bx-add-to-queue icon' ></i>Agregar pregunta</button>
-                        }
-                        {!!create &&
-                            <CreateQuestion testID={testID} setCreate={setCreate} />
-                        }
-                        {
-                            !!error && <p className='pill-error'><i class='bx bx-error icon' ></i>Ha ocurrido un error</p>
-                        }
-                    </div>
+
+                    {!create &&
+                        <button className='btn' onClick={handleAddQuest}><i class='bx bx-add-to-queue icon' ></i>Agregar pregunta</button>
+                    }
+                    {!!create &&
+                        <CreateQuestion testID={testID} setCreate={setCreate} />
+                    }
+                    {
+                        !!error && <p className='pill-error'><i class='bx bx-error icon' ></i>Ha ocurrido un error</p>
+                    }
+                </div>
+
+                <div className='et-content-2'>
+                    {questions.map(q => (
+                        <div key={q.id}>
+                            <p>{q.pregunta}</p>
+                        </div>
+                    ))
+                    }
+                </div>
 
             </div>
 
