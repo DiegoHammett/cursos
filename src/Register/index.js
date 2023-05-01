@@ -3,7 +3,7 @@ import { toPascalCase, checkEmail } from '../utils.js'
 import { db } from '../dbconnect.js';
 import md5 from 'md5';
 import Navbar from '../Navbar';
-import './register_styles.css'
+import './register_styles.css';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
@@ -98,7 +98,10 @@ function Register() {
                                     <span className='register-form_subtitle title'>
                                         <b className='b-medium'>Información personal</b>
                                     </span>
-                                    <p className='description'>Ingresa tu información personal para conocernos mejor. </p>
+                                    <span className='register-form_description'>
+                                        <p className='description'>Ingresa tu información personal para conocernos mejor. </p>
+                                    </span>
+
 
                                     <div className='register-forms-container'>
                                         <div className='register-form_item'>
@@ -151,7 +154,10 @@ function Register() {
                                     <span className='register-form_subtitle title'>
                                         <b className='b-medium'>Información de la cuenta</b>
                                     </span>
-                                    <p className='description'>Con esta información podrás acceder a la plataforma.</p>
+                                    <span className='register-form_description'>
+                                        <p className='description'>Con esta información podrás acceder a la plataforma.</p>
+                                    </span>
+
 
                                     <div className='register-forms-container'>
                                         <div className='register-form_item'>
@@ -202,7 +208,10 @@ function Register() {
                                 <span className='register-form_subtitle title'>
                                     <b className='b-medium'>Planes disponibles</b>
                                 </span>
-                                <p className='description'>Elige el plan que mejor se ajuste a ti. </p>
+                                <span className='register-form_description'>
+                                    <p className='description'>Elige el plan que mejor se ajuste a ti. </p>
+                                </span>
+
                             </div>
                             <div className='register-pricing_cards'>
                                 <div className='pricing_card'>
@@ -243,9 +252,9 @@ function Register() {
                                 </div>
                             </div>
                             <div className='register-pricing_moreinfo'>
-                                <p className='description'>
+                                <span className='description'>
                                     ¿No sabes qué plan elegir? Visita la sección de <a className='link-icon-text' href='/planes'>Planes<i class='bx bx-link-external' ></i></a> para obtener más información.
-                                </p>
+                                </span>
                             </div>
 
 

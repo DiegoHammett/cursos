@@ -11,7 +11,7 @@ function App() {
 
   function RouteTest() {
     let params = useParams();
-    return <Test id={params.id} type={true} />;
+    return <Test id={params.id} retro={true} />;
   }
 
   return (

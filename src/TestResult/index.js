@@ -25,8 +25,52 @@ function TestResult({ ansList, total }) {
 
     return (
         <React.Fragment>
-            <h2 className='test-description'>Has completado el test con una calificación de <strong> {parseInt(count)/parseInt(total)*10} </strong></h2>
-            <h2 className='test-description'>Preguntas contestadas correctamente: <strong> {count} de {total} </strong></h2>
+            <div className='finish-container inset'>
+                <div className='finish-left'>
+                    <div class="flip">
+                        <div class="content">
+                            <div class="front">
+                                <h2>{count * 10 / total}</h2>
+                                <p>Tu calificación</p>
+                            </div>
+                            <div class="back">
+                                <h2></h2>
+                                <p>¡Enhorabuena!, continúa aprendiendo :)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div className='finish-right'>
+                    <div className='finish-left-info'>
+                        <div className='finish-left-info_header'>
+                            <h2 className='title'>Estadísticas del test</h2>
+                            <span className='description'>Este es el desglose de tu resultado.</span>
+                        </div>
+                        <div className='finish-left-info_body'>
+                            <div className='finish-left-info_item inset'>
+                                <label className='lbl'>Cantidad de preguntas evaluadas</label>
+                                <span><b>{total}</b></span>
+                            </div>
+                            <div className='finish-left-info_item inset'>
+                                <label className='lbl'>Preguntas contestadas correctamente</label>
+                                <span><b>{count}</b></span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                {/* <h2 className='test-description'>
+                            Has completado el test con una calificación de <strong>  </strong>
+                            </h2>
+                            <h2 className='test-description'>Preguntas contestadas correctamente: <strong> {total} de {questions.length} </strong></h2> */}
+            </div>
+            <div className='finish-footer'>
+                <a href='/' className='btn'>Continuar</a>
+            </div>
+
         </React.Fragment>
     )
 }

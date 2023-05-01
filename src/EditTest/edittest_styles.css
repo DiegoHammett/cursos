@@ -1,0 +1,104 @@
+.et-body {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.et-container {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    background-color: var(--bg-200);
+    border-radius: 15px;
+}
+
+.et-header {
+    margin-bottom: 1rem;
+}
+
+.et-title {
+    font-size: 2rem;
+}
+
+.et-description {
+    font-size: 1.2rem;
+}
+
+.et-lbl-name {
+    display: flex;
+    border-radius: 15px;
+    background-color: var(--bg-300);
+    overflow: hidden;
+    border: none;
+    margin-top: .67rem;
+}
+
+.et-input-text {
+    width: 100%;
+    padding: 1rem 2rem;
+    margin: 0;
+    border: none;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.et-input-text:focus {
+    outline: none;
+}
+
+.et-btn-editar {
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    background-color: var(--primary-200);
+    text-decoration: none;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.et-btn-editar::before {
+    content: "";
+    position: absolute;
+    left: -1%;
+    top: 0;
+    width: 101%;
+    height: 100%;
+    background-color: var(--primary-100);
+    transform: translateX(-100%);
+    transition: all .5s;
+    z-index: -1;
+}
+
+.et-btn-editar:hover::before {
+    transform: translateX(0);
+}
+
+
+.et-lbl-editar {
+    width: 100%;
+    padding: .8rem 2rem;
+    margin: 0;
+    color: green;
+    font-size: 1.2rem;
+}
+
+.et-content {
+    margin-bottom: 2rem;
+}
+
+.et-content-2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+} 

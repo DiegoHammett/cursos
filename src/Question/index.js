@@ -44,32 +44,48 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
     }
 
     const handleSelectOption = (e) => {
-        
+
         const map = new Map(Object.entries(options))
         for (let [key, value] of map) {
             if (parseInt(value.id) === parseInt(e.target.id)) {
                 setAnswer(value.id)
                 setAnsList({ ...ansList, [id]: value.id })
-                document.getElementById(value.id).style.background = "#9d2053"
-            } else {
-                document.getElementById(value.id).style.background = "rgb(29, 29, 29)"
-            }
-
+            } 
         }
     }
 
     return (
         <React.Fragment>
-            <div className='question-container'>
-                <h4 className='question-pregunta'>{question.pregunta}</h4>
-                {options.map(op => (
-                    <button className='question-respuesta' key={op.id} name={question.id} value={op.id} id={op.id} onClick={handleSelectOption}>
-                        {op.respuesta}
-                    </button>
-                ))}
+            <div className='question-container inset'>
+                <div className='question-header'>
+                    <span className='pill'>Pregunta:</span>
+                    <h4 className='question-pregunta title'>
+                        {question.pregunta}
+                    </h4>
+                </div>
+
+                <div className='question-q-container'>
+                    <span className='lbl'>Selecciona una respuesta:</span>
+                    {options.map(op => (
+                        <React.Fragment>
+                            <div className='q_card'>
+                                <input className='q_radio inset' type='radio' name={question.id} id={op.id} onClick={handleSelectOption} />
+                                <label className='q_content' for={op.id}>
+                                    <label className='lbl'>{op.respuesta}</label>
+                                </label>
+                            </div>
+
+                            {/* <button className='question-respuesta' key={op.id} name={question.id} value={op.id} id={op.id} onClick={handleSelectOption}>
+                            {op.respuesta}
+                        </button> */}
+                        </React.Fragment>
+
+                    ))}
+                </div>
+
                 {(retro === true) && !(correct === 1 || correct === 0) &&
                     <div className='question-validate'>
-                        <button className='question-button-validate' id={question.id} onClick={handleAnswer}>Enviar respuesta</button>
+                        <button className='question-button-validate' id={question.id} onClick={handleAnswer}>Responder pregunta</button>
                     </div>
                 }
 
