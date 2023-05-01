@@ -11,6 +11,7 @@ function Test({ id, type }) {
     const [test, setTest] = useState([])
     const [total, setTotal] = useState(0)
     const [questions, setQuestions] = useState([])
+    const [ansList, setAnsList] = useState([])
     const [error, setError] = useState(false)
     const [finish, setFinish] = useState(false)
 
@@ -22,7 +23,7 @@ function Test({ id, type }) {
                 .catch(err => setError(true))
         }
         const getQuestions = () => {
-            fetch(db.url + '?table=pregunta&column=id&where=test IN (' + id + ')')
+            fetch(db.url + '?table=pregunta&column=id&where=test IN (' + id + ')&extra=GROUP BY id ORDER BY RAND()')
                 .then(res => res.json())
                 .then(res => setQuestions(res))
                 .catch(err => setError(true))
@@ -53,24 +54,23 @@ function Test({ id, type }) {
                                 <div>
                                     {questions.map(q => (
                                         <div key={q.id}>
-                                            <Question id={q.id} retro={type} suma={suma} />
+                                            <Question id={q.id} retro={type} suma={suma} ansList={ansList} setAnsList={setAnsList} />
                                         </div>
                                     ))}
                                     <div className='question-validate'>
                                         <button className='question-button-validate' onClick={() => { setFinish(true) }}>Terminar intento</button>
                                     </div>
-                                    <TestResult result={total} total={questions.length} />
                                 </div>
+                            </div>
+                            {type === true && <div className='testresult-body'>
+                                <div className='testresult-container'>
+                                    <h3>Has obtenido</h3>
+                                    <h1>{total}/{questions.length}</h1>
                                 </div>
+                            </div>}
                         </React.Fragment>
-
-
                     }
-                    {!!finish && <div>
-                        <h2 className='test-description'>Has completado el test con una calificación de <strong> {total*10/questions.length} </strong></h2>
-                        <h2 className='test-description'>Preguntas contestadas correctamente: <strong> {total} de {questions.length} </strong></h2>
-                    </div>
-                    }
+                    {!!finish && <TestResult ansList={ansList} total={questions.length}/>}
                 </div>
             </div>
 

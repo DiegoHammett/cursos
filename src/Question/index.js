@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../dbconnect';
 import './question_styles.css';
 
-function Question({ id, retro, suma }) {
+function Question({ id, retro, suma, setAnsList, ansList }) {
 
     const [question, setQuestion] = useState([])
     const [options, setOptions] = useState([])
@@ -18,7 +18,7 @@ function Question({ id, retro, suma }) {
                 .catch(err => setError(true))
         }
         const getOptions = () => {
-            fetch(db.url + '?table=respuesta&where=pregunta IN (' + id + ')')
+            fetch(db.url + '?table=respuesta&where=pregunta IN (' + id + ')&extra=GROUP BY id ORDER BY RAND()')
                 .then(res => res.json())
                 .then(res => setOptions(res))
                 .catch(err => setError(true))
@@ -49,6 +49,7 @@ function Question({ id, retro, suma }) {
         for (let [key, value] of map) {
             if (parseInt(value.id) === parseInt(e.target.id)) {
                 setAnswer(value.id)
+                setAnsList({ ...ansList, [id]: value.id })
                 document.getElementById(value.id).style.background = "#9d2053"
             } else {
                 document.getElementById(value.id).style.background = "rgb(29, 29, 29)"
@@ -66,11 +67,10 @@ function Question({ id, retro, suma }) {
                         {op.respuesta}
                     </button>
                 ))}
-                {!(correct === 1 || correct === 0) &&
+                {(retro === true) && !(correct === 1 || correct === 0) &&
                     <div className='question-validate'>
                         <button className='question-button-validate' id={question.id} onClick={handleAnswer}>Enviar respuesta</button>
                     </div>
-
                 }
 
                 {(retro === true) && (correct === 1 || correct === 0) &&
