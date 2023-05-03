@@ -21,8 +21,11 @@ function CreateQuestion({ testID, setCreate }) {
             body: formData
         }).then(res => res.json())
             .then(res => {
-                if (res.status === "OK")
-                    handleInsertAnswers(res.id)
+                if (res.status === "OK") {
+                    handleInsertAnswers(res.id.replaceAll('"', ""))
+                    console.log(res.id.replaceAll('"', ""))
+                }
+                    
                 else setError(true)
             }).catch(err => setError(true))
     }
@@ -45,7 +48,7 @@ function CreateQuestion({ testID, setCreate }) {
                     if (res.status !== "OK") setError(true)
                 }).catch(err => setError(true))
         }
-        setCreate(false)
+        // setCreate(false)
     }
 
     const handleAnswers = (e) => {

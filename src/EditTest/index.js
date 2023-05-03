@@ -84,26 +84,49 @@ function EditTest({ testID }) {
                     </div>
                 </div>
 
-                <div className='et-content-2'>
+                <div className='et-content-2 inset'>
+                    <div className='et-container-2 '>
+                        <div className='et-header'>
+                            <div className='et-title title'>
+                                <b className='b-medium'>Preguntas existentes</b>
+                            </div>
+                            <span className='cq-description description'>
+                                Agregue, modifique o elimine preguntas en esta sección.
+                            </span>
+                        </div>
+                        <div className='et-content-2_body '>
+                            {questions.map(q => (
+                                <div key={q.id} className='et-question-item inset'>
+                                    <div className='et-question-q'>
+                                        {q.pregunta}
+                                    </div>
+                                    <div className='et-question-btns'>
+                                        <button className='btn-s'><i class='bx bx-edit icon' ></i>Editar</button>
+                                        <button className='btn-s'><i class='bx bx-trash icon'></i>Eliminar</button>
+                                    </div>
+                                </div>
+                            ))
+                            }
+                        </div>
+                        <div className='et-content-2_footer'>
+                            {!create &&
+                                <button className='btn' onClick={handleAddQuest}><i class='bx bx-add-to-queue icon' ></i>Agregar pregunta</button>
+                            }
+                            {!!create &&
+                                <CreateQuestion testID={testID} setCreate={setCreate} />
+                            }
+                            {
+                                !!error && <p className='pill-error'><i class='bx bx-error icon' ></i>Ha ocurrido un error</p>
+                            }
+                        </div>
+                    </div>
 
-                    {!create &&
-                        <button className='btn' onClick={handleAddQuest}><i class='bx bx-add-to-queue icon' ></i>Agregar pregunta</button>
-                    }
-                    {!!create &&
-                        <CreateQuestion testID={testID} setCreate={setCreate} />
-                    }
-                    {
-                        !!error && <p className='pill-error'><i class='bx bx-error icon' ></i>Ha ocurrido un error</p>
-                    }
+
+
                 </div>
 
-                <div>
-                    {questions.map(q => (
-                        <div key={q.id}>
-                            <p>{q.pregunta}</p>
-                        </div>
-                    ))
-                    }
+                <div className='et-content-3'>
+
                 </div>
 
             </div>

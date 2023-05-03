@@ -11,6 +11,10 @@
     --bg-100: #F5F3F7;
     --bg-200: #E9E4ED;
     --bg-300: #FFFFFF;
+      
+      
+      
+      
 }
 
 html {
@@ -244,4 +248,42 @@ span {
 .btn3:hover {
     color: var(--primary-200);
     transition: all .5s;
+}
+
+
+.btn-s {
+    display: flex;
+    align-items: center;
+    padding: .7rem 0;
+    justify-content: center;
+    width: 150px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    background-color: var(--primary-200);
+    text-decoration: none;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 5px;
+    transition: all .5s;
+}
+
+.btn-s::before {
+    content: "";
+    position: absolute;
+    left: -1%;
+    top: 0;
+    width: 101%;
+    height: 100%;
+    background-color: var(--primary-100);
+    transform: translateX(-100%);
+    transition: all .5s;
+    z-index: -1;
+}
+
+.btn-s:hover::before {
+    transform: translateX(0);
 }
