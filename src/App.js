@@ -6,6 +6,7 @@ import Login from './Login';
 import CreateTest from './EditTest';
 
 import './styles/palette.css';
+import EditCourse from './EditCourse';
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
         <Route exact path="/test/:id" element={<RouteTest />} />
         <Route exact path="/registro" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/edit" element={<CreateTest testID={5}/>} />
+        <Route exact path="/edit" element={<EditCourse courseID={1}/>} />
       </Routes>
     </BrowserRouter>
 

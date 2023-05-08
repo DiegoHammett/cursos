@@ -287,3 +287,16 @@ span {
 .btn-s:hover::before {
     transform: translateX(0);
 }
+
+.btn-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: right;
+}
+
+.bx {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}

@@ -70,7 +70,7 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
                         <React.Fragment>
                             <div className='q_card'>
                                 <input className='q_radio inset' type='radio' name={question.id} id={op.id} onClick={handleSelectOption} />
-                                <label className='q_content' for={op.id}>
+                                <label className='q_content' htmlFor={op.id}>
                                     <label className='lbl'>{op.respuesta}</label>
                                 </label>
                             </div>

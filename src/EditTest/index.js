@@ -1,34 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { db } from '../dbconnect';
-import CreateQuestion from '../CreateQuestion';
+import EditQuestion from '../EditQuestion';
 import './edittest_styles.css';
 
-function EditTest({ testID }) {
+function EditTest({ testID, setEditTest }) {
 
-    const [create, setCreate] = useState(false)
+    const [questionMode, setQuestionMode] = useState()
+    const [editQuestion, setEditQuestion] = useState(false)
+    const [questionID, setQuestionID] = useState()
+    const [refresh, setRefresh] = useState(false)
     const [editName, setEditName] = useState(false)
     const [testName, setTestName] = useState()
+    const [newTest, setNewTest] = useState()
     const [questions, setQuestions] = useState([])
     const [test, setTest] = useState([])
     const [error, setError] = useState(false)
 
     useEffect(() => {
-        fetch(db.url + '?table=pregunta&where=test IN (' + testID + ')')
-            .then(res => res.json())
-            .then(res => setQuestions(res))
-            .catch(err => setError(true))
-    }, [create, testID])
+        const getQuestions = () => {
+            fetch(db.url + '?table=pregunta&where=test IN (' + testID + ')')
+                .then(res => res.json())
+                .then(res => setQuestions(res))
+                .catch(err => setError(true))
+        }
+        getQuestions()
+    }, [editQuestion, testID, refresh])
 
     useEffect(() => {
-        fetch(db.url + '?table=test&where=id IN (' + testID + ')')
-            .then(res => res.json())
-            .then(res => setTest(res[0]))
-            .catch(err => setError(true))
+        const getTest = () => {
+            fetch(db.url + '?table=test&where=id IN (' + testID + ')')
+                .then(res => res.json())
+                .then(res => setTest(res[0]))
+                .catch(err => setError(true))
+        }
+        getTest()
     }, [editName, testID])
-
-    const handleAddQuest = () => {
-        setCreate(true)
-    }
 
     const handleChangeTestName = () => {
         const formData = new FormData()
@@ -44,9 +50,32 @@ function EditTest({ testID }) {
             }).catch(err => setError(true))
     }
 
+    const handleDeleteQuestion = (e) => {
+        const formData = new FormData()
+        formData.append("id", e.target.id)
+        fetch(db.url + "?table=pregunta&id=" + e.target.id, {
+            method: 'DELETE'
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK") setRefresh(!refresh)
+            }).catch(err => console.log(err))
+    }
+
+    const handleEditQuestion = (id) => {
+        setQuestionID(id)
+        setQuestionMode("edit")
+        setEditQuestion(true)
+        
+    }
+
+    const handleCreateQuestion = (e) => {
+        setEditQuestion(true)
+        setQuestionMode("create")
+    }
+
     return (
         <React.Fragment>
-
+            <button className='btn' onClick={() => { setEditTest(false) }}><i class='bx bx-left-arrow-alt'></i>Regresar</button>
             <div className='et-body'>
                 <div className='et-container inset'>
                     <div className='et-header'>
@@ -63,24 +92,17 @@ function EditTest({ testID }) {
                         {!editName &&
                             <div className='et-lbl-name inset'>
                                 <label className='et-lbl-editar'><b className='b-medium'>{test.nombre}</b></label>
-                                <button className='et-btn-editar' onClick={() => { setEditName(true) }}><i class='bx bx-edit icon' ></i>Editar nombre</button>
+                                <button className='et-btn-editar' onClick={() => { setEditName(true) }}><i className='bx bx-edit icon' ></i>Editar nombre</button>
                             </div>
                         }
                         {!!editName &&
                             <div className='et-lbl-name inset'>
                                 <input className='et-input-text' type='text' defaultValue={test.nombre} onChange={(e) => { setTestName(e.target.value) }}></input>
-                                <button className='et-btn-editar' onClick={handleChangeTestName}><i class='bx bx-save icon' ></i>Guardar</button>
+                                <button className='et-btn-editar' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
                             </div>
                         }
-
-
-
                     </div>
-
-
-
                     <div className='et-footer'>
-
                     </div>
                 </div>
 
@@ -101,64 +123,24 @@ function EditTest({ testID }) {
                                         {q.pregunta}
                                     </div>
                                     <div className='et-question-btns'>
-                                        <button className='btn-s'><i class='bx bx-edit icon' ></i>Editar</button>
-                                        <button className='btn-s'><i class='bx bx-trash icon'></i>Eliminar</button>
+                                        <button className='btn-s' name={q.id} onClick={() => {handleEditQuestion(q.id)}}><i className='bx bx-edit icon' ></i>Editar</button>
+                                        <button className='btn-s' name={q.id} onClick={handleDeleteQuestion}><i className='bx bx-trash icon'></i>Eliminar</button>
                                     </div>
                                 </div>
                             ))
                             }
                         </div>
                         <div className='et-content-2_footer'>
-                            {!create &&
-                                <button className='btn' onClick={handleAddQuest}><i class='bx bx-add-to-queue icon' ></i>Agregar pregunta</button>
-                            }
-                            {!!create &&
-                                <CreateQuestion testID={testID} setCreate={setCreate} />
-                            }
-                            {
-                                !!error && <p className='pill-error'><i class='bx bx-error icon' ></i>Ha ocurrido un error</p>
-                            }
+                            {!editQuestion && <button className='btn' onClick={handleCreateQuestion}><i className='bx bx-add-to-queue icon' ></i>Agregar pregunta</button>}
+                            {!!editQuestion && <EditQuestion testID={testID} setEditQuestion={setEditQuestion} mode={questionMode} questionID={questionID} />}
+                            {!!error && <p className='pill-error'><i className='bx bx-error icon' ></i>Ha ocurrido un error</p>}
                         </div>
                     </div>
-
-
-
                 </div>
 
                 <div className='et-content-3'>
-
                 </div>
-
             </div>
-
-            {/* {!editName &&
-                <div className='et-name'>
-                    <h2>{test.nombre}</h2>
-                    <button onClick={() => { setEditName(true) }}>Editar</button>
-                </div>
-            }
-            {!!editName &&
-                <div className='et-name_edit'>
-                    <input type='text' defaultValue={test.nombre} onChange={(e) => { setTestName(e.target.value) }}></input>
-                    <button onClick={handleChangeTestName}>Guardar</button>
-                </div>
-            } */}
-
-            {/* {questions.map(q => (
-                <div key={q.id}>
-                    <p>{q.pregunta}</p>
-                </div>
-            ))
-            }
-            {!create &&
-                <button onClick={handleAddQuest}>Agregar pregunta</button>
-            }
-            {!!create &&
-                <CreateQuestion testID={testID} setCreate={setCreate} />
-            }
-            {
-                !!error && <p>Ha ocurrido un error</p>
-            } */}
         </React.Fragment >
     )
 }
