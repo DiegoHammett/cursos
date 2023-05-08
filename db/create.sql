@@ -26,7 +26,7 @@ CREATE TABLE test (
     id INT(3) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(250),
     tipo INT(1),
-    aprobacion INT(2)
+    aprobacion DECIMAL(2,1)
 );
 
 CREATE TABLE modulos (

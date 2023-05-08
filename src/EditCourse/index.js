@@ -9,8 +9,10 @@ function EditCourse({ courseID }) {
     const [editInfo, setEditInfo] = useState(false)
     const [moduleID, setModuleID] = useState()
     const [modules, setModules] = useState([])
+    const [editName, setEditName] = useState(false)
+    const [courseName, setCourseName] = useState()
+    const [course, setCourse] = useState([])
     const [refresh, setRefresh] = useState(false)
-    const [addTest, setAddTest] = useState(false)
     const [addInfo, setAddInfo] = useState(false)
 
     useEffect(() => {
@@ -23,9 +25,19 @@ function EditCourse({ courseID }) {
         getModules()
     }, [courseID, editTest, refresh])
 
-    const handleEdit = (id) => {
+    useEffect(() => {
+        const getCourse = () => {
+            fetch(db.url + '?table=curso&where=id IN (' + courseID + ')')
+                .then(res => res.json())
+                .then(res => setCourse(res[0]))
+                .catch(err => setError(true))
+        }
+        getCourse()
+    },[courseID, editName])
+
+    const handleEdit = (id, tipo) => {
         setModuleID(id)
-        setEditTest(true)
+        if(parseInt(tipo) === 2) setEditTest(true)
     }
 
     const handleInsertTest = () => {
@@ -79,15 +91,39 @@ function EditCourse({ courseID }) {
             }).catch(err => console.log(err))
     }
 
+    const handleChangeTestName = () => {
+        const formData = new FormData()
+        formData.append("nombre", courseName)
+        fetch(db.url + "?mode=update&table=curso&id=id&condition=" + courseID + "", {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK")
+                    setEditName(false)
+                else setError(true)
+            }).catch(err => setError(true))
+    }
+
     return (
         <React.Fragment>
             {!editInfo && !editTest &&
                 <div className='et-body'>
                     <div className='et-container inset'>
                         <div className='cq-header'>
-                            <div className='cq-title title'>
-                                <b className='b-medium'>Editar curso</b>
-                            </div>
+                            <label className='lbl'>Nombre del curso </label>
+                            {!editName &&
+                                <div className='et-lbl-name inset'>
+                                    <label className='et-lbl-editar'><b className='b-medium'>{course.nombre}</b></label>
+                                    <button className='et-btn-editar' onClick={() => { setEditName(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                </div>
+                            }
+                            {!!editName &&
+                                <div className='et-lbl-name inset'>
+                                    <input className='et-input-text' type='text' defaultValue={course.nombre} onChange={(e) => { setCourseName(e.target.value) }}></input>
+                                    <button className='et-btn-editar' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
+                                </div>
+                            }
                         </div>
                         <div className='et-content-2_body '>
                             {modules.map(module => (
@@ -96,7 +132,7 @@ function EditCourse({ courseID }) {
                                         {module.nombre}
                                     </div>
                                     <div className='et-question-btns'>
-                                        <button className='btn-s' id={module.id} name={module.tipo} onClick={() => { handleEdit(module.id) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                        <button className='btn-s' id={module.id} name={module.tipo} onClick={() => { handleEdit(module.id, module.tipo) }}><i className='bx bx-edit icon' ></i>Editar</button>
                                         <button className='btn-s' id={module.modulo} name={module.tipo} onClick={handleDelete}><i className='bx bx-trash icon'></i>Eliminar</button>
                                     </div>
                                 </div>

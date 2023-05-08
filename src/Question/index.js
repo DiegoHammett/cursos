@@ -50,7 +50,7 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
             if (parseInt(value.id) === parseInt(e.target.id)) {
                 setAnswer(value.id)
                 setAnsList({ ...ansList, [id]: value.id })
-            } 
+            }
         }
     }
 
@@ -67,19 +67,12 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
                 <div className='question-q-container'>
                     <span className='lbl'>Selecciona una respuesta:</span>
                     {options.map(op => (
-                        <React.Fragment>
-                            <div className='q_card'>
-                                <input className='q_radio inset' type='radio' name={question.id} id={op.id} onClick={handleSelectOption} />
-                                <label className='q_content' htmlFor={op.id}>
-                                    <label className='lbl'>{op.respuesta}</label>
-                                </label>
-                            </div>
-
-                            {/* <button className='question-respuesta' key={op.id} name={question.id} value={op.id} id={op.id} onClick={handleSelectOption}>
-                            {op.respuesta}
-                        </button> */}
-                        </React.Fragment>
-
+                        <div className='q_card' key={op.id}>
+                            <input className='q_radio inset' type='radio' name={question.id} id={op.id} onClick={handleSelectOption} />
+                            <label className='q_content' htmlFor={op.id}>
+                                <label className='lbl'>{op.respuesta}</label>
+                            </label>
+                        </div>
                     ))}
                 </div>
 

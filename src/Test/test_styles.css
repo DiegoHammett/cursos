@@ -122,8 +122,8 @@
     height: 254px;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    -webkit-transition: 3s ease;
-    transition: 3s ease;
+    -webkit-transition: 1.5s ease;
+    transition: 1.5s ease;
     cursor: pointer;
     border-radius: 15px;
 }

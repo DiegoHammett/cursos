@@ -10,8 +10,9 @@ function EditTest({ testID, setEditTest }) {
     const [questionID, setQuestionID] = useState()
     const [refresh, setRefresh] = useState(false)
     const [editName, setEditName] = useState(false)
+    const [editApprove, setEditApprove] = useState(false)
+    const [approve, setApprove] = useState(false)
     const [testName, setTestName] = useState()
-    const [newTest, setNewTest] = useState()
     const [questions, setQuestions] = useState([])
     const [test, setTest] = useState([])
     const [error, setError] = useState(false)
@@ -34,7 +35,7 @@ function EditTest({ testID, setEditTest }) {
                 .catch(err => setError(true))
         }
         getTest()
-    }, [editName, testID])
+    }, [editName, editApprove, testID])
 
     const handleChangeTestName = () => {
         const formData = new FormData()
@@ -46,6 +47,23 @@ function EditTest({ testID, setEditTest }) {
             .then(res => {
                 if (res.status === "OK")
                     setEditName(false)
+                else setError(true)
+            }).catch(err => setError(true))
+    }
+
+    const handleChangeApprove = () => {
+        const formData = new FormData()
+        if (approve > 10)
+            formData.append("aprobacion", 10)
+        else
+            formData.append("aprobacion", approve)
+        fetch(db.url + "?mode=update&table=test&id=id&condition=" + testID + "", {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK")
+                    setEditApprove(false)
                 else setError(true)
             }).catch(err => setError(true))
     }
@@ -65,7 +83,7 @@ function EditTest({ testID, setEditTest }) {
         setQuestionID(id)
         setQuestionMode("edit")
         setEditQuestion(true)
-        
+
     }
 
     const handleCreateQuestion = (e) => {
@@ -75,7 +93,7 @@ function EditTest({ testID, setEditTest }) {
 
     return (
         <React.Fragment>
-            <button className='btn' onClick={() => { setEditTest(false) }}><i class='bx bx-left-arrow-alt'></i>Regresar</button>
+            <button className='btn' onClick={() => { setEditTest(false) }}><i className='bx bx-left-arrow-alt'></i>Regresar</button>
             <div className='et-body'>
                 <div className='et-container inset'>
                     <div className='et-header'>
@@ -88,17 +106,31 @@ function EditTest({ testID, setEditTest }) {
                     </div>
                     <div className='et-content'>
                         <label className='lbl'>Nombre del test </label>
-
                         {!editName &&
                             <div className='et-lbl-name inset'>
                                 <label className='et-lbl-editar'><b className='b-medium'>{test.nombre}</b></label>
-                                <button className='et-btn-editar' onClick={() => { setEditName(true) }}><i className='bx bx-edit icon' ></i>Editar nombre</button>
+                                <button className='et-btn-editar' onClick={() => { setEditName(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
                             </div>
                         }
                         {!!editName &&
                             <div className='et-lbl-name inset'>
                                 <input className='et-input-text' type='text' defaultValue={test.nombre} onChange={(e) => { setTestName(e.target.value) }}></input>
                                 <button className='et-btn-editar' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
+                            </div>
+                        }
+                    </div>
+                    <div className='et-content'>
+                        <label className='lbl'>Calificación aprobatoria </label>
+                        {!editApprove &&
+                            <div className='et-lbl-name inset'>
+                                <label className='et-lbl-editar'><b className='b-medium'>{test.aprobacion}</b></label>
+                                <button className='et-btn-editar' onClick={() => { setEditApprove(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                            </div>
+                        }
+                        {!!editApprove &&
+                            <div className='et-lbl-name inset'>
+                                <input className='et-input-text' type='number' min='1' max='10' defaultValue={test.aprobacion} onChange={(e) => { setApprove(e.target.value) }}></input>
+                                <button className='et-btn-editar' onClick={handleChangeApprove}><i className='bx bx-save icon' ></i>Guardar</button>
                             </div>
                         }
                     </div>
@@ -123,7 +155,7 @@ function EditTest({ testID, setEditTest }) {
                                         {q.pregunta}
                                     </div>
                                     <div className='et-question-btns'>
-                                        <button className='btn-s' name={q.id} onClick={() => {handleEditQuestion(q.id)}}><i className='bx bx-edit icon' ></i>Editar</button>
+                                        <button className='btn-s' name={q.id} onClick={() => { handleEditQuestion(q.id) }}><i className='bx bx-edit icon' ></i>Editar</button>
                                         <button className='btn-s' name={q.id} onClick={handleDeleteQuestion}><i className='bx bx-trash icon'></i>Eliminar</button>
                                     </div>
                                 </div>

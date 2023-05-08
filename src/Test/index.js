@@ -52,7 +52,7 @@ function Test({ id, retro }) {
                                     Seleccione la respuesta que considere correcta y presione el botón <b className='b-medium'>'Responder pregunta'</b> para que su respuesta sea registrada. Presione el botón <b className='b-medium'>'Terminar intento'</b> al finalizar.
                                 </span>
                                 <p className='pill'>
-                                    <i class='bx bx-info-circle'></i>Tu puntuación se verá reflejada en el recuadro flotante cada que respondas una pregunta.
+                                    <i className='bx bx-info-circle'></i>Tu puntuación se verá reflejada en el recuadro flotante cada que respondas una pregunta.
                                 </p>
                             </React.Fragment>
                         }
@@ -96,9 +96,8 @@ function Test({ id, retro }) {
                                 </div>
                             }
                         </React.Fragment>
-
                     }
-                    {!!finish && <TestResult ansList={ansList} total={questions.length} />}
+                    {!!finish && <TestResult ansList={ansList} total={questions.length} approveTest={test.aprobacion}/>}
                 </div>
             </div>
 
