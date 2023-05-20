@@ -3,7 +3,6 @@ import '../App.css';
 import { db } from '../dbconnect'
 import Question from '../Question'
 import TestResult from '../TestResult'
-import Navbar from '../Navbar';
 import './test_styles.css'
 
 function Test({ id, retro }) {
@@ -38,8 +37,6 @@ function Test({ id, retro }) {
 
     return (
         <React.Fragment>
-            <Navbar></Navbar>
-
             <div className='test-body'>
                 <div className='test-container '>
                     <div className='test-header'>
