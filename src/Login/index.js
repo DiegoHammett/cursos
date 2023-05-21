@@ -57,7 +57,7 @@ function Login() {
                                 <div className='login-form_item'>
                                     <label className='input-label lbl'>Correo electrónico</label>
                                     <input
-                                        className='input-text'
+                                        className='input-text it-inset-shadow'
                                         type="email"
                                         id="typeEmail"
                                         onChange={(e) => { setUser(e.target.value); setLogAlert(false) }}
@@ -68,7 +68,7 @@ function Login() {
                                 <div className='login-form_item'>
                                     <label className='input-label lbl'>Contraseña</label>
                                     <input
-                                        className='input-text'
+                                        className='input-text it-inset-shadow'
                                         type="password"
                                         id="typePassword"
                                         onChange={(e) => { setPass(e.target.value); setLogAlert(false) }}

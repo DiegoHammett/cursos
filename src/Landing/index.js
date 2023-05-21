@@ -42,7 +42,9 @@ function Landing() {
 
                             <div className='beneficios_box-1 inset'>
                                 <div className='box-1_content'>
-                                    <div className='box-1_icon'><i class='bx bx-cube'></i></div>
+                                    <div className='box-1_icon'>
+                                        <i class='bx bx-cube'></i>
+                                     </div>
                                     <div className='box-1_text'>
                                         <h3>Beneficio #2</h3>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

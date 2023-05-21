@@ -104,35 +104,45 @@ function EditTest({ testID, setEditTest }) {
                             Aquí puede editar el test.
                         </span>
                     </div>
-                    <div className='et-content'>
-                        <label className='lbl'>Nombre del test </label>
-                        {!editName &&
-                            <div className='et-lbl-name inset'>
-                                <label className='et-lbl-editar'><b className='b-medium'>{test.nombre}</b></label>
-                                <button className='et-btn-editar' onClick={() => { setEditName(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
-                            </div>
-                        }
-                        {!!editName &&
-                            <div className='et-lbl-name inset'>
-                                <input className='et-input-text' type='text' defaultValue={test.nombre} onChange={(e) => { setTestName(e.target.value) }}></input>
-                                <button className='et-btn-editar' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
-                            </div>
-                        }
+                    <div className='et-content-3'>
+                        <div className='et-nombretest'>
+                            <label className='lbl'>Nombre del test </label>
+                            {!editName &&
+                                <div className='ec-lbl-name inset'>
+                                    <label className='et-lbl-editar' onClick={() => { setEditName(true) }}><b className='b-medium'>{test.nombre}</b></label>
+                                    <button className='ec-btn-editar' onClick={() => { setEditName(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                </div>
+                            }
+                            {!!editName &&
+                                <div className='ec-lbl-name inset'>
+                                    <input autoFocus className='et-input-text' type='text' defaultValue={test.nombre} onChange={(e) => { setTestName(e.target.value) }}></input>
+                                    
+                                    <button className='ec-btn-editar' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
+                                </div>
+                            }
+                        </div>
+
+                        <div className='et-calificacion'>
+                            <label className='lbl'>Calificación aprobatoria </label>
+                            {!editApprove &&
+                                <div className='ec-lbl-name inset'>
+                                    <label className='et-lbl-editar'><b className='b-medium'>{test.aprobacion}</b></label>
+                                    <button className='ec-btn-editar' onClick={() => { setEditApprove(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                </div>
+                            }
+                            {!!editApprove &&
+                                <div className='ec-lbl-name inset'>
+                                    <input className='et-input-text' type='number' min='1' max='10' defaultValue={test.aprobacion} onChange={(e) => { setApprove(e.target.value) }}></input>
+                                    <button className='ec-btn-editar' onClick={handleChangeApprove}><i className='bx bx-save icon' ></i>Guardar</button>
+                                </div>
+                            }
+                        </div>
+
                     </div>
                     <div className='et-content'>
-                        <label className='lbl'>Calificación aprobatoria </label>
-                        {!editApprove &&
-                            <div className='et-lbl-name inset'>
-                                <label className='et-lbl-editar'><b className='b-medium'>{test.aprobacion}</b></label>
-                                <button className='et-btn-editar' onClick={() => { setEditApprove(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
-                            </div>
-                        }
-                        {!!editApprove &&
-                            <div className='et-lbl-name inset'>
-                                <input className='et-input-text' type='number' min='1' max='10' defaultValue={test.aprobacion} onChange={(e) => { setApprove(e.target.value) }}></input>
-                                <button className='et-btn-editar' onClick={handleChangeApprove}><i className='bx bx-save icon' ></i>Guardar</button>
-                            </div>
-                        }
+
+
+
                     </div>
                     <div className='et-footer'>
                     </div>
@@ -144,9 +154,9 @@ function EditTest({ testID, setEditTest }) {
                             <div className='et-title title'>
                                 <b className='b-medium'>Preguntas existentes</b>
                             </div>
-                            <span className='cq-description description'>
+                            <p className='cq-description description'>
                                 Agregue, modifique o elimine preguntas en esta sección.
-                            </span>
+                            </p>
                         </div>
                         <div className='et-content-2_body '>
                             {questions.map(q => (
@@ -155,7 +165,7 @@ function EditTest({ testID, setEditTest }) {
                                         {q.pregunta}
                                     </div>
                                     <div className='et-question-btns'>
-                                        <button className='btn-s' name={q.id} onClick={() => { handleEditQuestion(q.id) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                        <button className='btn-s' name={q.id} onClick={() => { handleEditQuestion(q.id) }}><i className='bx bx-edit icon-drag' ></i>Editar</button>
                                         <button className='btn-s' name={q.id} onClick={handleDeleteQuestion}><i className='bx bx-trash icon'></i>Eliminar</button>
                                     </div>
                                 </div>
@@ -163,8 +173,11 @@ function EditTest({ testID, setEditTest }) {
                             }
                         </div>
                         <div className='et-content-2_footer'>
-                            {!editQuestion && <button className='btn' onClick={handleCreateQuestion}><i className='bx bx-add-to-queue icon' ></i>Agregar pregunta</button>}
-                            {!!editQuestion && <EditQuestion testID={testID} setEditQuestion={setEditQuestion} mode={questionMode} questionID={questionID} />}
+                            <div className='btn-container'>
+                                {!editQuestion && <button className='btn' onClick={handleCreateQuestion}><i className='bx bx-add-to-queue icon' ></i>Agregar pregunta</button>}
+                                {!!editQuestion && <EditQuestion testID={testID} setEditQuestion={setEditQuestion} mode={questionMode} questionID={questionID} />}
+                            </div >
+
                             {!!error && <p className='pill-error'><i className='bx bx-error icon' ></i>Ha ocurrido un error</p>}
                         </div>
                     </div>
