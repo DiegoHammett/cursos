@@ -68,9 +68,9 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
                     <span className='lbl'>Selecciona una respuesta:</span>
                     {options.map(op => (
                         <div className='q_card' key={op.id}>
-                            <input className='q_radio inset' type='radio' name={question.id} id={op.id} onClick={handleSelectOption} />
-                            <label className='q_content' htmlFor={op.id}>
-                                <label className='lbl'>{op.respuesta}</label>
+                            <input className='q_radio it-inset-shadow' type='radio' name={question.id} id={op.id} onClick={handleSelectOption} />
+                            <label className='q_content ' htmlFor={op.id}>
+                                <label className='lbl' htmlFor={op.id}>{op.respuesta}</label>
                             </label>
                         </div>
                     ))}
@@ -78,7 +78,7 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
 
                 {(retro === true) && !(correct === 1 || correct === 0) &&
                     <div className='question-validate'>
-                        <button className='question-button-validate' id={question.id} onClick={handleAnswer}>Responder pregunta</button>
+                        <button className='btn' id={question.id} onClick={handleAnswer}>Responder pregunta</button>
                     </div>
                 }
 

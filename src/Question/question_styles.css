@@ -59,6 +59,10 @@
 
 }
 
+.q_content .lbl {
+    cursor: pointer;
+}
+
 .q_radio[type="radio"] {
     -webkit-appearance: none;
     appearance: none;
@@ -72,9 +76,9 @@
 }
 
 .q_radio[type="radio"]:hover {
-    box-shadow: 0px 0px 5px 1px var(--accent-100);
-    -webkit-box-shadow: 0px 0px 5px 1px var(--accent-100);
-    -moz-box-shadow: 0px 0px 5px 1px var(--accent-100);
+    box-shadow: 0px 0px 10px -3px var(--accent-200);
+    -webkit-box-shadow: 0px 0px 10px -3px var(--accent-200);
+    -moz-box-shadow: 0px 0px 10px -3px var(--accent-200);
 }
 
 .q_radio[type="radio"]::before {
@@ -104,12 +108,14 @@
 
 
 .q_radio[type="radio"]:checked {
-    border: 3px solid var(--accent-200);
-    transition: all .05s;
+    box-shadow: 0px 0px 5px 2px var(--accent-100) inset;
+    -webkit-box-shadow: 0px 0px 5px 2px var(--accent-100) inset;
+    -moz-box-shadow: 0px 0px 5px 2px var(--accent-100) inset;
+    transition: all .5s;
 }
 
 .q_radio[type="radio"]:checked::after {
-    background-color: var(--accent-200);
+    background-color: var(--accent-100);
     transition: all .3s;
 }
 
@@ -215,7 +221,7 @@
 
 
 
-.question-button-validate:hover:before, 
+.question-button-validate:hover:before,
 .question-button-validate:focus:before {
     transition: 0.5s all ease;
     left: 0;

@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { db } from '../dbconnect'
 import EditTest from '../EditTest'
-import './editcourse_styles.css';
+import EditClass from '../EditClass'
+import './editcourse_styles.css'
 
 function EditCourse({ courseID }) {
 
     const [error, setError] = useState(false)
     const [editTest, setEditTest] = useState(false)
-    const [editInfo, setEditInfo] = useState(false)
+    const [editClass, setEditClass] = useState(false)
     const [moduleID, setModuleID] = useState()
     const [modules, setModules] = useState([])
     const [editName, setEditName] = useState(false)
     const [courseName, setCourseName] = useState()
     const [course, setCourse] = useState([])
     const [refresh, setRefresh] = useState(false)
-    const [addInfo, setAddInfo] = useState(false)
 
     useEffect(() => {
         const getModules = () => {
@@ -24,7 +24,7 @@ function EditCourse({ courseID }) {
                 .catch(err => setError(true))
         }
         getModules()
-    }, [courseID, editTest, refresh])
+    }, [courseID, editTest, refresh, editClass])
 
     useEffect(() => {
         const getCourse = () => {
@@ -39,6 +39,7 @@ function EditCourse({ courseID }) {
     const handleEdit = (id, tipo) => {
         setModuleID(id)
         if (parseInt(tipo) === 2) setEditTest(true)
+        else setEditClass(true)
     }
 
     const handleInsertTest = () => {
@@ -50,34 +51,50 @@ function EditCourse({ courseID }) {
         }).then(res => res.json())
             .then(res => {
                 if (res.status === "OK")
-                    getLastOrder(res.id.replaceAll('"', ""))
+                    getLastOrder(res.id.replaceAll('"', ""), 2)
                 else console.log(res)
             }).catch(err => console.log(err))
     }
 
-    const getLastOrder = (testID) => {
+    const handleInsertClass = () => {
+        const formData = new FormData()
+        formData.append("nombre", "Nueva clase")
+        fetch(db.url + "?mode=insert&table=clase", {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK")
+                    getLastOrder(res.id.replaceAll('"', ""), 1)
+                else console.log(res)
+            }).catch(err => console.log(err))
+    }
+
+    const getLastOrder = (testID, type) => {
         fetch(db.url + '?table=modulos&column=max(orden) as max&where=curso IN (' + courseID + ')')
             .then(res => res.json())
             .then(res => {
-                insertTestModule(testID, res[0].max)
+                insertModule(testID, res[0].max, type)
             })
             .catch(err => console.log(err))
     }
 
-    const insertTestModule = (testID, maxOrder) => {
+    const insertModule = (newID, maxOrder, type) => {
         const formData = new FormData()
-        formData.append("id_test", testID)
-        formData.append("orden", maxOrder + 1)
+        if (type === 2) formData.append("id_test", newID)
+        else formData.append("id_clase", newID)
+        formData.append("orden", parseInt(maxOrder) + 1)
         formData.append("curso", courseID)
-        formData.append("tipo", 2)
+        formData.append("tipo", type)
         fetch(db.url + "?mode=insert&table=modulos", {
             method: 'POST',
             body: formData
         }).then(res => res.json())
             .then(res => {
                 if (res.status === "OK") {
-                    setModuleID(testID)
-                    setEditTest(true)
+                    setModuleID(newID)
+                    if (type === 2) setEditTest(true)
+                    else setEditClass(true)
                 }
                 else console.log(res)
             }).catch(err => console.log(err))
@@ -108,7 +125,7 @@ function EditCourse({ courseID }) {
 
     return (
         <React.Fragment>
-            {!editInfo && !editTest &&
+            {!editClass && !editTest &&
                 <div className='ec-body'>
                     <div className='ec-container inset'>
                         <div className='ec-header'>
@@ -119,6 +136,7 @@ function EditCourse({ courseID }) {
                                 <p className='description'>Modifique a su gusto el contenido del curso seleccionado. </p>
                             </span>
                         </div>
+
                         <div className='ec-datos-curso inset'>
                             <div className='ec-datos-curso_header'>
                                 <h2 className='title'>
@@ -128,7 +146,7 @@ function EditCourse({ courseID }) {
                                     Modifique los <b className='b-medium'>datos generales</b> del curso.
                                 </span>
                                 <p className='register-msg pill'>
-                                <i class='bx bx-right-arrow-alt icon'></i>
+                                    <i class='bx bx-right-arrow-alt icon'></i>
                                     Asegúrese de guardar los cambios después de realizar modificaciones.
                                 </p>
                             </div>
@@ -137,23 +155,25 @@ function EditCourse({ courseID }) {
                                 <div>
                                     <label className='input-label lbl'>Nombre del curso:</label>
                                     {!editName &&
-                                        <div className='ec-lbl-name'>
-                                            <label className='ec-lbl-editar' onClick={() => { setEditName(true) }}><b className='b-medium'>{course.nombre}</b></label>
-                                            <button className='ec-btn-editar' onClick={() => { setEditName(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                        <div className='ec-lbl-name '>
+                                            <label className='ec-lbl-editar it-inset-shadow' onClick={() => { setEditName(true) }}><b className='b-medium'>{course.nombre}</b></label>
+                                            <button className='ec-btn-editar' onClick={() => { setEditName(true) }}>
+                                                <i className='bx bx-edit icon' ></i> Editar
+                                            </button>
                                         </div>
                                     }
                                     {!!editName &&
-                                        <div className='ec-lbl-name it-inset-shadow'>
-                                            <input autoFocus className='ec-input-text ' type='text' defaultValue={course.nombre} onChange={(e) => { setCourseName(e.target.value) }}></input>
-                                            <button className='ec-btn-editar' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
+                                        <div className='ec-lbl-name'>
+                                            <input autoFocus className='ec-input-text it-inset-shadow' type='text' defaultValue={course.nombre} onChange={(e) => { setCourseName(e.target.value) }}></input>
+                                            <button className='ec-btn-editar it-inset-shadow' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
                                         </div>
                                     }
                                 </div>
                                 <div>
                                     <label className='input-label lbl'>Descripción del curso:</label>
                                     <div className='ec-lbl-name'>
-                                        <label className='ec-lbl-editar'><b className='b-medium'>Descripción del curso</b></label>
-                                        <button className='ec-btn-editar'><i className='bx bx-edit icon' ></i>Editar</button>
+                                        <label className='ec-lbl-editar it-inset-shadow'><b className='b-medium'>Descripción del curso</b></label>
+                                        <button className='ec-btn-editar it-inset-shadow'><i className='bx bx-edit icon' ></i>Editar</button>
                                     </div>
                                 </div>
 
@@ -172,7 +192,7 @@ function EditCourse({ courseID }) {
                                     <p className='description'>Aquí se muestran todos los módulos existentes en el sistema</p>
                                 </span>
                                 <p className='register-msg pill'>
-                                <i class='bx bx-right-arrow-alt icon'></i>
+                                    <i class='bx bx-right-arrow-alt icon'></i>
                                     Arrastre cada elemento de la lista para cambiar el orden en que se mostrarán los módulos.
                                 </p>
                             </div>
@@ -196,11 +216,12 @@ function EditCourse({ courseID }) {
 
                         <div className='btn-container'>
                             <button className="btn" onClick={handleInsertTest}>Agregar examen</button>
-                            <button className="btn" onClick={() => { setAddInfo(true) }}>Agregar clase</button>
+                            <button className="btn" onClick={handleInsertClass}>Agregar clase</button>
                         </div>
                     </div>
                 </div>}
             {!!editTest && <EditTest testID={moduleID} setEditTest={setEditTest}></EditTest>}
+            {!!editClass && <EditClass classID={moduleID} setEditClass={setEditClass} mode="edit"></EditClass>}
         </React.Fragment>
     )
 }

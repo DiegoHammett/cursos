@@ -109,13 +109,13 @@ function EditTest({ testID, setEditTest }) {
                             <label className='lbl'>Nombre del test </label>
                             {!editName &&
                                 <div className='ec-lbl-name inset'>
-                                    <label className='et-lbl-editar' onClick={() => { setEditName(true) }}><b className='b-medium'>{test.nombre}</b></label>
+                                    <label className='et-lbl-editar it-inset-shadow' onClick={() => { setEditName(true) }}><b className='b-medium'>{test.nombre}</b></label>
                                     <button className='ec-btn-editar' onClick={() => { setEditName(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
                                 </div>
                             }
                             {!!editName &&
                                 <div className='ec-lbl-name inset'>
-                                    <input autoFocus className='et-input-text' type='text' defaultValue={test.nombre} onChange={(e) => { setTestName(e.target.value) }}></input>
+                                    <input autoFocus className='et-input-text it-inset-shadow' type='text' defaultValue={test.nombre} onChange={(e) => { setTestName(e.target.value) }}></input>
                                     
                                     <button className='ec-btn-editar' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
                                 </div>
@@ -126,13 +126,13 @@ function EditTest({ testID, setEditTest }) {
                             <label className='lbl'>Calificación aprobatoria </label>
                             {!editApprove &&
                                 <div className='ec-lbl-name inset'>
-                                    <label className='et-lbl-editar'><b className='b-medium'>{test.aprobacion}</b></label>
+                                    <label className='et-lbl-editar it-inset-shadow'><b className='b-medium'>{test.aprobacion}</b></label>
                                     <button className='ec-btn-editar' onClick={() => { setEditApprove(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
                                 </div>
                             }
                             {!!editApprove &&
                                 <div className='ec-lbl-name inset'>
-                                    <input className='et-input-text' type='number' min='1' max='10' defaultValue={test.aprobacion} onChange={(e) => { setApprove(e.target.value) }}></input>
+                                    <input className='et-input-text it-inset-shadow' type='number' min='1' max='10' defaultValue={test.aprobacion} onChange={(e) => { setApprove(e.target.value) }}></input>
                                     <button className='ec-btn-editar' onClick={handleChangeApprove}><i className='bx bx-save icon' ></i>Guardar</button>
                                 </div>
                             }
