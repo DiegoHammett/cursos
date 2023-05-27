@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './navbar_styles.css'
-
+import DarkMode from '../DarkMode';
 
 function Navbar() {
 
@@ -37,6 +37,9 @@ function Navbar() {
                     </ul>
                 </nav>
                 <nav className='navbar-buttons_2'>
+                    <div className='dm-container '>
+                        <DarkMode />
+                    </div>
                     <a href='/registro' className='navbar-links_item-2'>Regístrate</a>
                     <a href='/login' className='navbar-links_item-3'>Iniciar sesión</a>
                 </nav>

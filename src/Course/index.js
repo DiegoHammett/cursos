@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../dbconnect';
 import Class from '../Class';
 import Test from '../Test';
+import Navbar from '../Navbar';
+import './course_styles.css'
 
 function Course({ id }) {
 
@@ -24,14 +26,35 @@ function Course({ id }) {
 
     return (
         <React.Fragment>
-            {currentModule !== 0 && <button onClick={() => { setCurrentModule(currentModule - 1) }}>Anterior</button>}
-            {currentModule !== modules.length-1 && <button onClick={() => { setCurrentModule(currentModule + 1) }}>Siguiente</button>}
-            {!!rendered &&
-                <div>
-                    {parseInt(modules[currentModule].tipo) === 1 && <Class id={modules[currentModule].id_clase} />}
-                    {parseInt(modules[currentModule].tipo) === 2 && <Test id={modules[currentModule].id_test} retro={true} />}
+            <div className='course-body'>
+                <div className='course-navigation'>
+                    <div className='course-navigation-item'>
+                        {currentModule !== 0 &&
+                            <button className='btn-s' onClick={() => { setCurrentModule(currentModule - 1) }}>
+                                <i class='bx bx-arrow-back icon'></i>Anterior
+                            </button>
+                        }
+                    </div>
+                    <div className='course-navigation-item'>
+                        {currentModule !== modules.length - 1 &&
+                            <button className='btn-s' onClick={() => { setCurrentModule(currentModule + 1) }}>
+                                Siguiente<i class='bx bx-right-arrow-alt icon-r' ></i>
+                            </button>
+                        }
+                    </div>
+
+
                 </div>
-            }
+
+                {!!rendered &&
+                    <div>
+                        {parseInt(modules[currentModule].tipo) === 1 && <Class id={modules[currentModule].id_clase} />}
+                        {parseInt(modules[currentModule].tipo) === 2 && <Test id={modules[currentModule].id_test} retro={true} />}
+                    </div>
+                }
+            </div>
+
+
 
         </React.Fragment>
     )

@@ -1,0 +1,26 @@
+.class-body {
+    box-sizing: border-box;
+    /* padding: 6rem 10rem; */
+    margin: 0;
+    background: var(--bg-100);
+}
+
+.class-container {
+    padding: 2rem 0rem;
+    border-radius: .5rem;
+}
+
+.class-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: max-content;
+}
+
+.class-title {
+    font-size: 2rem;
+}
+
+.class-video-container {
+
+}

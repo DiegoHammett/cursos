@@ -1,3 +1,4 @@
+import React from 'react';
 import Test from './Test';
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import Landing from './Landing';
@@ -9,6 +10,7 @@ import EditClass from './EditClass';
 import Class from './Class';
 import Course from './Course';
 import MathExp from './MathExp';
+import Navbar from './Navbar';
 
 function App() {
 
@@ -24,7 +26,7 @@ function App() {
 
   function RouteCourse() {
     let params = useParams();
-    return <Course id={params.id} />;
+    return <React.Fragment><Navbar /> <Course id={params.id} /></React.Fragment>;
   }
 
   return (

@@ -49,7 +49,7 @@ function Test({ id, retro }) {
                                     Seleccione la respuesta que considere correcta y presione el botón <b className='b-medium'>'Responder pregunta'</b> para que su respuesta sea registrada. Presione el botón <b className='b-medium'>'Terminar intento'</b> al finalizar.
                                 </span>
                                 <p className='pill'>
-                                    <i className='bx bx-info-circle'></i>Tu puntuación se verá reflejada en el recuadro flotante cada que respondas una pregunta.
+                                    <i className='bx bx-info-circle icon'></i>Tu puntuación se verá reflejada en el recuadro flotante cada que respondas una pregunta.
                                 </p>
                             </React.Fragment>
                         }
@@ -76,7 +76,7 @@ function Test({ id, retro }) {
                                         </div>
                                     ))}
                                     <div className='question-validate'>
-                                        <button className='question-button-validate' onClick={() => { setFinish(true) }}>Terminar intento</button>
+                                        <button className='btn' onClick={() => { setFinish(true) }}>Terminar intento</button>
                                     </div>
                                 </div>
                             </div>

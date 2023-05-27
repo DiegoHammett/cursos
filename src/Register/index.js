@@ -85,7 +85,7 @@ function Register() {
                         <div>
                             <h1 className='title'>Bienvenido a MARCA</h1>
                             <p className='description'>A continuación, llene todos los campos con su información. Al finalizar, presione 'Registrarse'.</p>
-                            <p className='register-msg pill'><i class='bx bx-error-circle icon' ></i>Todos los campos son obligatorios.</p>
+                            <p className='pill'><i class='bx bx-right-arrow-alt icon'></i>Todos los campos son obligatorios.</p>
                         </div>
 
                     </div>
@@ -107,7 +107,7 @@ function Register() {
                                         <div className='register-form_item'>
                                             <label className='input-label lbl'>Nombre/s:</label>
                                             <input
-                                                className='input-text'
+                                                className='input-text it-inset-shadow'
                                                 name="nombre"
                                                 type='text'
                                                 required
@@ -119,7 +119,7 @@ function Register() {
                                         <div className='register-form_item'>
                                             <label className='input-label lbl'>Primer apellido:</label>
                                             <input
-                                                className='input-text'
+                                                className='input-text it-inset-shadow'
                                                 name="apellido_p"
                                                 type='text'
                                                 required
@@ -131,7 +131,7 @@ function Register() {
                                         <div className='register-form_item'>
                                             <label className='input-label lbl'>Segundo apellido:</label>
                                             <input
-                                                className='input-text'
+                                                className='input-text it-inset-shadow'
                                                 name="apellido_m"
                                                 type='text'
                                                 required
@@ -163,7 +163,7 @@ function Register() {
                                         <div className='register-form_item'>
                                             <label className='input-label lbl'>Correo electrónico</label>
                                             <input
-                                                className='input-text'
+                                                className='input-text it-inset-shadow'
                                                 name="email"
                                                 onChange={handleChange}
                                                 type="text"
@@ -179,7 +179,7 @@ function Register() {
                                                     <span><i class='bx bx-x' ></i>Las contraseñas no coinciden</span>
                                                 </p>
                                             </label>
-                                            <input className='input-text' name="password" onChange={handleChange} type="password" id="inputPassword1" required />
+                                            <input className='input-text it-inset-shadow' name="password" onChange={handleChange} type="password" id="inputPassword1" required />
 
                                         </div>
 
@@ -190,7 +190,7 @@ function Register() {
                                                     <span><i class='bx bx-x' ></i>Las contraseñas no coinciden</span>
                                                 </p>
                                             </label>
-                                            <input className='input-text' onChange={handleCheckPassword} type="password" id="inputPassword2" required />
+                                            <input className='input-text it-inset-shadow' onChange={handleCheckPassword} type="password" id="inputPassword2" required />
 
                                         </div>
                                     </div>
@@ -215,7 +215,7 @@ function Register() {
                             </div>
                             <div className='register-pricing_cards'>
                                 <div className='pricing_card'>
-                                    <input className='pricing_radio inset' type='radio' name='pricing' id='card1' />
+                                    <input className='pricing_radio it-inset-shadow ' type='radio' name='pricing' id='card1' />
                                     <label className='pricing_content' for='card1'>
                                         <label className='lbl'>Plan</label>
                                         <h5 className='pricing_title title'><b>BASIC</b></h5>
@@ -227,7 +227,7 @@ function Register() {
                                     </label>
                                 </div>
                                 <div className='pricing_card'>
-                                    <input className='pricing_radio inset' type='radio' name='pricing' id='card2' />
+                                    <input className='pricing_radio it-inset-shadow' type='radio' name='pricing' id='card2' />
                                     <label className='pricing_content' for='card2'>
                                         <label className='lbl'>Plan</label>
                                         <h5 className='pricing_title title'><b>STANDARD</b></h5>
@@ -239,7 +239,7 @@ function Register() {
                                     </label>
                                 </div>
                                 <div className='pricing_card'>
-                                    <input className='pricing_radio inset' type='radio' name='pricing' id='card3' />
+                                    <input className='pricing_radio it-inset-shadow' type='radio' name='pricing' id='card3' />
                                     <label className='pricing_content' for='card3'>
                                         <label className='lbl'>Plan</label>
                                         <h5 className='pricing_title title'><b>PREMIUM</b></h5>
@@ -282,7 +282,7 @@ function Register() {
                         <br></br>
                         <span className='description'>¿Ya tienes una cuenta?</span>
                         <a className='btn2' href='/login'>
-                            Inicia sesión <i className='bx bxs-chevrons-right bx-fade-right' ></i>
+                            Inicia sesión 
                         </a>
                     </div>
 

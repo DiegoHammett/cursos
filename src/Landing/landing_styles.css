@@ -1,11 +1,11 @@
+
+
 .landing-header {
     min-height: 100vh;
     width: 100%;
     background-image: linear-gradient(
-        var(--primary-200),
-        transparent 180%,
-        var(--primary-200),
-        transparent 100%),
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)),
 
         url(img/portada3.jpg);
     background-position: center;
@@ -89,6 +89,7 @@
     background-position: center;
     background-size: cover;
     position: relative;
+    background-color: var(--bg-100);
 }
 
 .landing-beneficios_container {
@@ -130,7 +131,7 @@
     position: relative;
     width: 300px;
     height: 400px;
-    background-color: var(--primary-300);
+    background-color: var(--bg-200);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,23 +158,28 @@
 }
 
 .box-1_icon {
-    color: var(--primary-200);
+    color: var(--accent-100);
     width: 80px;
     height: 80px;
-    box-shadow: 0 0 0 2px var(--primary-300),
-        0 0 0 6px var(--primary-200);
+    box-shadow: 0 0 0 2px var(--bg-200),
+        0 0 0 6px var(--accent-100);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5em;
-    background-color: var(--primary-300);
+    background-color: var(--bg-200);
     transition: 0.5s ease-in-out;
+    text-align: center;
+}
+
+.box-1_icon i {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 0;
 }
 
 .beneficios_box-1:hover .box-1_content .box-1_icon {
     background: var(--bg-200);
-    color: var(--primary-100);
-    box-shadow: 0 0 0 4px var(--primary-100),
+    box-shadow: 0 0 0 4px var(--accent-200),
         0 0 0 300px var(--bg-200);
 
 }
@@ -192,12 +198,12 @@
 
 .beneficios_box-1:hover .box-1_content .box-1_text h3,
 .beneficios_box-1:hover .box-1_content .box-1_text p {
-    color: var(--primary-200);
+    
 }
 
 .beneficios_box-1 .box-1_content .box-1_text a {
     position: relative;
-    background-color: var(--primary-200);
+    background-color: var(--accent-100);
     color: white;
     padding: 8px 15px;
     display: inline-block;
@@ -209,7 +215,7 @@
 }
 
 .beneficios_box-1:hover .box-1_content .box-1_text a {
-    background-color: var(--primary-100);
+    background-color: var(--accent-200);
     color: white;
 }
 

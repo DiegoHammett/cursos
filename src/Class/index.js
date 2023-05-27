@@ -14,10 +14,29 @@ function Class({ id }) {
 
     return (
         <React.Fragment>
-            <div>
-                <h1>{clase.nombre}</h1>
+            <div className='test-body'>
+                <div className='test-container '>
+                    <div className='test-header'>
+                        <div className='test-title title'>
+                            <b className='b-medium'>{clase.nombre}</b>
+                        </div>
+                    </div>
+                    <div className='class-body'>
+                        <div className='test-questions-container'>
+                            {clase.contenido && <iframe src={db.docs + clase.contenido} title='Curso' width="80%" height="700" > </iframe>}
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            {clase.contenido && <iframe src={db.docs + clase.contenido} title='Curso' width="80%" height="700" > </iframe>}
+
+
+
+
+
+
+
+
             <p>{clase.descripcion}</p>
         </React.Fragment>
     )

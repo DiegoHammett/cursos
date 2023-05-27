@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../dbconnect'
 import EditTest from '../EditTest'
 import EditClass from '../EditClass'
+import './editcourse_styles.css'
 
 function EditCourse({ courseID }) {
 
@@ -23,7 +24,7 @@ function EditCourse({ courseID }) {
                 .catch(err => setError(true))
         }
         getModules()
-    }, [courseID, editTest, refresh])
+    }, [courseID, editTest, refresh, editClass])
 
     useEffect(() => {
         const getCourse = () => {
@@ -82,9 +83,9 @@ function EditCourse({ courseID }) {
         const formData = new FormData()
         if (type === 2) formData.append("id_test", newID)
         else formData.append("id_clase", newID)
-        formData.append("orden", maxOrder + 1)
+        formData.append("orden", parseInt(maxOrder) + 1)
         formData.append("curso", courseID)
-        formData.append("tipo", newID)
+        formData.append("tipo", type)
         fetch(db.url + "?mode=insert&table=modulos", {
             method: 'POST',
             body: formData
@@ -92,7 +93,7 @@ function EditCourse({ courseID }) {
             .then(res => {
                 if (res.status === "OK") {
                     setModuleID(newID)
-                    if(type === 2) setEditTest(true)
+                    if (type === 2) setEditTest(true)
                     else setEditClass(true)
                 }
                 else console.log(res)
@@ -125,37 +126,94 @@ function EditCourse({ courseID }) {
     return (
         <React.Fragment>
             {!editClass && !editTest &&
-                <div className='et-body'>
-                    <div className='et-container inset'>
-                        <div className='cq-header'>
-                            <label className='lbl'>Nombre del curso </label>
-                            {!editName &&
-                                <div className='et-lbl-name inset'>
-                                    <label className='et-lbl-editar'><b className='b-medium'>{course.nombre}</b></label>
-                                    <button className='et-btn-editar' onClick={() => { setEditName(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
-                                </div>
-                            }
-                            {!!editName &&
-                                <div className='et-lbl-name inset'>
-                                    <input className='et-input-text' type='text' defaultValue={course.nombre} onChange={(e) => { setCourseName(e.target.value) }}></input>
-                                    <button className='et-btn-editar' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
-                                </div>
-                            }
+                <div className='ec-body'>
+                    <div className='ec-container inset'>
+                        <div className='ec-header'>
+                            <span className='register-form_subtitle title'>
+                                <b className='b-medium'>Editar curso</b>
+                            </span>
+                            <span className='register-form_description'>
+                                <p className='description'>Modifique a su gusto el contenido del curso seleccionado. </p>
+                            </span>
                         </div>
-                        <div className='et-content-2_body '>
-                            {modules.map(module => (
-                                <div key={module.modulo} className='et-question-item inset' draggable="true">
-                                    <div className='et-question-q'>
-                                        {module.nombre}
-                                    </div>
-                                    <div className='et-question-btns'>
-                                        <button className='btn-s' id={module.id} name={module.tipo} onClick={() => { handleEdit(module.id, module.tipo) }}><i className='bx bx-edit icon' ></i>Editar</button>
-                                        <button className='btn-s' id={module.modulo} name={module.tipo} onClick={handleDelete}><i className='bx bx-trash icon'></i>Eliminar</button>
+
+                        <div className='ec-datos-curso inset'>
+                            <div className='ec-datos-curso_header'>
+                                <h2 className='title'>
+                                    Datos generales del curso
+                                </h2>
+                                <span className='description'>
+                                    Modifique los <b className='b-medium'>datos generales</b> del curso.
+                                </span>
+                                <p className='register-msg pill'>
+                                    <i class='bx bx-right-arrow-alt icon'></i>
+                                    Asegúrese de guardar los cambios después de realizar modificaciones.
+                                </p>
+                            </div>
+
+                            <div className='ec-datos-curso_body'>
+                                <div>
+                                    <label className='input-label lbl'>Nombre del curso:</label>
+                                    {!editName &&
+                                        <div className='ec-lbl-name '>
+                                            <label className='ec-lbl-editar it-inset-shadow' onClick={() => { setEditName(true) }}><b className='b-medium'>{course.nombre}</b></label>
+                                            <button className='ec-btn-editar' onClick={() => { setEditName(true) }}>
+                                                <i className='bx bx-edit icon' ></i> Editar
+                                            </button>
+                                        </div>
+                                    }
+                                    {!!editName &&
+                                        <div className='ec-lbl-name'>
+                                            <input autoFocus className='ec-input-text it-inset-shadow' type='text' defaultValue={course.nombre} onChange={(e) => { setCourseName(e.target.value) }}></input>
+                                            <button className='ec-btn-editar it-inset-shadow' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
+                                        </div>
+                                    }
+                                </div>
+                                <div>
+                                    <label className='input-label lbl'>Descripción del curso:</label>
+                                    <div className='ec-lbl-name'>
+                                        <label className='ec-lbl-editar it-inset-shadow'><b className='b-medium'>Descripción del curso</b></label>
+                                        <button className='ec-btn-editar it-inset-shadow'><i className='bx bx-edit icon' ></i>Editar</button>
                                     </div>
                                 </div>
-                            ))
-                            }
+
+
+
+                            </div>
+
                         </div>
+
+                        <div className='ec-datos-curso inset'>
+                            <div className='ec-datos-curso_header'>
+                                <span className='register-form_subtitle title'>
+                                    <b className='b-medium'>Módulos existentes</b>
+                                </span>
+                                <span className='register-form_description'>
+                                    <p className='description'>Aquí se muestran todos los módulos existentes en el sistema</p>
+                                </span>
+                                <p className='register-msg pill'>
+                                    <i class='bx bx-right-arrow-alt icon'></i>
+                                    Arrastre cada elemento de la lista para cambiar el orden en que se mostrarán los módulos.
+                                </p>
+                            </div>
+                            <div className='ec-content-2_body '>
+                                {modules.map(module => (
+                                    <div key={module.modulo} className='ec-question-item it-inset-shadow' draggable="true">
+
+                                        <div className='ec-question-q'>
+                                            <i class='bx bx-menu icon-drag' ></i>
+                                            {module.nombre}
+                                        </div>
+                                        <div className='ec-question-btns'>
+                                            <button className='btn-s' id={module.id} name={module.tipo} onClick={() => { handleEdit(module.id, module.tipo) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                            <button className='btn-s' id={module.modulo} name={module.tipo} onClick={handleDelete}><i className='bx bx-trash icon'></i>Eliminar</button>
+                                        </div>
+                                    </div>
+                                ))
+                                }
+                            </div>
+                        </div>
+
                         <div className='btn-container'>
                             <button className="btn" onClick={handleInsertTest}>Agregar examen</button>
                             <button className="btn" onClick={handleInsertClass}>Agregar clase</button>
