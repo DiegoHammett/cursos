@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../dbconnect';
 import EditQuestion from '../EditQuestion';
 import './edittest_styles.css';
+import MathExp from '../MathExp';
 
 function EditTest({ testID, setEditTest }) {
 
@@ -152,7 +153,7 @@ function EditTest({ testID, setEditTest }) {
                             {questions.map(q => (
                                 <div key={q.id} className='et-question-item inset'>
                                     <div className='et-question-q'>
-                                        {q.pregunta}
+                                        <MathExp text={q.pregunta}></MathExp>
                                     </div>
                                     <div className='et-question-btns'>
                                         <button className='btn-s' name={q.id} onClick={() => { handleEditQuestion(q.id) }}><i className='bx bx-edit icon' ></i>Editar</button>

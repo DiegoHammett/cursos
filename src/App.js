@@ -8,6 +8,7 @@ import EditCourse from './EditCourse';
 import EditClass from './EditClass';
 import Class from './Class';
 import Course from './Course';
+import MathExp from './MathExp';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
         <Route exact path="/clase/:id" element={<RouteInfo />} />
         <Route exact path="/edit" element={<EditCourse courseID={1} />} />
         <Route exact path="/course/:id" element={<RouteCourse/>} />
+        <Route exact path="/math" element={<MathExp text={"Ecuacion: \\(x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}\\)"}/>} />
       </Routes>
     </BrowserRouter>
 
