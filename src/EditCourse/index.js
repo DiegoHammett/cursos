@@ -146,7 +146,7 @@ function EditCourse({ courseID }) {
                                     Modifique los <b className='b-medium'>datos generales</b> del curso.
                                 </span>
                                 <p className='register-msg pill'>
-                                    <i class='bx bx-right-arrow-alt icon'></i>
+                                    <i className='bx bx-right-arrow-alt icon'></i>
                                     Asegúrese de guardar los cambios después de realizar modificaciones.
                                 </p>
                             </div>
@@ -192,7 +192,7 @@ function EditCourse({ courseID }) {
                                     <p className='description'>Aquí se muestran todos los módulos existentes en el sistema</p>
                                 </span>
                                 <p className='register-msg pill'>
-                                    <i class='bx bx-right-arrow-alt icon'></i>
+                                    <i className='bx bx-right-arrow-alt icon'></i>
                                     Arrastre cada elemento de la lista para cambiar el orden en que se mostrarán los módulos.
                                 </p>
                             </div>
@@ -201,7 +201,7 @@ function EditCourse({ courseID }) {
                                     <div key={module.modulo} className='ec-question-item it-inset-shadow' draggable="true">
 
                                         <div className='ec-question-q'>
-                                            <i class='bx bx-menu icon-drag' ></i>
+                                            <i className='bx bx-menu icon-drag' ></i>
                                             {module.nombre}
                                         </div>
                                         <div className='ec-question-btns'>

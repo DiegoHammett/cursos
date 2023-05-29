@@ -46,17 +46,17 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST')
         $sql->execute();
         $row = $sql->fetch(PDO::FETCH_NUM);
         $IDINSERTED = json_encode($row[0]);
+        foreach($_FILES as $param => $value)
+        {
+            move_uploaded_file($_FILES[$param]['tmp_name'], "./docs/".$_FILES[$param]['name']);
+        }
+        $arr = array('status' => 'OK','id' => $IDINSERTED);
+        echo json_encode($arr);
+        header("HTTP/1.1 200 OK");
     }catch (Exception $e){
         $arr = array('error' => $e);
         echo json_encode($arr);
     }
-    foreach($_FILES as $param => $value)
-    {
-        move_uploaded_file($_FILES[$param]['tmp_name'], "./docs/".$_FILES[$param]['name']);
-    }
-    $arr = array('status' => 'OK','id' => $IDINSERTED);
-    echo json_encode($arr);
-    header("HTTP/1.1 200 OK");
     exit();
 }
 

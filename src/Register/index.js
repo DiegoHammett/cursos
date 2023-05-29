@@ -15,6 +15,7 @@ function Register() {
     const [passAlert, setPassAlert] = useState(false)
     const [fillAlert, setFillAlert] = useState(false)
     const [user, setUser] = useState([])
+    const [plan, setPlan] = useState([])
     const nav = useNavigate()
 
     const handleChange = e => {
@@ -55,20 +56,22 @@ function Register() {
         const map = new Map(Object.entries(user))
         for (let [key, value] of map) { formData.append(key, value) }
 
+        formData.append("plan", plan)
+
         fetch(db.url + '?mode=insert&table=usuario', {
             method: 'POST',
             body: formData
-        }).then(res => res.text())
+        }).then(res => res.json())
             .then(res => {
-                if (res.includes("1062 Duplicate entry") && res.includes("for key 'email'")) {
-                    setDupEmail(true)
-                } else if (res === 'OK') {
+                if(res.status === 'OK'){
                     setOk(true)
-                    nav("/login")
+                    nav('/login')
+                } else if (res.error.errorInfo[2].includes("Duplicate entry") && res.error.errorInfo[2].includes("for key 'email'")) {
+                    setDupEmail(true)
                 } else {
                     setError(true)
                 }
-            }).catch(err => setError(true))
+            }).catch(err => console.log(err))
 
     }
 
@@ -85,7 +88,7 @@ function Register() {
                         <div>
                             <h1 className='title'>Bienvenido a MARCA</h1>
                             <p className='description'>A continuación, llene todos los campos con su información. Al finalizar, presione 'Registrarse'.</p>
-                            <p className='pill'><i class='bx bx-right-arrow-alt icon'></i>Todos los campos son obligatorios.</p>
+                            <p className='pill'><i className='bx bx-right-arrow-alt icon'></i>Todos los campos son obligatorios.</p>
                         </div>
 
                     </div>
@@ -176,7 +179,7 @@ function Register() {
                                             <label className='input-label lbl'>
                                                 Crea una contraseña
                                                 <p className='error-msg_label' hidden={!passAlert}>
-                                                    <span><i class='bx bx-x' ></i>Las contraseñas no coinciden</span>
+                                                    <span><i className='bx bx-x' ></i>Las contraseñas no coinciden</span>
                                                 </p>
                                             </label>
                                             <input className='input-text it-inset-shadow' name="password" onChange={handleChange} type="password" id="inputPassword1" required />
@@ -187,7 +190,7 @@ function Register() {
                                             <label className='input-label lbl'>
                                                 Confirma la contraseña
                                                 <p className='error-msg_label' hidden={!passAlert}>
-                                                    <span><i class='bx bx-x' ></i>Las contraseñas no coinciden</span>
+                                                    <span><i className='bx bx-x' ></i>Las contraseñas no coinciden</span>
                                                 </p>
                                             </label>
                                             <input className='input-text it-inset-shadow' onChange={handleCheckPassword} type="password" id="inputPassword2" required />
@@ -215,36 +218,36 @@ function Register() {
                             </div>
                             <div className='register-pricing_cards'>
                                 <div className='pricing_card'>
-                                    <input className='pricing_radio it-inset-shadow ' type='radio' name='pricing' id='card1' />
-                                    <label className='pricing_content' for='card1'>
+                                    <input className='pricing_radio it-inset-shadow ' type='radio' name='pricing' id='card1' onClick={() => {setPlan(1)}}/>
+                                    <label className='pricing_content' htmlFor='card1'>
                                         <label className='lbl'>Plan</label>
                                         <h5 className='pricing_title title'><b>BASIC</b></h5>
                                         <h2 className='pricing_price inset'>
-                                            <span className='pricing_price_symbol'><i class='bx bx-dollar' ></i></span>
+                                            <span className='pricing_price_symbol'><i className='bx bx-dollar' ></i></span>
                                             <span className='pricing_price_amount'>99<sup className='pricing_price_cents'>99</sup></span>
                                             <span className='pricing_price_currency'>MXN</span>
                                         </h2>
                                     </label>
                                 </div>
                                 <div className='pricing_card'>
-                                    <input className='pricing_radio it-inset-shadow' type='radio' name='pricing' id='card2' />
-                                    <label className='pricing_content' for='card2'>
+                                    <input className='pricing_radio it-inset-shadow' type='radio' name='pricing' id='card2' onClick={() => {setPlan(2)}}/>
+                                    <label className='pricing_content' htmlFor='card2'>
                                         <label className='lbl'>Plan</label>
                                         <h5 className='pricing_title title'><b>STANDARD</b></h5>
                                         <h2 className='pricing_price inset'>
-                                            <span className='pricing_price_symbol'><i class='bx bx-dollar' ></i></span>
+                                            <span className='pricing_price_symbol'><i className='bx bx-dollar' ></i></span>
                                             <span className='pricing_price_amount'>249<sup className='pricing_price_cents'>99</sup></span>
                                             <span className='pricing_price_currency'>MXN</span>
                                         </h2>
                                     </label>
                                 </div>
                                 <div className='pricing_card'>
-                                    <input className='pricing_radio it-inset-shadow' type='radio' name='pricing' id='card3' />
-                                    <label className='pricing_content' for='card3'>
+                                    <input className='pricing_radio it-inset-shadow' type='radio' name='pricing' id='card3' onClick={() => {setPlan(3)}}/>
+                                    <label className='pricing_content' htmlFor='card3'>
                                         <label className='lbl'>Plan</label>
                                         <h5 className='pricing_title title'><b>PREMIUM</b></h5>
                                         <h2 className='pricing_price inset'>
-                                            <span className='pricing_price_symbol'><i class='bx bx-dollar' ></i></span>
+                                            <span className='pricing_price_symbol'><i className='bx bx-dollar' ></i></span>
                                             <span className='pricing_price_amount'>499<sup className='pricing_price_cents'>99</sup></span>
                                             <span className='pricing_price_currency'>MXN</span>
                                         </h2>
@@ -253,7 +256,7 @@ function Register() {
                             </div>
                             <div className='register-pricing_moreinfo'>
                                 <span className='description'>
-                                    ¿No sabes qué plan elegir? Visita la sección de <a className='link-icon-text' href='/planes'>Planes<i class='bx bx-link-external' ></i></a> para obtener más información.
+                                    ¿No sabes qué plan elegir? Visita la sección de <a className='link-icon-text' href='/planes'>Planes<i className='bx bx-link-external' ></i></a> para obtener más información.
                                 </span>
                             </div>
 
@@ -264,7 +267,7 @@ function Register() {
                     <div className='register-footer'>
                         <h6 hidden={!fillAlert}>
                             <span className='pill-error b-medium'>
-                                <i class='bx bx-error icon' ></i>
+                                <i className='bx bx-error icon' ></i>
                                 Debes llenar todos los campos.
                             </span>
 
@@ -272,7 +275,7 @@ function Register() {
 
                         <h6 hidden={!dupEmail}>
                             <span className='pill-error b-medium'>
-                                <i class='bx bx-error icon' ></i>El email introducido ya está registrado en la plataforma
+                                <i className='bx bx-error icon' ></i>El email introducido ya está registrado en la plataforma
                             </span>
                         </h6>
 

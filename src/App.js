@@ -8,9 +8,10 @@ import './styles/palette.css';
 import EditCourse from './EditCourse';
 import EditClass from './EditClass';
 import Class from './Class';
-import Course from './Course';
-import MathExp from './MathExp';
+import Dashboard from './Dashboard';
 import Navbar from './Navbar';
+import Course from './Course';
+import MathQ from './MathQ';
 
 function App() {
 
@@ -26,24 +27,22 @@ function App() {
 
   function RouteCourse() {
     let params = useParams();
-    return <React.Fragment><Navbar /> <Course id={params.id} /></React.Fragment>;
+    return <React.Fragment><Navbar/><Course id={params.id} /></React.Fragment>;
   }
 
   return (
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Landing />} />
-        <Route exact path="/test/:id" element={<RouteTest />} />
         <Route exact path="/registro" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/editclase" element={<EditClass id="4" mode="edit"/>} />
-        <Route exact path="/clase/:id" element={<RouteInfo />} />
+        <Route exact path="/logout" element={<Login />} />
         <Route exact path="/edit" element={<EditCourse courseID={1} />} />
-        <Route exact path="/course/:id" element={<RouteCourse/>} />
-        <Route exact path="/math" element={<MathExp text={"Ecuacion: \\(x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}\\)"}/>} />
+        <Route exact path="/course/:id" element={<RouteCourse />} />
+        <Route exact path="/dashboard" element={<React.Fragment><Dashboard/></React.Fragment>} />
+        <Route exact path="/math" element={<MathQ/>}/>
       </Routes>
     </BrowserRouter>
-
   );
 }
 

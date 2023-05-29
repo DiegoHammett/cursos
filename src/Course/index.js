@@ -31,14 +31,14 @@ function Course({ id }) {
                     <div className='course-navigation-item'>
                         {currentModule !== 0 &&
                             <button className='btn-s' onClick={() => { setCurrentModule(currentModule - 1) }}>
-                                <i class='bx bx-arrow-back icon'></i>Anterior
+                                <i className='bx bx-arrow-back icon'></i>Anterior
                             </button>
                         }
                     </div>
                     <div className='course-navigation-item'>
                         {currentModule !== modules.length - 1 &&
                             <button className='btn-s' onClick={() => { setCurrentModule(currentModule + 1) }}>
-                                Siguiente<i class='bx bx-right-arrow-alt icon-r' ></i>
+                                Siguiente<i className='bx bx-right-arrow-alt icon-r' ></i>
                             </button>
                         }
                     </div>

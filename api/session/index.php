@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
         $userSession = array(
         'loggedin' => $_SESSION['loggedin'],
         'email' => $_SESSION['email'],
-        'type' => $_SESSION['type']);
+        'plan' => $_SESSION['plan']);
     }else{
         $userSession = array('loggedin' => 0);
     }
@@ -33,14 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     if($_POST['mode'] == "LOGIN"){
         $input = $_POST;
         $fields = getParams($input);
-        $sql = "SELECT email,nivel,password FROM usuario WHERE email='".$_POST['email']."'";
+        $sql = "SELECT email,plan,password FROM usuario WHERE email='".$_POST['email']."'";
         $statement = $dbConn->prepare($sql);
         $statement->execute();
         while ($row = $statement->fetch(PDO::FETCH_NUM)) {
             if ($row[2] == $_POST['password']){
                 $_SESSION['loggedin'] =  1;
                 $_SESSION['email'] = $row[0];
-                $_SESSION['type'] = $row[1];
+                $_SESSION['plan'] = $row[1];
                 echo "CORRECT";
             }
             else{

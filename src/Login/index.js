@@ -26,9 +26,8 @@ function Login() {
             body: formData,
             credentials: 'include'
         }).then(res => res.text()).then(res => {
-            console.log(res)
             if (res === "CORRECT")
-                nav("/test")
+                nav("/dashboard")
             else {
                 setLogAlert(true)
             }
@@ -78,7 +77,7 @@ function Login() {
 
                                 <div hidden={!logAlert}>
                                     <div className='pill-error'>
-                                        <i class='bx bx-error icon' ></i>
+                                        <i className='bx bx-error icon' ></i>
                                         <span>Usuario o contraseña incorrectos, intente de nuevo.</span>
                                     </div>
 

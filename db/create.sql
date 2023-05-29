@@ -58,14 +58,21 @@ CREATE TABLE respuesta (
     CONSTRAINT fk_pregunta_respuesta FOREIGN KEY(pregunta) REFERENCES pregunta(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE plan (
+    id INT(1) PRIMARY KEY NOT NULL,
+    nombre VARCHAR(100),
+    precio DECIMAL(6,2)
+);
+
 CREATE TABLE usuario (
     id INT(5) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(100),
     apellido_p VARCHAR(100),
     apellido_m VARCHAR(100),
-    nivel INT(1),
+    plan INT(1),
     email VARCHAR(100) UNIQUE,
-    password VARCHAR(100)
+    password VARCHAR(100),
+    CONSTRAINT fk_plan_usuario FOREIGN KEY(plan) REFERENCES plan(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE modulo_usuario (
@@ -85,6 +92,8 @@ CREATE TABLE intento (
     CONSTRAINT fk_usuario_intento FOREIGN KEY(usuario) REFERENCES usuario(id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_test_intento FOREIGN KEY(test) REFERENCES test(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
 
 CREATE VIEW lista_modulos AS
 (SELECT modulos.id as modulo, test.id, test.nombre, modulos.tipo, modulos.orden, modulos.curso FROM test, modulos WHERE modulos.id_test = test.id

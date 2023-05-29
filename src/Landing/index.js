@@ -3,6 +3,7 @@ import Navbar from '../Navbar';
 import './landing_styles.css'
 
 function Landing() {
+
     return (
         <div className="App">
             <div className='landing-body'>
@@ -31,7 +32,7 @@ function Landing() {
                         <div className='beneficios_boxes-container'>
                             <div className='beneficios_box-1 inset'>
                                 <div className='box-1_content'>
-                                    <div className='box-1_icon'><i class='bx bx-cube'></i></div>
+                                    <div className='box-1_icon'><i className='bx bx-cube'></i></div>
                                     <div className='box-1_text'>
                                         <h3>Beneficio #1</h3>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -43,7 +44,7 @@ function Landing() {
                             <div className='beneficios_box-1 inset'>
                                 <div className='box-1_content'>
                                     <div className='box-1_icon'>
-                                        <i class='bx bx-cube'></i>
+                                        <i className='bx bx-cube'></i>
                                      </div>
                                     <div className='box-1_text'>
                                         <h3>Beneficio #2</h3>
@@ -55,7 +56,7 @@ function Landing() {
 
                             <div className='beneficios_box-1 inset'>
                                 <div className='box-1_content'>
-                                    <div className='box-1_icon'><i class='bx bx-cube'></i></div>
+                                    <div className='box-1_icon'><i className='bx bx-cube'></i></div>
                                     <div className='box-1_text'>
                                         <h3>Beneficio #3</h3>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

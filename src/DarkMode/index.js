@@ -36,13 +36,13 @@ function DarkMode() {
                     onChange={toggleTheme}
                     defaultChecked={selectedTheme === "dark"}
                 />
-                <div class="toggle-slot it-inset-shadow">
-                    <div class="sun-icon-wrapper">
-                        <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
+                <div className="toggle-slot it-inset-shadow">
+                    <div className="sun-icon-wrapper">
+                        <div className="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
                     </div>
-                    <div class="toggle-button"></div>
-                    <div class="moon-icon-wrapper">
-                        <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false"></div>
+                    <div className="toggle-button"></div>
+                    <div className="moon-icon-wrapper">
+                        <div className="iconify moon-icon" data-icon="feather-moon" data-inline="false"></div>
                     </div>
                 </div>
             </label>
