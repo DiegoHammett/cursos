@@ -1,6 +1,6 @@
 export const symbols = [
   {
-    icon: 'x CUADRADO',
+    icon: '',
     data: 'x^{2}',
   },
   {

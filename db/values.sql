@@ -1,3 +1,4 @@
+INSERT INTO usuario VALUES (null, "Diego", "Hernandez","Rueda", 0, "admin@gmail.com", MD5("pass"));
 INSERT INTO asignatura VALUES (1,'Matemáticas');
 INSERT INTO asignatura VALUES (2,'Comunicación');
 INSERT INTO asignatura VALUES (3,'Inglés');

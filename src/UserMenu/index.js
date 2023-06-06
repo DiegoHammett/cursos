@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { db } from '../dbconnect'
-import { useNavigate } from 'react-router-dom'
+import CourseList from '../CourseList'
 
 function UserMenu({ email }) {
 
     const [user, setUser] = useState([])
-    const [cursos, setCursos] = useState([])
-    const nav = useNavigate()
+    const [asignaturas, setAsignaturas] = useState([])
 
     useEffect(() => {
         const getUser = () => {
@@ -19,18 +18,16 @@ function UserMenu({ email }) {
     }, [email])
 
     useEffect(() => {
-        const getCourse = () => {
-            fetch(db.url + "?table=curso")
+        const getAsignatura = () => {
+            fetch(db.url + "?table=asignatura")
                 .then(res => res.json())
-                .then(res => setCursos(res))
+                .then(res => setAsignaturas(res))
                 .catch(err => console.log(err))
         }
-        getCourse()
-    },[])
+        getAsignatura()
+    }, [])
 
-    const handleGetCurso = (id) => {
-        nav("/course/"+id)
-    }
+
 
     return (
         <React.Fragment>
@@ -40,8 +37,11 @@ function UserMenu({ email }) {
                 Cursos:
             </div>
             <div>
-                {cursos.map(curso => (
-                    <p onClick={() => {handleGetCurso(curso.id)}}>{curso.nombre}</p>
+                {asignaturas.map(asignatura => (
+                    <div key={asignatura.id}>
+                        <p>{asignatura.nombre}</p>
+                        <CourseList id={asignatura.id} admin={false}/>
+                    </div>
                 ))}
             </div>
         </React.Fragment>

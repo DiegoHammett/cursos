@@ -112,13 +112,37 @@ function EditCourse({ courseID }) {
     const handleChangeTestName = () => {
         const formData = new FormData()
         formData.append("nombre", courseName)
-        fetch(db.url + "?mode=update&table=curso&id=id&condition=" + courseID + "", {
+        fetch(db.url + "?mode=update&table=curso&id=id&condition=" + courseID, {
             method: 'POST',
             body: formData
         }).then(res => res.json())
             .then(res => {
                 if (res.status === "OK")
                     setEditName(false)
+                else setError(true)
+            }).catch(err => setError(true))
+    }
+
+    const handleMoveUp = (module) => {
+        moveModule(module.modulo, modules[modules.indexOf(module)-1].orden)
+        moveModule(modules[modules.indexOf(module)-1].modulo, module.orden)
+    }
+
+    const handleMoveDown = (module) => {
+        moveModule(module.modulo, modules[modules.indexOf(module)+1].orden)
+        moveModule(modules[modules.indexOf(module)+1].modulo, module.orden)
+    }
+
+    const moveModule = (id, orden) => {
+        const formData = new FormData()
+        formData.append("orden", orden)
+        fetch(db.url + "?mode=update&table=modulos&id=id&condition=" + id, {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK")
+                    setRefresh(!refresh)
                 else setError(true)
             }).catch(err => setError(true))
     }
@@ -198,10 +222,13 @@ function EditCourse({ courseID }) {
                             </div>
                             <div className='ec-content-2_body '>
                                 {modules.map(module => (
-                                    <div key={module.modulo} className='ec-question-item it-inset-shadow' draggable="true">
+                                    <div key={module.modulo} className='ec-question-item it-inset-shadow'>
 
                                         <div className='ec-question-q'>
-                                            <i className='bx bx-menu icon-drag' ></i>
+                                            <div>
+                                                {modules.indexOf(module) !== 0 && <button onClick={() => { handleMoveUp(module) }}>UP</button>}
+                                                {modules.indexOf(module) !== modules.length - 1 && <button onClick={() => { handleMoveDown(module) }}>DOWN</button>}
+                                            </div>
                                             {module.nombre}
                                         </div>
                                         <div className='ec-question-btns'>

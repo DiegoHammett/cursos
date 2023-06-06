@@ -36,7 +36,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST')
         $sql = "INSERT INTO ".$_GET['table']." SET $fields";
         $statement = $dbConn->prepare($sql);
     }else if($_GET['mode'] == "update"){
-        $sql = "UPDATE ".$_GET['table']." SET $fields WHERE ".$_GET['id']."=".$_GET['condition'];
+        $sql = "UPDATE ".$_GET['table']." SET $fields WHERE ".$_GET['id']." IN (".$_GET['condition'].")";
         $statement = $dbConn->prepare($sql);
     }else echo "NO MODE";
     bindAllValues($statement, $input);

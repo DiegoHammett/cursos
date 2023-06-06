@@ -15,19 +15,19 @@ import MathQ from './MathQ';
 
 function App() {
 
-  function RouteTest() {
-    let params = useParams();
-    return <Test id={params.id} retro={true} />;
-  }
-
-  function RouteInfo() {
-    let params = useParams();
-    return <Class id={params.id} />;
-  }
-
   function RouteCourse() {
     let params = useParams();
     return <React.Fragment><Navbar/><Course id={params.id} /></React.Fragment>;
+  }
+
+  function RouteEditCourse() {
+    let params = useParams();
+    return <React.Fragment><Navbar/><EditCourse courseID={params.id} /></React.Fragment>;
+  }
+
+  function RouteSim() {
+    let params = useParams();
+    return <React.Fragment><Navbar/><Test id={params.id} time={40}/></React.Fragment>;
   }
 
   return (
@@ -37,9 +37,10 @@ function App() {
         <Route exact path="/registro" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/logout" element={<Login />} />
-        <Route exact path="/edit" element={<EditCourse courseID={1} />} />
+        <Route exact path="/edit/:id" element={<RouteEditCourse/>} />
         <Route exact path="/course/:id" element={<RouteCourse />} />
         <Route exact path="/dashboard" element={<React.Fragment><Dashboard/></React.Fragment>} />
+        <Route exact path="/simulador/:id" element={<RouteSim/>} />
         <Route exact path="/math" element={<MathQ/>}/>
       </Routes>
     </BrowserRouter>

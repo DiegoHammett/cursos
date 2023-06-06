@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     if($_POST['mode'] == "LOGIN"){
         $input = $_POST;
         $fields = getParams($input);
-        $sql = "SELECT email,plan,password FROM usuario WHERE email='".$_POST['email']."'";
+        $sql = "SELECT email,plan,password,id FROM usuario WHERE email='".$_POST['email']."'";
         $statement = $dbConn->prepare($sql);
         $statement->execute();
         while ($row = $statement->fetch(PDO::FETCH_NUM)) {
@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 $_SESSION['loggedin'] =  1;
                 $_SESSION['email'] = $row[0];
                 $_SESSION['plan'] = $row[1];
+                $_SESSION['id'] = $row[2];
                 echo "CORRECT";
             }
             else{

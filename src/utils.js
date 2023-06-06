@@ -20,5 +20,4 @@ function checkEmail (str) {
     } else return false
 }
 
-
 export {toPascalCase, fDate, checkEmail};

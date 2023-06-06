@@ -8,10 +8,18 @@
 .course-navigation {
     display: flex;
     width: 100%;
-    align-items: end;
+    align-items: flex-end;
     justify-content: space-between;
 }
 
 .course-navigation-item {
     
+}
+
+.btn-nav {
+
+}
+
+.btn-nav-current {
+    background-color: blue;
 }

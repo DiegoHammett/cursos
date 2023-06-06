@@ -28,7 +28,7 @@ function TestResult({ ansList, total, approveTest }) {
 
     useEffect(() => {
         if (count * 10 / total >= approveTest) setApprove(true)
-    }, [count])
+    }, [count,approveTest,total])
 
     return (
         <React.Fragment>

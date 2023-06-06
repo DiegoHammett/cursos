@@ -4,8 +4,9 @@ import { db } from '../dbconnect'
 import Question from '../Question'
 import TestResult from '../TestResult'
 import './test_styles.css'
+import { useTimer } from 'react-timer-hook'
 
-function Test({ id, retro }) {
+function Test({ id, time }) {
 
     const [test, setTest] = useState([])
     const [total, setTotal] = useState(0)
@@ -13,12 +14,22 @@ function Test({ id, retro }) {
     const [ansList, setAnsList] = useState([])
     const [error, setError] = useState(false)
     const [finish, setFinish] = useState(false)
+    const [retro, setRetro] = useState(false)
+
+    const {
+        seconds,
+        minutes,
+        hours
+    } = useTimer({ expiryTimestamp: new Date().setSeconds(new Date().getSeconds() + time), onExpire: () => { console.warn("ACABO") } });
 
     useEffect(() => {
         const getTest = () => {
             fetch(db.url + '?table=test&where=id IN (' + id + ')')
                 .then(res => res.json())
-                .then(res => setTest(res[0]))
+                .then(res => {
+                    setTest(res[0])
+                    if (res[0].tipo === 1) setRetro(true)
+                })
                 .catch(err => setError(true))
         }
         const getQuestions = () => {
@@ -71,7 +82,7 @@ function Test({ id, retro }) {
                             <div className='test-questions-container'>
                                 <div>
                                     {questions.map(q => (
-                                        <div key={q.id}>
+                                        <div key={q.id} id={q.id}>
                                             <Question id={q.id} retro={retro} suma={suma} ansList={ansList} setAnsList={setAnsList} />
                                         </div>
                                     ))}
@@ -88,13 +99,33 @@ function Test({ id, retro }) {
                                         <span className='title'>
                                             <b>{total} de {questions.length}</b>
                                         </span>
+                                        <div>
+                                            {questions.map(q => (
+                                                ansList[q.id] === undefined ?
+                                                    <a href={"#" + q.id} type='button' className='btn-question-nans' key={q.id}>
+                                                        {questions.indexOf(q) + 1}
+                                                    </a> :
+                                                    <a href={"#" + q.id} type='button' className='btn-question-ans' key={q.id}>
+                                                        {questions.indexOf(q) + 1}
+                                                    </a>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+                            {retro === false &&
+                                <div className='testresult-container inset'>
+                                    <span className='title'><b>TIEMPO RESTANTE</b></span>
+                                    <div className='testresult-score'>
+                                        <span className='lbl'>{hours}:{minutes}:{seconds}</span>
                                     </div>
 
                                 </div>
                             }
                         </React.Fragment>
                     }
-                    {!!finish && <TestResult ansList={ansList} total={questions.length} approveTest={test.aprobacion}/>}
+                    {!!finish && <TestResult ansList={ansList} total={questions.length} approveTest={test.aprobacion} />}
                 </div>
             </div>
 

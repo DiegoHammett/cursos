@@ -99,6 +99,18 @@
     margin-top: 3rem;
 }
 
+.btn-question-nans {
+    border: black;
+    background-color: #eee;
+    margin: 0.5rem;
+}
+
+.btn-question-ans {
+    border: black;
+    background-color: #05fc3b;
+    margin: 0.5rem;
+}
+
 
 
 
