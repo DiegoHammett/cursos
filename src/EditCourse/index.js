@@ -124,13 +124,13 @@ function EditCourse({ courseID }) {
     }
 
     const handleMoveUp = (module) => {
-        moveModule(module.modulo, modules[modules.indexOf(module)-1].orden)
-        moveModule(modules[modules.indexOf(module)-1].modulo, module.orden)
+        moveModule(module.modulo, modules[modules.indexOf(module) - 1].orden)
+        moveModule(modules[modules.indexOf(module) - 1].modulo, module.orden)
     }
 
     const handleMoveDown = (module) => {
-        moveModule(module.modulo, modules[modules.indexOf(module)+1].orden)
-        moveModule(modules[modules.indexOf(module)+1].modulo, module.orden)
+        moveModule(module.modulo, modules[modules.indexOf(module) + 1].orden)
+        moveModule(modules[modules.indexOf(module) + 1].modulo, module.orden)
     }
 
     const moveModule = (id, orden) => {
@@ -217,7 +217,7 @@ function EditCourse({ courseID }) {
                                 </span>
                                 <p className='register-msg pill'>
                                     <i className='bx bx-right-arrow-alt icon'></i>
-                                    Arrastre cada elemento de la lista para cambiar el orden en que se mostrarán los módulos.
+                                    Utilice los botones <button className='btn-pill'><i class='bx bxs-up-arrow'></i></button> o <button className='btn-pill'><i class='bx bxs-down-arrow'></i></button> para cambiar el orden en que se mostrarán los módulos.
                                 </p>
                             </div>
                             <div className='ec-content-2_body '>
@@ -225,9 +225,17 @@ function EditCourse({ courseID }) {
                                     <div key={module.modulo} className='ec-question-item it-inset-shadow'>
 
                                         <div className='ec-question-q'>
-                                            <div>
-                                                {modules.indexOf(module) !== 0 && <button onClick={() => { handleMoveUp(module) }}>UP</button>}
-                                                {modules.indexOf(module) !== modules.length - 1 && <button onClick={() => { handleMoveDown(module) }}>DOWN</button>}
+                                            <div className='ec-updown-btns'>
+                                                {modules.indexOf(module) !== 0 &&
+                                                    <button className='ec-updown-item' onClick={() => { handleMoveUp(module) }}>
+                                                        <i class='bx bxs-up-arrow'></i>
+                                                    </button>
+                                                }
+                                                {modules.indexOf(module) !== modules.length - 1 &&
+                                                    <button className='ec-updown-item' onClick={() => { handleMoveDown(module) }}>
+                                                        <i class='bx bxs-down-arrow'></i>
+                                                    </button>
+                                                }
                                             </div>
                                             {module.nombre}
                                         </div>

@@ -19,7 +19,7 @@ function Dashboard() {
                 if (res.loggedin === 0) {
                     console.log("NOT LOGGED")
                 } else {
-                    if (res.plan === 0)
+                    if (parseInt(res.plan) === 0)
                         setAdmin(true)
                     else
                         setUser(true)

@@ -1,0 +1,28 @@
+.admin_menu-body {
+    /* background-color: var(--bg-100); */
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 60px 1fr;
+}
+
+.admin_menu-header {
+    background-color: #fff;
+
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+}
+
+.admin_menu-sidebar {
+    background-color: #1c1f23;
+
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+}
+
+.admin_menu-main {
+    background-color: #c3c5ca;
+
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}

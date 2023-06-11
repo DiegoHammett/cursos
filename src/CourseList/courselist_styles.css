@@ -1,0 +1,136 @@
+.courseCards {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 1.5rem;
+    overflow-x: scroll;
+    margin: 2rem;
+    padding: 2rem;
+    background-color: var(--bg-200);
+
+}
+
+/* Estilos específicos para WebKit (Chrome, Safari, etc.) */
+.courseCards::-webkit-scrollbar {
+    height: 0.5em;
+    overflow: hidden;
+    /* Ancho de la barra de desplazamiento */
+}
+
+.courseCards::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Color de fondo de la pista de la barra de desplazamiento */
+}
+
+.courseCards::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border: none;
+    /* Color del pulgar de la barra de desplazamiento */
+}
+
+.courseCards::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+    /* Color del pulgar de la barra de desplazamiento al pasar el cursor sobre él */
+}
+
+
+.courseCard {
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(to right,
+            var(--accent-100),
+            var(--accent-200));
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.courseCard:hover {
+    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+    transition: all 0.3s ease-in-out;
+}
+
+.courseCard p {
+    margin: 0;
+}
+
+.courseCard::before {
+    width: 150px;
+    height: 150px;
+    content: "";
+    background: linear-gradient(to right, var(--accent-100),
+            var(--accent-200));
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+    right: -25%;
+    top: -25%;
+}
+
+.courseHeading {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: rgb(241, 241, 241);
+    z-index: 2;
+}
+
+.courseDescription {
+    font-size: 0.9rem;
+    color: rgb(241, 241, 241);
+    z-index: 2;
+}
+
+.courseDescription a {
+    color: rgb(241, 241, 241);
+}
+
+.acceptButton {
+    padding: 11px 20px;
+    background-color: var(--accent-200);
+    transition-duration: .2s;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.acceptButton:hover {
+    background-color: white;
+    color: var(--accent-200);
+    transition-duration: .2s;
+}
+
+.acceptButton2 {
+    padding: 11px 20px;
+    background-color: var(--accent-100);
+    transition-duration: .2s;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.acceptButton2:hover {
+    background-color: white;
+    color: var(--accent-200);
+    transition-duration: .2s;
+}
+
+.courseBtns {
+    display: flex;
+    gap: 1rem;
+}
