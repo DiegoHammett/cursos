@@ -31,9 +31,9 @@ function CourseList({ id, admin }) {
             {cursos.length > 0 ? cursos.map(curso => (
                 <div key={curso.id}>
                     <div className='courseCard'>
-                        <p className='courseHeading' onClick={() => { handleGetCourse(curso.id) }}>
+                        <span className='courseHeading' onClick={() => { handleGetCourse(curso.id) }}>
                             {curso.nombre}
-                        </p>
+                        </span>
                         <p className='courseDescription'>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>

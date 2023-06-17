@@ -3,6 +3,7 @@ import { db } from '../dbconnect'
 import CourseList from '../CourseList'
 import DarkMode from '../DarkMode';
 import UserImg from './user.png';
+import './adminmenu_styles.css'
 
 function AdminMenu({ email }) {
 
@@ -161,39 +162,109 @@ function AdminMenu({ email }) {
                     </div>
 
                     <div className='dashboard_main_container '>
-                        <span className='title'>  -- Aquí se cargan los componentes -- </span>
+                        <div className='tabs'>
+                            <Tabs>
+                                <Tab label="Cursos">
+                                    <section className='cursos-container'>
+                                        <div className='cursos-container-header'>
+                                            <h1>Cursos</h1>
+                                            <button className='btn'><i class='bx bx-plus-circle icon'></i>Agregar curso</button>
+                                        </div>
+
+                                        {asignaturas.map(asignatura => (
+                                            <div className='cursos-container-item' key={asignatura.id}>
+                                                <div class="three">
+                                                    <h1>{asignatura.nombre}</h1>
+                                                </div>
+                                                <div className='courseCards inset'>
+                                                    <CourseList id={asignatura.id} admin={true} />
+                                                </div>
+
+                                            </div>
+                                        ))}
+                                    </section>
+                                </Tab>
+                                <Tab label="Simuladores">
+                                    <section className='cursos-container'>
+                                        <div className='cursos-container-header'>
+                                            <h1>Simuladores</h1>
+                                            <button className='btn'><i class='bx bx-plus-circle icon'></i>Crear simulador</button>
+                                        </div>
+
+
+                                        {simuladores.length > 0 && simuladores.map(simulador => (
+                                            <div key={simulador.id}>
+                                                <div class="three">
+                                                    <h1>{simulador.nombre}</h1>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </section>
+                                </Tab>
+                            </Tabs>
+                        </div>
+
+
+
+
+
+
+
                     </div>
 
                 </div>
             </div>
 
-            <div>{admin.nombre}</div>
-            <div>{admin.nombre_plan}</div>
-            <h2>
-                Cursos
-            </h2>
-            <div>
-                {asignaturas.map(asignatura => (
-                    <div key={asignatura.id}>
-                        <h3>{asignatura.nombre}</h3>
-                        <button>Agregar curso</button>
-                        <CourseList id={asignatura.id} admin={true} />
-                    </div>
-                ))}
-            </div>
-            <h2>
-                Simuladores
-            </h2>
-            <button>Crear simulador</button>
-            <div>
-                {simuladores.length > 0 && simuladores.map(simulador => (
-                    <div key={simulador.id}>
-                        <p>{simulador.nombre}</p>
-                    </div>
-                ))}
-            </div>
+          
         </React.Fragment>
     )
 }
+
+class Tabs extends React.Component {
+    state = {
+        activeTab: this.props.children[0].props.label
+    }
+    changeTab = (tab) => {
+
+        this.setState({ activeTab: tab });
+    };
+    render() {
+
+        let content;
+        let buttons = [];
+        return (
+            <div>
+                {React.Children.map(this.props.children, child => {
+                    buttons.push(child.props.label)
+                    if (child.props.label === this.state.activeTab) content = child.props.children
+                })}
+
+                <TabButtons activeTab={this.state.activeTab} buttons={buttons} changeTab={this.changeTab} />
+                <div className="tab-content">{content}</div>
+
+            </div>
+        );
+    }
+}
+
+const TabButtons = ({ buttons, changeTab, activeTab }) => {
+
+    return (
+        <div className="tab-buttons">
+            {buttons.map(button => {
+                return <button className={button === activeTab ? 'active' : ''} onClick={() => changeTab(button)}>{button}</button>
+            })}
+        </div>
+    )
+}
+
+const Tab = props => {
+    return (
+        <React.Fragment>
+            {props.children}
+        </React.Fragment>
+    )
+}
+
 
 export default AdminMenu;

@@ -5,6 +5,8 @@ import './usermenu_styles.css';
 import DarkMode from '../DarkMode';
 import UserImg from './user.png';
 
+import {Tabs, TabList, Tab, TabPanel} from "https://cdn.skypack.dev/react-tabs@3.2.2";
+
 function UserMenu({ email }) {
 
     const [user, setUser] = useState([])
@@ -73,10 +75,10 @@ function UserMenu({ email }) {
                             </li>
                             <li>
                                 <a href='#'>
-                                    <i class='bx bx-cube'></i>
-                                    <span className='d_m-s_menu-item'>Item</span>
+                                    <i class='bx bxs-book-content'></i>
+                                    <span className='d_m-s_menu-item'>Mis cursos</span>
                                 </a>
-                                <span className='d_m-s_menu-tooltip'>Item</span>
+                                <span className='d_m-s_menu-tooltip'>Mis cursos</span>
                             </li>
                             <li>
                                 <a href='#'>

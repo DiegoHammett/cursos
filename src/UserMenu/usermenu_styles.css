@@ -225,7 +225,7 @@
     line-height: 50px;
 }
 
-.dashboard_menu-sidebar ul li a {
+.dashboard_menu-sidebar ul li button {
     color: var(--text-100);
     display: flex;
     width: 100%;
@@ -234,15 +234,19 @@
     border-radius: 0.8rem;
     gap: .78rem;
     font-size: 1rem;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
 }
 
-.dashboard_menu-sidebar ul li a:hover {
+.dashboard_menu-sidebar ul li button:hover {
     background-color: var(--bg-100);
     color: var(--text-100);
     transition: all 0.3s;
 }
 
-.dashboard_menu-sidebar ul li a i {
+.dashboard_menu-sidebar ul li button i {
     min-width: 50px;
     text-align: center;
     height: 50px;
@@ -252,7 +256,7 @@
     transition: all 0.5s;
 }
 
-.dashboard_menu-sidebar.active ul li a i {
+.dashboard_menu-sidebar.active ul li button i {
     font-size: 1.2rem;
     transition: all 0.5s;
 }
@@ -305,9 +309,6 @@
     overflow-y: scroll;
 }
 
-.dashboard_main_container::-webkit-scrollbar {
-    width: 0
-}
 
 
 
@@ -336,7 +337,7 @@
 }
 
 .three {
-    margin: 2rem;
+    margin: 0 2rem;
 }
 
 .three h1 {
@@ -348,25 +349,7 @@
     position: relative;
 }
 
-.three h1:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 5px;
-    width: 55px;
-    background-color: var(--text-100);
-}
 
-.three h1:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 2px;
-    height: 1px;
-    width: 100%;
-    background-color: var(--text-100);
-}
 
 .nine h1 {
     text-align: center;
@@ -403,4 +386,10 @@
     border-top: 1px solid #ccc;
     height: 2px;
     background-color: var(--bg-100);
+}
+
+
+.tabs-container {
+    display: flex;
+    
 }
