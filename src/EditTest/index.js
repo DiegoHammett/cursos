@@ -12,10 +12,13 @@ function EditTest({ testID, setEditTest }) {
     const [refresh, setRefresh] = useState(false)
     const [editName, setEditName] = useState(false)
     const [editApprove, setEditApprove] = useState(false)
+    const [editTime, setEditTime] = useState(false)
     const [approve, setApprove] = useState(false)
+    const [time, setTime] = useState(false)
     const [testName, setTestName] = useState()
     const [questions, setQuestions] = useState([])
     const [test, setTest] = useState([])
+    const [sim, setSim] = useState(false)
     const [error, setError] = useState(false)
 
     useEffect(() => {
@@ -32,11 +35,14 @@ function EditTest({ testID, setEditTest }) {
         const getTest = () => {
             fetch(db.url + '?table=test&where=id IN (' + testID + ')')
                 .then(res => res.json())
-                .then(res => setTest(res[0]))
+                .then(res => {
+                    setTest(res[0])
+                    if (parseInt(res[0].tipo) === 2) setSim(true)
+                })
                 .catch(err => setError(true))
         }
         getTest()
-    }, [editName, editApprove, testID])
+    }, [editName, editApprove, editTime, testID])
 
     const handleChangeTestName = () => {
         const formData = new FormData()
@@ -69,6 +75,21 @@ function EditTest({ testID, setEditTest }) {
             }).catch(err => setError(true))
     }
 
+    const handleChangeTime = () => {
+        const formData = new FormData()
+        console.log(time)  
+        formData.append("tiempo", time)
+        fetch(db.url + "?mode=update&table=test&id=id&condition=" + testID + "", {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK")
+                    setEditTime(false)
+                else setError(true)
+            }).catch(err => setError(true))
+    }
+
     const handleDeleteQuestion = (e) => {
         const formData = new FormData()
         formData.append("id", e.target.id)
@@ -94,7 +115,7 @@ function EditTest({ testID, setEditTest }) {
 
     return (
         <React.Fragment>
-            <button className='btn' onClick={() => { setEditTest(false) }}><i className='bx bx-left-arrow-alt'></i>Regresar</button>
+            {setEditTest && <button className='btn' onClick={() => { setEditTest(false) }}><i className='bx bx-left-arrow-alt'></i>Regresar</button>}
             <div className='et-body'>
                 <div className='et-container inset'>
                     <div className='et-header'>
@@ -138,6 +159,22 @@ function EditTest({ testID, setEditTest }) {
                                 </div>
                             }
                         </div>
+
+                        {!!sim && <div className='et-calificacion'>
+                            <label className='lbl'>Tiempo límite </label>
+                            {!editTime &&
+                                <div className='ec-lbl-name inset'>
+                                    <label className='et-lbl-editar it-inset-shadow'><b className='b-medium'>{test.tiempo}</b></label>
+                                    <button className='ec-btn-editar' onClick={() => { setEditTime(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                </div>
+                            }
+                            {!!editTime &&
+                                <div className='ec-lbl-name inset'>
+                                    <input className='et-input-text it-inset-shadow' defaultValue={test.tiempo} onChange={(e) => { setTime(e.target.value) }}></input>
+                                    <button className='ec-btn-editar' onClick={handleChangeTime}><i className='bx bx-save icon' ></i>Guardar</button>
+                                </div>
+                            }
+                        </div>}
 
                     </div>
                     <div className='et-content'>

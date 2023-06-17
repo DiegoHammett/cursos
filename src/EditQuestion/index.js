@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../dbconnect'
 import './createquestion_styles.css'
 import MathExp from '../MathExp'
+import MathQ from '../MathQ'
 
 function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
 
@@ -177,7 +178,10 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                 <div className='cq-question'>
                     <label className='lbl'>Pregunta:</label>
                     <input className='input-text' type='text' onChange={(e) => { setQuest(e.target.value) }} defaultValue={defQuest}></input>
-                    <p><MathExp text={quest}/></p>
+                    {/* <div className='input-text'>
+                        <MathQ exp={'x/y'}></MathQ>
+                    </div> */}
+
                 </div>
                 <div className='cq-answers'>
                     <label className='lbl'>Respuestas:</label>

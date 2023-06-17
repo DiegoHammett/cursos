@@ -30,7 +30,7 @@ function Course({ id }) {
                 method: 'GET',
                 credentials: 'include'
             }).then(res => res.json()).then(res => {
-                if (res.loggedin === 0) {
+                if (parseInt(res.loggedin) === 0) {
                     console.log("NOT LOGGED")
                 } else {
                     setUser(res.id)
@@ -64,15 +64,9 @@ function Course({ id }) {
                     </div>
                     <div>
                         {modules.map(module => (
-                            modules.indexOf(module) === currentModule ?
-                                <button onClick={() => { setCurrentModule(modules.indexOf(module)) }} key={module.id} className='btn-nav-current'>
-                                    {module.tipo === 1 && "Clase"}
-                                    {module.tipo === 2 && "Test"}
-                                </button> :
-                                <button onClick={() => { setCurrentModule(modules.indexOf(module)) }} key={module.id} className='btn-nav'>
-                                    {module.tipo === 1 && "Clase"}
-                                    {module.tipo === 2 && "Test"}
-                                </button>
+                            <button onClick={() => { setCurrentModule(modules.indexOf(module)) }} key={module.id} className={modules.indexOf(module) === currentModule ? 'btn-nav-current' : 'btn-nav'}>
+                                {module.nombre}
+                            </button>
                         ))}
                     </div>
                     <div className='course-navigation-item'>

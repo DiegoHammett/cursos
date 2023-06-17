@@ -4,13 +4,19 @@ import CourseList from '../CourseList'
 import './usermenu_styles.css';
 import DarkMode from '../DarkMode';
 import UserImg from './user.png';
+import Course from '../Course';
+import EditCourse from '../EditCourse';
+import Test from '../Test';
+import EditTest from '../EditTest';
 
-import {Tabs, TabList, Tab, TabPanel} from "https://cdn.skypack.dev/react-tabs@3.2.2";
-
-function UserMenu({ email }) {
+function UserMenu({ email, admin }) {
 
     const [user, setUser] = useState([])
     const [asignaturas, setAsignaturas] = useState([])
+    const [simuladores, setSimuladores] = useState([])
+    const [menuSelect, setMenuSelect] = useState(0)
+    const [itemID, setItemID] = useState()
+    const [time, setTime] = useState()
 
     useEffect(() => {
         const getUser = () => {
@@ -29,8 +35,15 @@ function UserMenu({ email }) {
                 .then(res => setAsignaturas(res))
                 .catch(err => console.log(err))
         }
+        const getSimuladores = () => {
+            fetch(db.url + "?table=test&where=tipo IN (2)")
+                .then(res => res.json())
+                .then(res => setSimuladores(res))
+                .catch(err => console.log(err))
+        }
         getAsignatura()
-    }, [])
+        getSimuladores()
+    }, [menuSelect])
 
 
     // Sidebar menu button
@@ -40,7 +53,10 @@ function UserMenu({ email }) {
         setSidebarActive(!sidebarActive);
     };
 
-
+    const castTime = (t) => {
+        const formatTime = t.split(":")
+        setTime((parseInt(formatTime[0]) * 3600) + (parseInt(formatTime[1]) * 60) + parseInt(formatTime[0]))
+    }
 
     return (
         <React.Fragment>
@@ -57,7 +73,7 @@ function UserMenu({ email }) {
                             <div className='d_m-s_top-user-info'>
                                 <span className='top-user-name'><b>{user.nombre}</b></span>
                                 <div className='top-user-plan-container'>
-                                    <label className='lbl'>PLAN</label>
+                                    {!admin && <label className='lbl'>PLAN</label>}
                                     <span className='top-user-plan'><b className='b-medium'>{user.nombre_plan}</b></span>
                                 </div>
                             </div>
@@ -67,50 +83,50 @@ function UserMenu({ email }) {
                     <div className='d_m-s_menu'>
                         <ul>
                             <li>
-                                <a href='#'>
-                                    <i class='bx bxs-home'></i>
+                                <button onClick={() => { setMenuSelect(0) }}>
+                                    <i className='bx bxs-home'></i>
                                     <span className='d_m-s_menu-item'>Inicio</span>
-                                </a>
+                                </button>
                                 <span className='d_m-s_menu-tooltip'>Inicio</span>
                             </li>
                             <li>
                                 <a href='#'>
-                                    <i class='bx bxs-book-content'></i>
-                                    <span className='d_m-s_menu-item'>Mis cursos</span>
+                                    <i className='bx bx-cube'></i>
+                                    <span className='d_m-s_menu-item'>Item</span>
                                 </a>
                                 <span className='d_m-s_menu-tooltip'>Mis cursos</span>
                             </li>
                             <li>
                                 <a href='#'>
-                                    <i class='bx bx-cube'></i>
+                                    <i className='bx bx-cube'></i>
                                     <span className='d_m-s_menu-item'>Item</span>
                                 </a>
                                 <span className='d_m-s_menu-tooltip'>Item</span>
                             </li>
                             <li>
                                 <a href='#'>
-                                    <i class='bx bx-cube'></i>
+                                    <i className='bx bx-cube'></i>
                                     <span className='d_m-s_menu-item'>Item</span>
                                 </a>
                                 <span className='d_m-s_menu-tooltip'>Item</span>
                             </li>
                             <li>
                                 <a href='#'>
-                                    <i class='bx bx-cube'></i>
+                                    <i className='bx bx-cube'></i>
                                     <span className='d_m-s_menu-item'>Item</span>
                                 </a>
                                 <span className='d_m-s_menu-tooltip'>Item</span>
                             </li>
                             <li>
                                 <a href='#'>
-                                    <i class='bx bx-cube'></i>
+                                    <i className='bx bx-cube'></i>
                                     <span className='d_m-s_menu-item'>Item</span>
                                 </a>
                                 <span className='d_m-s_menu-tooltip'>Item</span>
                             </li>
                             <li>
                                 <a href='#'>
-                                    <i class='bx bx-cube'></i>
+                                    <i className='bx bx-cube'></i>
                                     <span className='d_m-s_menu-item'>Item</span>
                                 </a>
                                 <span className='d_m-s_menu-tooltip'>Item</span>
@@ -148,7 +164,7 @@ function UserMenu({ email }) {
                                     <div className='d_m-h-darkmode '>
                                         <DarkMode />
                                     </div>
-                                    <button className='btn-xs'>Cerrar sesión</button>
+                                    <a href='/logout' className='btn-xs'>Cerrar sesión</a>
                                 </div>
                             </div>
 
@@ -158,23 +174,73 @@ function UserMenu({ email }) {
                     </div>
 
                     <div className='dashboard_main_container '>
-                        <div class="nine">
-                            <h1>Cursos<span>Todos los cursos disponibles</span></h1>
-                        </div>
-                        <section className='cursos-container'>
-                            {asignaturas.map(asignatura => (
-                                <div key={asignatura.id}>
-                                    <div class="three">
-                                        <h1>{asignatura.nombre}</h1>
-                                    </div>
-                                    <div className='courseCards inset'>
-                                        <CourseList id={asignatura.id} admin={false} />
-                                    </div>
 
+                        {menuSelect === 0 &&
+                            <div>
+
+                                <div className="nine">
+                                    <h1>Cursos<span>Todos los cursos disponibles</span></h1>
                                 </div>
-                            ))}
-                        </section>
+                                <section className='cursos-container'>
+                                    {asignaturas.map(asignatura => (
+                                        <div key={asignatura.id}>
+                                            <div className="three">
+                                                <h1>{asignatura.nombre}</h1>
+                                            </div>
+                                            <div className='courseCards inset'>
+                                                <CourseList id={asignatura.id} admin={admin} setItemID={setItemID} setMenuSelect={setMenuSelect} />
+                                            </div>
+
+                                        </div>
+                                    ))}
+                                </section>
+
+                                <div className="nine">
+                                    <h1>Simuladores<span>Todos los simuladores disponibles</span></h1>
+                                </div>
+                                <section className='cursos-container'>
+                                    <div className='courseCards inset'>
+                                        {simuladores.map(simulador => (
+                                            <div className='courseCard' key={simulador.id}>
+                                                <p className='courseHeading'>
+                                                    {simulador.nombre}
+                                                </p>
+                                                <div className='courseBtns'>
+                                                    <button className='acceptButton' onClick={() => {
+                                                        setItemID(simulador.id)
+                                                        castTime(simulador.tiempo)
+                                                        setMenuSelect(3)
+                                                    }}>Ir al simulador</button>
+                                                    {!!admin && <button className='acceptButton2' onClick={() => {
+                                                        setItemID(simulador.id)
+                                                        setMenuSelect(4)
+                                                    }}>Editar</button>}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            </div>
+                        }
+
+                        {menuSelect === 1 &&
+                            <Course id={itemID} />
+                        }
+
+                        {menuSelect === 2 &&
+                            <EditCourse courseID={itemID} />
+                        }
+
+                        {menuSelect === 3 &&
+                            <Test id={itemID} retro={false} time={time} />
+                        }
+
+                        {menuSelect === 4 &&
+                            <EditTest testID={itemID} />
+                        }
                     </div>
+
+
 
                 </div>
             </div>

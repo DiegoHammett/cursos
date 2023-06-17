@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { db } from '../dbconnect'
 import UserMenu from '../UserMenu'
-import AdminMenu from '../AdminMenu'
 
 function Dashboard() {
 
     const [error, setError] = useState(false)
     const [admin, setAdmin] = useState(false)
-    const [user, setUser] = useState(false)
     const [email, setEmail] = useState()
+    const [rendered, setRendered] = useState(false)
 
     useEffect(() => {
         const getUser = () => {
@@ -22,8 +21,9 @@ function Dashboard() {
                     if (parseInt(res.plan) === 0)
                         setAdmin(true)
                     else
-                        setUser(true)
+                        setAdmin(false)
                     setEmail(res.email)
+                    setRendered(true)
                 }
             }).catch(err => setError(true))
         }
@@ -33,8 +33,7 @@ function Dashboard() {
 
     return (
         <React.Fragment>
-            {!!user && <UserMenu email={email}/>}
-            {!!admin && <AdminMenu email={email}/>}
+            {!!rendered && <UserMenu email={email} admin={admin}/>}
         </React.Fragment>
     )
 }

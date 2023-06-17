@@ -20,7 +20,7 @@ function Test({ id, time }) {
         seconds,
         minutes,
         hours
-    } = useTimer({ expiryTimestamp: new Date().setSeconds(new Date().getSeconds() + time), onExpire: () => { console.warn("ACABO") } });
+    } = useTimer({ expiryTimestamp: new Date().setSeconds(new Date().getSeconds() + time), onExpire: () => { setFinish(true) } });
 
     useEffect(() => {
         const getTest = () => {
@@ -35,7 +35,10 @@ function Test({ id, time }) {
         const getQuestions = () => {
             fetch(db.url + '?table=pregunta&column=id&where=test IN (' + id + ')&extra=GROUP BY id ORDER BY RAND()')
                 .then(res => res.json())
-                .then(res => setQuestions(res))
+                .then(res => {
+                    console.log(res)
+                    setQuestions(res)
+                })
                 .catch(err => setError(true))
         }
         getTest();
@@ -48,7 +51,7 @@ function Test({ id, time }) {
 
     return (
         <React.Fragment>
-            <div className='test-body'>
+            <div className={'test-body' + !retro ? 'sim' : ''}>
                 <div className='test-container '>
                     <div className='test-header'>
                         <div className='test-title title'>
@@ -91,34 +94,32 @@ function Test({ id, time }) {
                                     </div>
                                 </div>
                             </div>
-                            {retro === true &&
-                                <div className='testresult-container inset'>
-                                    <span className='title'><b>PROGRESO</b></span>
-                                    <div className='testresult-score'>
-                                        <span className='lbl'>Has obtenido</span>
-                                        <span className='title'>
-                                            <b>{total} de {questions.length}</b>
-                                        </span>
-                                        <div>
-                                            {questions.map(q => (
-                                                ansList[q.id] === undefined ?
-                                                    <a href={"#" + q.id} type='button' className='btn-question-nans' key={q.id}>
-                                                        {questions.indexOf(q) + 1}
-                                                    </a> :
-                                                    <a href={"#" + q.id} type='button' className='btn-question-ans' key={q.id}>
-                                                        {questions.indexOf(q) + 1}
-                                                    </a>
-                                            ))}
-                                        </div>
+                            <div className='testresult-container inset'>
+                                <span className='title'><b>PROGRESO</b></span>
+                                <div className='testresult-score'>
+                                    <span className='lbl'>Has obtenido</span>
+                                    <span className='title'>
+                                        <b>{total} de {questions.length}</b>
+                                    </span>
+                                    <div className='btn-questions-container'>
+                                        {questions.map(q => (
+                                            ansList[q.id] === undefined ?
+                                                <a href={"#q" + q.id} type='button' className='btn-question-nans' key={q.id}>
+                                                    {questions.indexOf(q) + 1}
+                                                </a> :
+                                                <a href={"#q" + q.id} type='button' className='btn-question-ans' key={q.id}>
+                                                    {questions.indexOf(q) + 1}
+                                                </a>
+                                        ))}
                                     </div>
-
                                 </div>
-                            }
+
+                            </div>
                             {retro === false &&
                                 <div className='testresult-container inset'>
                                     <span className='title'><b>TIEMPO RESTANTE</b></span>
                                     <div className='testresult-score'>
-                                        <span className='lbl'>{hours}:{minutes}:{seconds}</span>
+                                        <span className='lbl'>{hours > 9 ? hours : "0" + hours}:{minutes > 9 ? minutes : "0" + minutes}:{seconds > 9 ? seconds : "0" + seconds}</span>
                                     </div>
 
                                 </div>
