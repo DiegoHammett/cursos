@@ -26,6 +26,7 @@ CREATE TABLE test (
     id INT(3) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(250),
     tipo INT(1),
+    tiempo TIME,
     aprobacion DECIMAL(3,1)
 );
 
