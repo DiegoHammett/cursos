@@ -56,7 +56,7 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
 
     return (
         <React.Fragment>
-            <div className='question-container inset'>
+            <div className='question-container inset' id={'q'+question.id}>
                 <div className='question-header'>
                     <span className='pill'>Pregunta:</span>
                     <h4 className='question-pregunta title'>

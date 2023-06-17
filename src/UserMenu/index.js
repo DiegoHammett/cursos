@@ -4,13 +4,21 @@ import CourseList from '../CourseList'
 import './usermenu_styles.css';
 import DarkMode from '../DarkMode';
 import UserImg from './user.png';
+import Course from '../Course';
+import EditCourse from '../EditCourse';
+import Test from '../Test';
+import EditTest from '../EditTest';
 
 import { Tabs, TabList, Tab, TabPanel } from "https://cdn.skypack.dev/react-tabs@3.2.2";
 
-function UserMenu({ email }) {
+function UserMenu({ email, admin }) {
 
     const [user, setUser] = useState([])
     const [asignaturas, setAsignaturas] = useState([])
+    const [simuladores, setSimuladores] = useState([])
+    const [menuSelect, setMenuSelect] = useState(0)
+    const [itemID, setItemID] = useState()
+    const [time, setTime] = useState()
 
     useEffect(() => {
         const getUser = () => {
@@ -29,8 +37,15 @@ function UserMenu({ email }) {
                 .then(res => setAsignaturas(res))
                 .catch(err => console.log(err))
         }
+        const getSimuladores = () => {
+            fetch(db.url + "?table=test&where=tipo IN (2)")
+                .then(res => res.json())
+                .then(res => setSimuladores(res))
+                .catch(err => console.log(err))
+        }
         getAsignatura()
-    }, [])
+        getSimuladores()
+    }, [menuSelect])
 
 
     // Sidebar menu button
@@ -40,7 +55,10 @@ function UserMenu({ email }) {
         setSidebarActive(!sidebarActive);
     };
 
-
+    const castTime = (t) => {
+        const formatTime = t.split(":")
+        setTime((parseInt(formatTime[0]) * 3600) + (parseInt(formatTime[1]) * 60) + parseInt(formatTime[0]))
+    }
 
     return (
         <React.Fragment>
@@ -192,7 +210,6 @@ function UserMenu({ email }) {
 
                     </div>
                 </Tabs>
-
 
             </div>
 

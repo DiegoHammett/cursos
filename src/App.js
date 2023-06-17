@@ -12,6 +12,7 @@ import Dashboard from './Dashboard';
 import Navbar from './Navbar';
 import Course from './Course';
 import MathQ from './MathQ';
+import Logout from './Logout';
 
 function App() {
 
@@ -36,12 +37,12 @@ function App() {
         <Route exact path="/" element={<Landing />} />
         <Route exact path="/registro" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/logout" element={<Login />} />
         <Route exact path="/edit/:id" element={<RouteEditCourse/>} />
         <Route exact path="/course/:id" element={<RouteCourse />} />
         <Route exact path="/dashboard" element={<React.Fragment><Dashboard/></React.Fragment>} />
         <Route exact path="/simulador/:id" element={<RouteSim/>} />
-        <Route exact path="/math" element={<MathQ/>}/>
+        <Route exact path="/math" element={<MathQ exp={'\\frac{1}{\\sqrt{2}}\\cdot 2'}/>}/>
+        <Route exact path="/logout" element={<Logout/>}/>
       </Routes>
     </BrowserRouter>
   );
