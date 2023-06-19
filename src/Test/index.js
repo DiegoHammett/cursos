@@ -79,61 +79,53 @@ function Test({ id, time }) {
                     {!finish &&
                         <React.Fragment>
 
-                            <div className='test-container-item'>
-                                <div className='test-questions-container'>
-                                    <div>
-                                        {questions.map(q => (
-                                            <div key={q.id} id={q.id}>
-                                                <Question id={q.id} retro={retro} suma={suma} ansList={ansList} setAnsList={setAnsList} />
-                                            </div>
-                                        ))}
-                                        <div className='question-validate'>
-                                            <button className='btn' onClick={() => { setFinish(true) }}>Terminar intento</button>
+                            <div className='test-questions-container'>
+                                <div>
+                                    {questions.map(q => (
+                                        <div key={q.id} id={q.id}>
+                                            <Question id={q.id} retro={retro} suma={suma} ansList={ansList} setAnsList={setAnsList} />
                                         </div>
+                                    ))}
+                                    <div className='question-validate'>
+                                        <button className='btn' onClick={() => { setFinish(true) }}>Terminar intento</button>
                                     </div>
                                 </div>
-                                {retro === true &&
-                                    <div className='testresult-container inset'>
-                                        <span className='title'><b>PROGRESO</b></span>
-                                        <div className='testresult-score'>
-                                            <span className='lbl'>Has obtenido</span>
-                                            <span className='title'>
-                                                <b>{total} de {questions.length}</b>
-                                            </span>
-                                            <div>
-                                                {questions.map(q => (
-                                                    ansList[q.id] === undefined ?
-                                                        <a href={"#" + q.id} type='button' className='btn-question-nans' key={q.id}>
-                                                            {questions.indexOf(q) + 1}
-                                                        </a> :
-                                                        <a href={"#" + q.id} type='button' className='btn-question-ans' key={q.id}>
-                                                            {questions.indexOf(q) + 1}
-                                                        </a>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                }
-                            </div>
-
-                            <div className='test-container-item'>
-                                {retro === false &&
-                                    <div className='testresult-container inset'>
-                                        <span className='title'><b>TIEMPO RESTANTE</b></span>
-                                        <div className='testresult-score'>
-                                            <span className='lbl'>{hours}:{minutes}:{seconds}</span>
-                                        </div>
-
-                                    </div>
-                                }
                             </div>
 
 
 
+                            <div className='testresult-container inset'>
+                                <span className='title'><b>PROGRESO</b></span>
+                                <div className='testresult-score'>
+                                    <span className='lbl'>Has obtenido</span>
+                                    <span className='title'>
+                                        <b>{total} de {questions.length}</b>
+                                    </span>
+                                    <div className='btn-questions-container'>
+                                        {questions.map(q => (
+                                            ansList[q.id] === undefined ?
+                                                <a href={"#q" + q.id} type='button' className='btn-question-nans' key={q.id}>
+                                                    {questions.indexOf(q) + 1}
+                                                </a> :
+                                                <a href={"#q" + q.id} type='button' className='btn-question-ans' key={q.id}>
+                                                    {questions.indexOf(q) + 1}
+                                                </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {retro === false &&
+                                <div className='testresult-container inset'>
+                                    <span className='title'><b>TIEMPO RESTANTE</b></span>
+                                    <div className='testresult-score'>
+                                        <span className='lbl'>{hours > 9 ? hours : "0" + hours}:{minutes > 9 ? minutes : "0" + minutes}:{seconds > 9 ? seconds : "0" + seconds}</span>
+                                    </div>
+                                </div>
+                            }
                         </React.Fragment>
                     }
-                    {!!finish && <TestResult ansList={ansList} total={qutestions.length} approveTest={test.aprobacion} />}
+                    {!!finish && <TestResult ansList={ansList} total={questions.length} approveTest={test.aprobacion} />}
                 </div>
             </div>
 
