@@ -4,13 +4,21 @@ import CourseList from '../CourseList'
 import './usermenu_styles.css';
 import DarkMode from '../DarkMode';
 import UserImg from './user.png';
+import Course from '../Course';
+import EditCourse from '../EditCourse';
+import Test from '../Test';
+import EditTest from '../EditTest';
 
 import { Tabs, TabList, Tab, TabPanel } from "https://cdn.skypack.dev/react-tabs@3.2.2";
 
-function UserMenu({ email }) {
+function UserMenu({ email, admin }) {
 
     const [user, setUser] = useState([])
     const [asignaturas, setAsignaturas] = useState([])
+    const [simuladores, setSimuladores] = useState([])
+    const [menuSelect, setMenuSelect] = useState(0)
+    const [itemID, setItemID] = useState()
+    const [time, setTime] = useState()
 
     useEffect(() => {
         const getUser = () => {
@@ -40,7 +48,10 @@ function UserMenu({ email }) {
         setSidebarActive(!sidebarActive);
     };
 
-
+    const castTime = (t) => {
+        const formatTime = t.split(":")
+        setTime((parseInt(formatTime[0]) * 3600) + (parseInt(formatTime[1]) * 60) + parseInt(formatTime[0]))
+    }
 
     return (
         <React.Fragment>
@@ -73,11 +84,18 @@ function UserMenu({ email }) {
                                     <span className='d_m-s_menu-tooltip'>Inicio</span>
                                 </Tab>
                                 <Tab>
-                                    <button href='#'>
+                                    <button>
                                         <i class='bx bxs-book-content'></i>
                                         <span className='d_m-s_menu-item'>Cursos</span>
                                     </button>
                                     <span className='d_m-s_menu-tooltip'>Cursos</span>
+                                </Tab>
+                                <Tab>
+                                    <button>
+                                        <i class='bx bx-desktop'></i>
+                                        <span className='d_m-s_menu-item'>Simuladores</span>
+                                    </button>
+                                    <span className='d_m-s_menu-tooltip'>Simuladores</span>
                                 </Tab>
                             </TabList>
                         </div>
@@ -186,7 +204,36 @@ function UserMenu({ email }) {
                                     </div>
                                 ))}
                             </TabPanel>
-
+                            <TabPanel className='cursos-container'>
+                                <div className='cursos-container-header-2'>
+                                    <h1>Simuladores</h1>
+                                    <span>
+                                        Todos los simuladores disponibles.
+                                    </span>
+                                </div>
+                                <section className='cursos-container'>
+                                    <div className='courseCards inset'>
+                                        {simuladores.map(simulador => (
+                                            <div className='courseCard' key={simulador.id}>
+                                                <p className='courseHeading'>
+                                                    {simulador.nombre}
+                                                </p>
+                                                <div className='courseBtns'>
+                                                    <button className='acceptButton' onClick={() => {
+                                                        setItemID(simulador.id)
+                                                        castTime(simulador.tiempo)
+                                                        setMenuSelect(3)
+                                                    }}>Ir al simulador</button>
+                                                    {!!admin && <button className='acceptButton2' onClick={() => {
+                                                        setItemID(simulador.id)
+                                                        setMenuSelect(4)
+                                                    }}>Editar</button>}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            </TabPanel>
 
                         </div>
 
