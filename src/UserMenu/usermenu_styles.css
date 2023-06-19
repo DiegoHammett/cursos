@@ -28,7 +28,7 @@
 /* =====  H e a d e r  M e n u  ===== */
 
 .dashboard_menu-header {
-    width: 101%;
+    width: auto;
     z-index: 20;
 }
 
@@ -307,7 +307,6 @@
     margin: 1rem;
     max-height: 87vh;
     overflow-y: scroll;
-    background-color: var(--bg-100);
 }
 
 
@@ -338,16 +337,16 @@
 }
 
 .three {
-    margin-bottom: .5rem;
+    margin: 0 2rem;
 }
 
 .three h1 {
-    font-size: 1.6rem;
+    font-size: 28px;
     font-weight: 500;
     letter-spacing: 0;
     line-height: 1.5em;
+    padding-bottom: 15px;
     position: relative;
-    margin: .3rem 2rem;
 }
 
 
@@ -392,99 +391,5 @@
 
 .tabs-container {
     display: flex;
-
-}
-
-
-
-
-
-.d_m_c-user-container {
-    padding: 2rem;
     
-}
-
-.d_m_c-user-card {
-    border-radius: .5rem;
-    padding: 2rem;
-    display: flex;
-    justify-content: space-between;
-    background-color: var(--bg-200);
-    align-items: center;
-}
-
-.d_m_c-user-card-head {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-}
-
-.d_m_c-user-card-info {
-    padding: .8rem 0;
-}
-
-.d_m_c-user-card-info span {
-    font-size: 1.5rem;
-    color: var(--text-200);
-}
-
-.d_m_c-user-card-info .user-card-info-detail {
-    display: flex;
-    gap: .5rem;
-    align-items: center;
-}
-
-.d_m_c-user-card-info .user-card-info-detail span {
-    font-size: 1rem;
-    color: var(--text-200);
-}
-
-.d_m_c-user-card .d_m-s_top-user-img {
-    width: 6rem;
-}
-
-.d_m_c-user-card-head-2 button {
-    border-radius: 100%;
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
-    background-color: var(--bg-300);
-}
-
-.d_m_c-user-card-head-2 button::before {
-    background-color: var(--bg-100);
-    transform: translate(-100%);
-}
-
-.d_m_c-user-card-head-2 button i {
-    font-size: 1.5rem;
-    color: var(--text-100);
-}
-
-
-.d_m_c-user-statistics {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-    width: 100%;
-    
-}
-
-.d_m_c-user-statistics-item {
-    width: 100%;
-    height: 50vh;
-    border-radius: .5rem;
-    padding: 2rem;
-    background-color: var(--bg-200);
-}
-
-.statistics-item-title {
-    font-weight: 500;
-    font-size: 1.3rem;
-    margin-bottom: .5rem;
-    color: var(--text-100);
-}
-
-.statistics-item-content {
-    color: var(--text-200);
 }

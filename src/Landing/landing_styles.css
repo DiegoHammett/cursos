@@ -105,9 +105,9 @@
 }
 
 .landing_title-focus {
-    color: var(--accent-100);
+    color: var(--primary-100);
     font-size: 4rem;
-    text-shadow: 0.02em 0.02em var(--accent-200);
+    text-shadow: 0.02em 0.02em var(--primary-200);
     margin: 0;
     line-height: 5.8rem;
 }
