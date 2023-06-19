@@ -79,50 +79,92 @@ function Test({ id, time }) {
                     {!finish &&
                         <React.Fragment>
 
-                            <div className='test-questions-container'>
-                                <div>
-                                    {questions.map(q => (
-                                        <div key={q.id} id={q.id}>
-                                            <Question id={q.id} retro={retro} suma={suma} ansList={ansList} setAnsList={setAnsList} />
+                            <div className='test-container-all'>
+                                <div className='test-container-item1'>
+                                    <div className='test-questions-container'>
+                                        <div>
+                                            {questions.map(q => (
+                                                <div key={q.id} id={q.id}>
+                                                    <Question id={q.id} retro={retro} suma={suma} ansList={ansList} setAnsList={setAnsList} />
+                                                </div>
+                                            ))}
+                                            <div className='question-validate'>
+                                                <button className='btn' onClick={() => { setFinish(true) }}>Terminar intento</button>
+                                            </div>
                                         </div>
-                                    ))}
-                                    <div className='question-validate'>
-                                        <button className='btn' onClick={() => { setFinish(true) }}>Terminar intento</button>
                                     </div>
                                 </div>
+
+                                <div className='test-container-item2'>
+                                    <div className='test-container-generic inset'>
+
+
+
+                                        <div className='testresult-progreso'>
+                                            <span >
+                                                <b>PROGRESO</b>
+                                            </span>
+                                            <div className='testresult-progreso-obtenido'>
+                                                <span >Has obtenido</span>
+                                                <span >
+                                                    <b>{total}</b> de <b>{questions.length}</b>
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div className='btn-questions-container '>
+                                            <div className='testresult-navegacion'>
+                                            <span >
+                                                <b>NAVEGACIÓN</b>
+                                            </span>
+                                            <div className='testresult-navegacion-btns'>
+                                                {questions.map(q => (
+                                                    ansList[q.id] === undefined ?
+                                                        <a href={"#q" + q.id} type='button' className='btn-question-nans inset' key={q.id}>
+                                                            {questions.indexOf(q) + 1}
+                                                        </a> :
+                                                        <a href={"#q" + q.id} type='button' className='btn-question-ans' key={q.id}>
+                                                            {questions.indexOf(q) + 1}
+                                                        </a>
+                                                ))}
+                                            </div>
+                                                
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    {retro === false &&
+                                        <div className='test-container-generic inset'>
+
+                                            <div className='test-time'>
+                                                <span className='title'><b>TIEMPO RESTANTE</b></span>
+                                                <span className='lbl'>
+                                                    {hours > 9 ? hours : "0" + hours}
+                                                    :
+                                                    {minutes > 9 ? minutes : "0" + minutes}
+                                                    :
+                                                    {seconds > 9 ? seconds : "0" + seconds}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+
+
+
                             </div>
 
 
 
-                            <div className='testresult-container inset'>
-                                <span className='title'><b>PROGRESO</b></span>
-                                <div className='testresult-score'>
-                                    <span className='lbl'>Has obtenido</span>
-                                    <span className='title'>
-                                        <b>{total} de {questions.length}</b>
-                                    </span>
-                                    <div className='btn-questions-container'>
-                                        {questions.map(q => (
-                                            ansList[q.id] === undefined ?
-                                                <a href={"#q" + q.id} type='button' className='btn-question-nans' key={q.id}>
-                                                    {questions.indexOf(q) + 1}
-                                                </a> :
-                                                <a href={"#q" + q.id} type='button' className='btn-question-ans' key={q.id}>
-                                                    {questions.indexOf(q) + 1}
-                                                </a>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
 
-                            {retro === false &&
-                                <div className='testresult-container inset'>
-                                    <span className='title'><b>TIEMPO RESTANTE</b></span>
-                                    <div className='testresult-score'>
-                                        <span className='lbl'>{hours > 9 ? hours : "0" + hours}:{minutes > 9 ? minutes : "0" + minutes}:{seconds > 9 ? seconds : "0" + seconds}</span>
-                                    </div>
-                                </div>
-                            }
+
+
+
                         </React.Fragment>
                     }
                     {!!finish && <TestResult ansList={ansList} total={questions.length} approveTest={test.aprobacion} />}

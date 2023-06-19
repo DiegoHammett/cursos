@@ -27,7 +27,7 @@ function App() {
 
   function RouteSim() {
     let params = useParams();
-    return <React.Fragment><Navbar/><Test id={params.id} time={40}/></React.Fragment>;
+    return <React.Fragment><Test id={params.id} time={40}/></React.Fragment>;
   }
 
   return (
