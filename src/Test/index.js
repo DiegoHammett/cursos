@@ -101,12 +101,12 @@ function Test({ id, time }) {
 
 
                                         <div className='testresult-progreso'>
-                                            <span >
+                                            <span className='title'>
                                                 <b>PROGRESO</b>
                                             </span>
                                             <div className='testresult-progreso-obtenido'>
-                                                <span >Has obtenido</span>
-                                                <span >
+                                                <span className='lbl'>Has obtenido</span>
+                                                <span className='lbl'>
                                                     <b>{total}</b> de <b>{questions.length}</b>
                                                 </span>
                                             </div>
@@ -117,7 +117,7 @@ function Test({ id, time }) {
 
                                         <div className='btn-questions-container '>
                                             <div className='testresult-navegacion'>
-                                            <span >
+                                            <span className='title'>
                                                 <b>NAVEGACIÓN</b>
                                             </span>
                                             <div className='testresult-navegacion-btns'>
