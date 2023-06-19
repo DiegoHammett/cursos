@@ -62,7 +62,7 @@ function Course({ id }) {
                             </button>
                         }
                     </div>
-                    <div className='course-navigation-item'>
+                    <div>
                         {modules.map(module => (
                             modules.indexOf(module) === currentModule ?
                                 <button onClick={() => { setCurrentModule(modules.indexOf(module)) }} key={module.id} className='btn-nav-current'>

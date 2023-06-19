@@ -32,12 +32,11 @@
 
 html {
     background: var(--bg-100);
-    min-height: 100vh;
 }
 
 * {
     font-family: 'Poppins', sans-serif;
-    
+
 }
 
 /* ===== Scrollbar CSS ===== */
