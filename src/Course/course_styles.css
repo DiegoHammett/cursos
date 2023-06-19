@@ -3,6 +3,7 @@
     padding: 8rem 10rem;
     margin: 0;
     background: var(--bg-100);
+    min-height: 100vh;
 }
 
 .course-navigation {
@@ -12,14 +13,42 @@
     justify-content: space-between;
 }
 
-.course-navigation-item {
-    
+.course-navigation-item:nth-child(1) {
+    width: 150px;
+}
+
+.course-navigation-item:last-child {
+    width: 150px;
 }
 
 .btn-nav {
-
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 20px;
+    background-color: var(--bg-300);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.6s ease width;
+    border: none;
 }
 
 .btn-nav-current {
-    background-color: blue;
+    height: 20px;
+    float: left;
+    margin-right: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.6s ease width;
+    width: 40px;
+    cursor: auto;
+    background-color: var(--accent-100);
+    border: none;
+    position: static;
+}
+
+.btn-nav-current:last-child,
+.btn-nav:last-child {
+    margin-right: 0;
 }
