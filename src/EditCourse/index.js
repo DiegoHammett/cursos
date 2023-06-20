@@ -12,7 +12,9 @@ function EditCourse({ courseID }) {
     const [moduleID, setModuleID] = useState()
     const [modules, setModules] = useState([])
     const [editName, setEditName] = useState(false)
+    const [editDesc, setEditDesc] = useState(false)
     const [courseName, setCourseName] = useState()
+    const [courseDesc, setCourseDesc] = useState()
     const [course, setCourse] = useState([])
     const [refresh, setRefresh] = useState(false)
 
@@ -34,7 +36,7 @@ function EditCourse({ courseID }) {
                 .catch(err => setError(true))
         }
         getCourse()
-    }, [courseID, editName])
+    }, [courseID, editName, editDesc])
 
     const handleEdit = (id, tipo) => {
         setModuleID(id)
@@ -110,17 +112,35 @@ function EditCourse({ courseID }) {
     }
 
     const handleChangeTestName = () => {
-        const formData = new FormData()
-        formData.append("nombre", courseName)
-        fetch(db.url + "?mode=update&table=curso&id=id&condition=" + courseID, {
-            method: 'POST',
-            body: formData
-        }).then(res => res.json())
-            .then(res => {
-                if (res.status === "OK")
-                    setEditName(false)
-                else setError(true)
-            }).catch(err => setError(true))
+        if (courseName !== undefined) {
+            const formData = new FormData()
+            formData.append("nombre", courseName)
+            fetch(db.url + "?mode=update&table=curso&id=id&condition=" + courseID, {
+                method: 'POST',
+                body: formData
+            }).then(res => res.json())
+                .then(res => {
+                    if (res.status === "OK")
+                        setEditName(false)
+                    else setError(true)
+                }).catch(err => setError(true))
+        }
+    }
+
+    const handleChangeDescription = () => {
+        if (courseDesc !== undefined) {
+            const formData = new FormData()
+            formData.append("descripcion", courseDesc)
+            fetch(db.url + "?mode=update&table=curso&id=id&condition=" + courseID, {
+                method: 'POST',
+                body: formData
+            }).then(res => res.json())
+                .then(res => {
+                    if (res.status === "OK")
+                        setEditDesc(false)
+                    else setError(true)
+                }).catch(err => setError(true))
+        }
     }
 
     const handleMoveUp = (module) => {
@@ -195,10 +215,20 @@ function EditCourse({ courseID }) {
                                 </div>
                                 <div>
                                     <label className='input-label lbl'>Descripción del curso:</label>
-                                    <div className='ec-lbl-name'>
-                                        <label className='ec-lbl-editar it-inset-shadow'><b className='b-medium'>Descripción del curso</b></label>
-                                        <button className='ec-btn-editar it-inset-shadow'><i className='bx bx-edit icon' ></i>Editar</button>
-                                    </div>
+                                    {!editDesc &&
+                                        <div className='ec-lbl-name'>
+                                            <label className='ec-lbl-editar it-inset-shadow'><b className='b-medium'>{course.descripcion}</b></label>
+                                            <button className='ec-btn-editar it-inset-shadow' onClick={() => { setEditDesc(true) }}>
+                                                <i className='bx bx-edit icon' ></i>Editar
+                                            </button>
+                                        </div>
+                                    }
+                                    {!!editDesc &&
+                                        <div className='ec-lbl-name'>
+                                            <input autoFocus className='ec-input-text it-inset-shadow' type='text' defaultValue={course.descripcion} onChange={(e) => { setCourseDesc(e.target.value) }}></input>
+                                            <button className='ec-btn-editar it-inset-shadow' onClick={handleChangeDescription}><i className='bx bx-save icon' ></i>Guardar</button>
+                                        </div>
+                                    }
                                 </div>
 
 
