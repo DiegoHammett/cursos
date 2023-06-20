@@ -168,7 +168,7 @@ span {
 }
 
 .input-text:hover {
-    color: var(--accent-100);
+    color: var(--text-200);
 }
 
 .input-text:focus {
