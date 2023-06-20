@@ -150,6 +150,7 @@
 
 .dashboard_menu-sidebar.active {
     width: 250px;
+    transition: all .6s;
 }
 
 .d_m-s_top-logo-container {
@@ -246,7 +247,7 @@
     transition: all 0.3s;
 }
 
-.dashboard_menu-sidebar ul li button i {
+.dashboard_menu-sidebar button i {
     min-width: 50px;
     text-align: center;
     height: 50px;
@@ -256,13 +257,14 @@
     transition: all 0.5s;
 }
 
-.dashboard_menu-sidebar.active ul li button i {
+.dashboard_menu-sidebar.active button i {
     font-size: 1.2rem;
     transition: all 0.5s;
 }
 
 .dashboard_menu-sidebar .d_m-s_menu-item {
     display: none;
+    transition: all .6s;
 }
 
 .dashboard_menu-sidebar.active .d_m-s_menu-item {
@@ -283,11 +285,13 @@
     line-height: 1.8rem;
     z-index: -1;
     opacity: 0;
+    transition: all .3s;
 }
 
 .dashboard_menu-sidebar ul li:hover .d_m-s_menu-tooltip {
     opacity: 1;
     z-index: 20;
+    transition: all .3s;
 }
 
 .dashboard_menu-sidebar.active ul li .d_m-s_menu-tooltip {

@@ -101,7 +101,7 @@ function UserMenu({ email, admin }) {
                                 <div className='d_m-h_options'>
                                     <ul className='d_m-h_navbar-links'>
                                         <li className='navbar-links_item'>
-                                            
+                                            <button className='btn-xs'>Ir atrás</button>
                                         </li>
                                     </ul>
                                     <div className='d_m-h_navbar_session-btns'>

@@ -59,7 +59,7 @@ function StatsMenu({ admin, email }) {
                                         }
                                         {!admin &&
                                             <React.Fragment>
-                                                <label><b className='b-medium'>{user.nombre_plan}</b></label>
+                                                <label><b className='b-medium'>#</b></label>
                                                 cursos realizados
                                             </React.Fragment>
                                         }
@@ -77,7 +77,7 @@ function StatsMenu({ admin, email }) {
                                         }
                                         {!admin &&
                                             <React.Fragment>
-                                                <label><b className='b-medium'>{user.nombre_plan}</b></label>
+                                                <label><b className='b-medium'>#</b></label>
                                                 simuladores realizados
                                             </React.Fragment>
                                         }
