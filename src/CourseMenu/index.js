@@ -4,6 +4,8 @@ import CourseList from '../CourseList'
 import Course from '../Course'
 import EditCourse from '../EditCourse'
 
+
+
 function CourseMenu({admin}) {
 
     const [menuSelect, setMenuSelect] = useState(0)

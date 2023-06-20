@@ -28,7 +28,7 @@
 /* =====  H e a d e r  M e n u  ===== */
 
 .dashboard_menu-header {
-    width: auto;
+    width: 101%;
     z-index: 20;
 }
 
@@ -306,6 +306,7 @@
 .dashboard_main_container {
     margin: 1rem;
     max-height: 87vh;
+    width: 99.65%;
     overflow-y: scroll;
 }
 
