@@ -6,7 +6,6 @@ import './courselist_styles.css';
 function CourseList({ id, admin, setItemID, setMenuSelect }) {
 
     const [cursos, setCursos] = useState([])
-    const nav = useNavigate()
 
     useEffect(() => {
         const getCourse = () => {
