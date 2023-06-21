@@ -6,7 +6,7 @@ function Dashboard() {
 
     const [error, setError] = useState(false)
     const [admin, setAdmin] = useState(false)
-    const [email, setEmail] = useState()
+    const [id, setID] = useState()
     const [rendered, setRendered] = useState(false)
 
     useEffect(() => {
@@ -22,7 +22,7 @@ function Dashboard() {
                         setAdmin(true)
                     else
                         setAdmin(false)
-                    setEmail(res.email)
+                    setID(res.userid)
                     setRendered(true)
                 }
             }).catch(err => setError(true))
@@ -33,7 +33,7 @@ function Dashboard() {
 
     return (
         <React.Fragment>
-            {!!rendered && <UserMenu email={email} admin={admin}/>}
+            {!!rendered && <UserMenu userID={id} admin={admin}/>}
         </React.Fragment>
     )
 }

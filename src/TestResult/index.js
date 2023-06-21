@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../dbconnect'
 import './testresult_styles.css'
 
-function TestResult({ ansList, total, approveTest }) {
+function TestResult({ ansList, total, approveTest, setCompleted }) {
 
     const [count, setCount] = useState()
     const [approve, setApprove] = useState(false)
@@ -27,8 +27,11 @@ function TestResult({ ansList, total, approveTest }) {
     }, [ansList])
 
     useEffect(() => {
-        if (count * 10 / total >= approveTest) setApprove(true)
-    }, [count,approveTest,total])
+        if (count * 10 / total >= approveTest) {
+            setApprove(true)
+            setCompleted(true)
+        }
+    }, [count, approveTest, total, setCompleted])
 
     return (
         <React.Fragment>
@@ -40,6 +43,7 @@ function TestResult({ ansList, total, approveTest }) {
                                 <h2>{count * 10 / total}</h2>
                                 <p>Tu calificación</p>
                             </div>
+
                             <div className="back">
                                 <h2>{approveTest}</h2>
                                 <p>Calificación aprobatoria</p>
@@ -78,13 +82,8 @@ function TestResult({ ansList, total, approveTest }) {
                                 <span><b>{count}</b></span>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-            </div>
-            <div className='finish-footer'>
-                <a href='/' className='btn'>Continuar</a>
             </div>
 
         </React.Fragment>

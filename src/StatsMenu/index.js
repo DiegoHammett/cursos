@@ -1,21 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { db } from '../dbconnect';
+import React from 'react';
 import './statsmenu_styles.css';
 import UserImg from './user.png';
 
-function StatsMenu({ admin, email }) {
-
-    const [user, setUser] = useState([])
-
-    useEffect(() => {
-        const getUser = () => {
-            fetch(db.url + "?table=usuario a,plan b&column=a.nombre, b.nombre as nombre_plan, b.id&where=a.email in ('" + email + "') and a.plan=b.id")
-                .then(res => res.json())
-                .then(res => setUser(res[0]))
-                .catch(err => console.log(err))
-        }
-        getUser()
-    }, [email])
+function StatsMenu({ admin, user }) {
 
     return (
         <React.Fragment>
