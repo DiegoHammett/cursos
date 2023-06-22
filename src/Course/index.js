@@ -38,6 +38,7 @@ function Course({ id, userID }) {
                 }
             })
             .catch(err => console.log(err))
+        setRefresh(!refresh)
     }, [userID])
 
     const insertUserModules = useCallback(() => {
@@ -54,7 +55,7 @@ function Course({ id, userID }) {
 
     useEffect(() => {
         const getUserModules = () => {
-            fetch(db.url + "?table=modulo_usuario&where=modulo in (SELECT id FROM modulos WHERE curso IN (" + id + "))")
+            fetch(db.url + "?table=modulo_usuario&where=modulo in (SELECT id FROM modulos WHERE curso IN (" + id + ")) AND usuario IN (" + userID + ")")
                 .then(res => res.json())
                 .then(res => {
                     if (res.length === 0)
@@ -88,7 +89,7 @@ function Course({ id, userID }) {
     }
 
     useEffect(() => {
-        if(completed) {
+        if (completed) {
             updateModule(modules[currentModule].modulo, 1)
             updateModule(modules[currentModule + 1].modulo, 0)
         }
@@ -130,7 +131,7 @@ function Course({ id, userID }) {
                     </div>
                     <div>
                         {parseInt(modules[currentModule].tipo) === 1 && <Class id={modules[currentModule].id} />}
-                        {parseInt(modules[currentModule].tipo) === 2 && <Test id={modules[currentModule].id} retro={true} setCompleted={setCompleted}/>}
+                        {parseInt(modules[currentModule].tipo) === 2 && <Test id={modules[currentModule].id} retro={true} setCompleted={setCompleted} />}
                     </div>
                 </div>
             }
