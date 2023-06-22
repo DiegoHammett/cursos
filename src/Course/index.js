@@ -9,22 +9,25 @@ function Course({ id, userID }) {
     const [modules, setModules] = useState([])
     const [currentModule, setCurrentModule] = useState(0)
     const [rendered, setRendered] = useState(false)
-    const [refresh, setRefresh] = useState(false)
     const [completed, setCompleted] = useState(false)
     const [error, setError] = useState(false)
 
     const getModules = useCallback(() => {
+        console.log("MODULES")
         fetch(db.url + "?table=lista_modulos a,modulo_usuario b&column=a.*, b.completado&where=a.modulo IN (b.modulo) AND curso in (" + id + ") ORDER BY orden")
             .then(res => res.json())
             .then(res => {
-                setModules(res)
-                setRendered(true)
-                setCompleted(false)
+                if (res.length > 0) {
+                    setModules(res)
+                    setCompleted(false)
+                    setRendered(true)
+                }
             })
             .catch(err => console.log(err))
-    }, [id, refresh])
+    }, [id])
 
     const insertUserModule = useCallback((module) => {
+        console.log("INSERT 1")
         const formData = new FormData()
         formData.append("modulo", module)
         formData.append("usuario", userID)
@@ -33,27 +36,26 @@ function Course({ id, userID }) {
             body: formData
         }).then(res => res.json())
             .then(res => {
-                if (res.status === "OK") {
-                    console.log("INSERTED")
-                }
+                if (res.status !== "OK") console.log(res)
             })
             .catch(err => console.log(err))
-        setRefresh(!refresh)
     }, [userID])
 
     const insertUserModules = useCallback(() => {
+        console.log("INSERT")
         fetch(db.url + "?table=lista_modulos&where=curso in (" + id + ") ORDER BY orden")
             .then(res => res.json())
             .then(res => {
                 res.map(module => (
                     insertUserModule(module.modulo)
                 ))
+                getModules()
             })
             .catch(err => console.log(err))
-        getModules()
-    }, [insertUserModule, getModules, id])
+    }, [insertUserModule, id])
 
     useEffect(() => {
+        console.log("INIT")
         const getUserModules = () => {
             fetch(db.url + "?table=modulo_usuario&where=modulo in (SELECT id FROM modulos WHERE curso IN (" + id + ")) AND usuario IN (" + userID + ")")
                 .then(res => res.json())
@@ -65,16 +67,9 @@ function Course({ id, userID }) {
                 .catch(err => console.log(err))
         }
         getUserModules()
-    }, [id, insertUserModules, getModules])
+    }, [id, insertUserModules, getModules, userID])
 
-    const updateModules = useCallback(() => {
-        if (parseInt(modules[currentModule].tipo) === 1) {
-            updateModule(modules[currentModule].modulo, 1)
-            updateModule(modules[currentModule + 1].modulo, 0)
-        }
-    }, [currentModule, modules])
-
-    const updateModule = (id, value) => {
+    const updateModule = useCallback((id, value) => {
         const formData = new FormData()
         formData.append("completado", value)
         fetch(db.url + "?mode=update&table=modulo_usuario&id=modulo&condition=" + id, {
@@ -82,22 +77,28 @@ function Course({ id, userID }) {
             body: formData
         }).then(res => res.json())
             .then(res => {
-                if (res.status === "OK")
-                    setRefresh(!refresh)
-                else setError(true)
+                if (res.status !== "OK") setError(true)
             }).catch(err => setError(true))
-    }
+    }, [])
+
+    const updateModules = useCallback(() => {
+        if (parseInt(modules[currentModule].tipo) === 1) {
+            updateModule(modules[currentModule].modulo, 1)
+            updateModule(modules[currentModule + 1].modulo, 0)
+        }
+        getModules()
+    }, [currentModule, modules, updateModule])
 
     useEffect(() => {
         if (completed) {
             updateModule(modules[currentModule].modulo, 1)
             updateModule(modules[currentModule + 1].modulo, 0)
         }
-    }, [completed])
+    }, [completed, updateModule, modules, currentModule])
 
     useEffect(() => {
         if (rendered) updateModules()
-    }, [rendered, currentModule])
+    }, [rendered, currentModule, updateModules])
 
     return (
         <React.Fragment>
