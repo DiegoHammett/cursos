@@ -2,11 +2,12 @@
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     gap: 1.5rem;
-    overflow-x: scroll;
+    overflow-x: auto;
     margin: 0 2rem;
     padding: 2rem;
     background-color: var(--bg-200);
-
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
 }
 
 /* Estilos específicos para WebKit (Chrome, Safari, etc.) */

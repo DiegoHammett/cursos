@@ -84,9 +84,9 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
 
                 {(retro === true) && (correct === 1 || correct === 0) &&
                     <div className='question-retro'>
-                        {correct === 1 && <p className='question-retro-c'><i className='bx bx-check bx-tada' ></i> CORRECTO</p>}
-                        {correct === 0 && <p className='question-retro-i'><i className='bx bx-x bx-tada' ></i> INCORRECTO</p>}
-                        <p className='question-retro-r'>{(correct === 1 || correct === 0) && question.retro}</p>
+                        {correct === 1 && <p className='question-retro-c'> CORRECTO</p>}
+                        {correct === 0 && <p className='question-retro-i'>INCORRECTO</p>}
+                        <p className='question-retro-r lbl'>{(correct === 1 || correct === 0) && question.retro}</p>
                     </div>
                 }
             </div>

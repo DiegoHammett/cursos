@@ -1,6 +1,6 @@
 .course-body {
     box-sizing: border-box;
-    padding: 2rem 10rem;
+    padding: 0rem 5rem;
     margin: 0;
     background: var(--bg-100);
 }
@@ -13,49 +13,87 @@
 }
 
 .course-navigation-item {
-    
+    display: flex;
+    width: 200px;
+}
+
+.course-navigation-item:nth-child(2) {
+    width: 500px;
 }
 
 .btn-nav {
+    display: flex;
     align-items: center;
-    padding: .7rem 0;
     justify-content: center;
-    width: 150px;
-    font-size: 1rem;
+    width: 50px;
+    height: 50px;
+    font-size: 1.7rem;
     font-weight: 500;
     color: white;
     border: none;
     cursor: pointer;
     position: relative;
-    background-color: var(--primary-100);
+    background-color: var(--accent-200);
     text-decoration: none;
-    overflow: hidden;
     z-index: 1;
-    border-radius: 5px;
+    border-radius: 100%;
+    transition: all .5s;
+}
+
+.btn-nav:hover {
+    color: white;
+    background-color: var(--accent-100);
+    border-radius: 100%;
     transition: all .5s;
 }
 
 .btn-nav-current {
+    display: flex;
     align-items: center;
-    padding: .7rem 0;
     justify-content: center;
-    width: 150px;
-    font-size: 1rem;
+    width: 50px;
+    height: 50px;
+    font-size: 1.7rem;
     font-weight: 500;
     color: white;
-    border: none;
+    border: solid 2px var(--text-200);
     cursor: pointer;
     position: relative;
     background-color: var(--accent-100);
     text-decoration: none;
-    overflow: hidden;
     z-index: 1;
-    border-radius: 5px;
+    border-radius: 100%;
     transition: all .5s;
 }
 
+.btn-nav-current:hover {
+    border-radius: 100%;
+    transition: all .5s;
+}
+
+.course-navigation-item-nav {
+    display: flex;
+    gap: .5rem;
+}
+
+.coursemenu-header {
+    margin: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
 .btn-nav:disabled {
-    background-color: rgb(54, 54, 54);
+    background-color: var(--bg-300);
     color: gray;
     cursor: auto;
+    cursor: not-allowed;
+}
+
+.course-navigation {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    background-color: var(--bg-100);
+    z-index: 100;
+    top: 0;
 }

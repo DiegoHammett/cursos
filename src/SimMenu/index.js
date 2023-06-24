@@ -29,8 +29,9 @@ function SimMenu({admin}) {
         <React.Fragment>
             {menuSelect === 0 &&
                 <div>
-                    <div className="nine">
-                        <h1>Simuladores<span>Todos los simuladores disponibles</span></h1>
+                    <div className='coursemenu-header'>
+                        <h1 className='title'>Todos los simuladores</h1>
+                        <button className='btn'><i class='bx bx-plus-circle icon'></i>Agregar simulador</button>
                     </div>
                     <section className='cursos-container'>
                         <div className='courseCards inset'>
