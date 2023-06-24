@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
         $userSession = array(
         'loggedin' => $_SESSION['loggedin'],
         'email' => $_SESSION['email'],
+        'userid' => $_SESSION['userid'],
         'plan' => $_SESSION['plan']);
     }else{
         $userSession = array('loggedin' => 0);
@@ -41,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 $_SESSION['loggedin'] =  1;
                 $_SESSION['email'] = $row[0];
                 $_SESSION['plan'] = $row[1];
-                $_SESSION['id'] = $row[2];
+                $_SESSION['userid'] = $row[3];
                 echo "CORRECT";
             }
             else{

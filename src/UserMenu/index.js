@@ -9,19 +9,19 @@ import SimMenu from '../SimMenu';
 import { Tabs, TabList, Tab, TabPanel } from "https://cdn.skypack.dev/react-tabs@3.2.2";
 import StatsMenu from '../StatsMenu';
 
-function UserMenu({ email, admin }) {
+function UserMenu({ userID, admin }) {
 
     const [user, setUser] = useState([])
 
     useEffect(() => {
         const getUser = () => {
-            fetch(db.url + "?table=usuario a,plan b&column=a.nombre, b.nombre as nombre_plan, b.id&where=a.email in ('" + email + "') and a.plan=b.id")
+            fetch(db.url + "?table=usuario a,plan b&column=a.nombre, b.nombre as nombre_plan, b.id&where=a.id in (" + userID + ") and a.plan=b.id")
                 .then(res => res.json())
                 .then(res => setUser(res[0]))
                 .catch(err => console.log(err))
         }
         getUser()
-    }, [email])
+    }, [userID])
 
     // Sidebar menu button
     const [sidebarActive, setSidebarActive] = useState(false);
@@ -29,8 +29,6 @@ function UserMenu({ email, admin }) {
     const handleSidebarClick = () => {
         setSidebarActive(!sidebarActive);
     };
-
-
 
     return (
         <React.Fragment>
@@ -67,14 +65,14 @@ function UserMenu({ email, admin }) {
                                 </Tab>
                                 <Tab>
                                     <button>
-                                        <i class='bx bxs-book-open'></i>
+                                        <i className='bx bxs-book-open'></i>
                                         <span className='d_m-s_menu-item'>Cursos</span>
                                     </button>
                                     <span className='d_m-s_menu-tooltip'>Cursos</span>
                                 </Tab>
                                 <Tab>
                                     <button>
-                                        <i class='bx bx-desktop'></i>
+                                        <i className='bx bx-desktop'></i>
                                         <span className='d_m-s_menu-item'>Simuladores</span>
                                     </button>
                                     <span className='d_m-s_menu-tooltip'>Simuladores</span>
@@ -119,11 +117,11 @@ function UserMenu({ email, admin }) {
 
                         <div className='dashboard_main_container '>
                             <TabPanel>
-                                <StatsMenu admin={admin} email={email}/>
+                                <StatsMenu admin={admin} user={user}/>
                             </TabPanel>
                             
                             <TabPanel>
-                                <CourseMenu admin={admin} />
+                                <CourseMenu admin={admin} userID={userID}/>
                             </TabPanel>
 
                             <TabPanel>

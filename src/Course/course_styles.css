@@ -59,18 +59,14 @@
     transition: all .5s;
 }
 
-
-
-
-
-
-
-
-
-
-
 .coursemenu-header {
     margin: 2rem;
     display: flex;
     justify-content: space-between;
+}
+
+.btn-nav:disabled {
+    background-color: rgb(54, 54, 54);
+    color: gray;
+    cursor: auto;
 }

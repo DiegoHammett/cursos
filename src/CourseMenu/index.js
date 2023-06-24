@@ -6,7 +6,7 @@ import EditCourse from '../EditCourse'
 
 
 
-function CourseMenu({ admin }) {
+function CourseMenu({ admin, userID }) {
 
     const [menuSelect, setMenuSelect] = useState(0)
     const [asignaturas, setAsignaturas] = useState([])
@@ -51,7 +51,7 @@ function CourseMenu({ admin }) {
 
             {
                 menuSelect === 1 &&
-                <Course id={itemID} />
+                <Course id={itemID} userID={userID}/>
             }
 
             {

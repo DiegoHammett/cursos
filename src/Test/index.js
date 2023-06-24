@@ -6,7 +6,7 @@ import TestResult from '../TestResult'
 import './test_styles.css'
 import { useTimer } from 'react-timer-hook'
 
-function Test({ id, time }) {
+function Test({ id, time, setCompleted }) {
 
     const [test, setTest] = useState([])
     const [total, setTotal] = useState(0)
@@ -15,7 +15,7 @@ function Test({ id, time }) {
     const [error, setError] = useState(false)
     const [finish, setFinish] = useState(false)
     const [retro, setRetro] = useState(false)
-
+    
     const {
         seconds,
         minutes,
@@ -36,7 +36,6 @@ function Test({ id, time }) {
             fetch(db.url + '?table=pregunta&column=id&where=test IN (' + id + ')&extra=GROUP BY id ORDER BY RAND()')
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res)
                     setQuestions(res)
                 })
                 .catch(err => setError(true))
@@ -126,7 +125,7 @@ function Test({ id, time }) {
                             }
                         </React.Fragment>
                     }
-                    {!!finish && <TestResult ansList={ansList} total={questions.length} approveTest={test.aprobacion} />}
+                    {!!finish && <TestResult ansList={ansList} total={questions.length} approveTest={test.aprobacion} setCompleted={setCompleted}/>}
                 </div>
             </div>
 

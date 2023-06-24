@@ -247,7 +247,7 @@ function EditCourse({ courseID }) {
                                 </span>
                                 <p className='register-msg pill'>
                                     <i className='bx bx-right-arrow-alt icon'></i>
-                                    Utilice los botones <button className='btn-pill'><i class='bx bxs-up-arrow'></i></button> o <button className='btn-pill'><i class='bx bxs-down-arrow'></i></button> para cambiar el orden en que se mostrarán los módulos.
+                                    Utilice los botones <button className='btn-pill'><i className='bx bxs-up-arrow'></i></button> o <button className='btn-pill'><i className='bx bxs-down-arrow'></i></button> para cambiar el orden en que se mostrarán los módulos.
                                 </p>
                             </div>
                             <div className='ec-content-2_body '>
@@ -258,12 +258,12 @@ function EditCourse({ courseID }) {
                                             <div className='ec-updown-btns'>
                                                 {modules.indexOf(module) !== 0 &&
                                                     <button className='ec-updown-item' onClick={() => { handleMoveUp(module) }}>
-                                                        <i class='bx bxs-up-arrow'></i>
+                                                        <i className='bx bxs-up-arrow'></i>
                                                     </button>
                                                 }
                                                 {modules.indexOf(module) !== modules.length - 1 &&
                                                     <button className='ec-updown-item' onClick={() => { handleMoveDown(module) }}>
-                                                        <i class='bx bxs-down-arrow'></i>
+                                                        <i className='bx bxs-down-arrow'></i>
                                                     </button>
                                                 }
                                             </div>
