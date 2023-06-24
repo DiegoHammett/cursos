@@ -51,8 +51,4 @@ export const symbols = [
     icon: 'limit',
     data: ' \\lim_{n \\to \\infty} a_n',
   },
-  {
-    icon: '',
-    data: ' \\lim_{n \\to \\infty} a_n',
-  },
   ];

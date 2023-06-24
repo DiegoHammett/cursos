@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { addStyles, EditableMathField } from 'react-mathquill'
 import TextSymbols from './TextSymbols'
 import './style.css';
 
 addStyles()
 
-function MathQ({ exp }) {
-    const [latex, setLatex] = useState(exp)
+function MathQ({ latex, setLatex }) {
 
     function handleInsertSymbol(symbol) {
         setLatex(oldFormula => oldFormula + symbol);

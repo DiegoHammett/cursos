@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../dbconnect';
 import EditQuestion from '../EditQuestion';
 import './edittest_styles.css';
-import MathExp from '../MathExp';
+import TextVisualizer from '../TextVisualizer';
 
 function EditTest({ testID, setEditTest }) {
 
@@ -77,7 +77,7 @@ function EditTest({ testID, setEditTest }) {
 
     const handleChangeTime = () => {
         const formData = new FormData()
-        console.log(time)  
+        console.log(time)
         formData.append("tiempo", time)
         fetch(db.url + "?mode=update&table=test&id=id&condition=" + testID + "", {
             method: 'POST',
@@ -90,14 +90,15 @@ function EditTest({ testID, setEditTest }) {
             }).catch(err => setError(true))
     }
 
-    const handleDeleteQuestion = (e) => {
+    const handleDeleteQuestion = (id) => {
         const formData = new FormData()
-        formData.append("id", e.target.id)
-        fetch(db.url + "?table=pregunta&id=" + e.target.id, {
+        formData.append("id", id)
+        fetch(db.url + "?table=pregunta&id=" + id, {
             method: 'DELETE'
         }).then(res => res.json())
             .then(res => {
                 if (res.status === "OK") setRefresh(!refresh)
+                else console.log(res.error.errorInfo)
             }).catch(err => console.log(err))
     }
 
@@ -138,7 +139,7 @@ function EditTest({ testID, setEditTest }) {
                             {!!editName &&
                                 <div className='ec-lbl-name inset'>
                                     <input autoFocus className='et-input-text it-inset-shadow' type='text' defaultValue={test.nombre} onChange={(e) => { setTestName(e.target.value) }}></input>
-                                    
+
                                     <button className='ec-btn-editar' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
                                 </div>
                             }
@@ -178,9 +179,6 @@ function EditTest({ testID, setEditTest }) {
 
                     </div>
                     <div className='et-content'>
-
-
-
                     </div>
                     <div className='et-footer'>
                     </div>
@@ -200,11 +198,11 @@ function EditTest({ testID, setEditTest }) {
                             {questions.map(q => (
                                 <div key={q.id} className='et-question-item inset'>
                                     <div className='et-question-q'>
-                                        <MathExp text={q.pregunta}></MathExp>
+                                        <TextVisualizer text={q.pregunta}></TextVisualizer>
                                     </div>
                                     <div className='et-question-btns'>
                                         <button className='btn-s' name={q.id} onClick={() => { handleEditQuestion(q.id) }}><i className='bx bx-edit icon-drag' ></i>Editar</button>
-                                        <button className='btn-s' name={q.id} onClick={handleDeleteQuestion}><i className='bx bx-trash icon'></i>Eliminar</button>
+                                        <button className='btn-s' name={q.id} onClick={() => { handleDeleteQuestion(q.id) }}><i className='bx bx-trash icon'></i>Eliminar</button>
                                     </div>
                                 </div>
                             ))

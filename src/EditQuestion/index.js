@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { db } from '../dbconnect'
 import './createquestion_styles.css'
-import MathExp from '../MathExp'
 import MathQ from '../MathQ'
+import TextVisualizer from '../TextVisualizer'
 
 function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
 
@@ -14,9 +14,12 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
     const [defAns3, setDefAns3] = useState()
     const [defAns4, setDefAns4] = useState()
     const [cQuest, setCQuest] = useState()
+    const [mathEditor, setMathEditor] = useState(false)
     const [retro, setRetro] = useState()
+    const [latex, setLatex] = useState('')
     const [answers, setAnswers] = useState([])
     const [answersList, setAnswersList] = useState([])
+    const [editQuestionText, setEditQuestionText] = useState(false)
 
     const [error, setError] = useState(false)
 
@@ -159,6 +162,15 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
         setAnswers({ ...answers, [e.target.id]: e.target.value })
     }
 
+    const handleInsertMath = () => {
+        const limitadorIn = "@#"
+        const limitadorFin = "#@"
+        setQuest(document.getElementById("textAreaQuestion").value + limitadorIn + latex + limitadorFin)
+        document.getElementById("textAreaQuestion").value = document.getElementById("textAreaQuestion").value + limitadorIn + latex + limitadorFin
+        setLatex('')
+        setMathEditor(false)
+    }
+
     return (
         <React.Fragment>
             <div className='cq-container inset'>
@@ -177,10 +189,36 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                 </div>
                 <div className='cq-question'>
                     <label className='lbl'>Pregunta:</label>
-                    <input className='input-text' type='text' onChange={(e) => { setQuest(e.target.value) }} defaultValue={defQuest}></input>
-                    {/* <div className='input-text'>
-                        <MathQ exp={'x/y'}></MathQ>
-                    </div> */}
+
+                    {!editQuestionText &&
+                        <div className='ec-lbl-name inset'>
+                            {defQuest !== undefined &&
+                                <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditQuestionText(true) }}>
+                                    <TextVisualizer text={defQuest} />
+                                </div>
+                            }
+                            <button className='ec-btn-editar' onClick={() => { setEditQuestionText(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                        </div>
+                    }
+                    {!!editQuestionText &&
+                        <div>
+                            <textarea className='input-text' type='text' onChange={(e) => { setQuest(e.target.value) }} defaultValue={defQuest} id='textAreaQuestion'></textarea>
+                            {!mathEditor &&
+                                <div>
+                                    <button className='btn' onClick={() => { setMathEditor(true) }}>Insertar ecuación</button>
+                                    <button className='btn' onClick={() => { setEditQuestionText(false) }}>Cancelar</button>
+                                </div>
+                            }
+
+                            {!!mathEditor &&
+                                <div>
+                                    <MathQ latex={latex} setLatex={setLatex} />
+                                    <button className='btn' onClick={handleInsertMath}>Insertar</button>
+                                    <button className='btn' onClick={() => { setMathEditor(false) }}>Cancelar</button>
+                                </div>
+                            }
+                        </div>
+                    }
 
                 </div>
                 <div className='cq-answers'>
@@ -202,7 +240,6 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                         </div>
 
                         <div className='cq-answers_inputs-item'>
-
                             <input type='radio' name='answers' id="rans4" onChange={(e) => { setCQuest(4) }} />
                             <input className='input-text' type='text' id="4" onChange={handleAnswers} defaultValue={defAns4}></input>
                         </div>
