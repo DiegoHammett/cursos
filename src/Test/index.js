@@ -15,7 +15,7 @@ function Test({ id, time, setCompleted }) {
     const [error, setError] = useState(false)
     const [finish, setFinish] = useState(false)
     const [retro, setRetro] = useState(false)
-    
+
     const {
         seconds,
         minutes,
@@ -81,51 +81,66 @@ function Test({ id, time, setCompleted }) {
                     {!finish &&
                         <React.Fragment>
 
-                            <div className='test-questions-container'>
-                                <div>
-                                    {questions.map(q => (
-                                        <div key={q.id} id={q.id}>
-                                            <Question id={q.id} retro={retro} suma={suma} ansList={ansList} setAnsList={setAnsList} />
-                                        </div>
-                                    ))}
-                                    <div className='question-validate'>
-                                        <button className='btn' onClick={() => { setFinish(true) }}>Terminar intento</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='testresult-container inset'>
-                                <span className='title'><b>PROGRESO</b></span>
-                                <div className='testresult-score'>
-                                    <span className='lbl'>Has obtenido</span>
-                                    <span className='title'>
-                                        <b>{total} de {questions.length}</b>
-                                    </span>
-                                    <div className='btn-questions-container'>
+                            <div className='test-contenedor'>
+                                <div className='test-questions-container'>
+                                    <div>
                                         {questions.map(q => (
-                                            ansList[q.id] === undefined ?
-                                                <a href={"#q" + q.id} type='button' className='btn-question-nans' key={q.id}>
-                                                    {questions.indexOf(q) + 1}
-                                                </a> :
-                                                <a href={"#q" + q.id} type='button' className='btn-question-ans' key={q.id}>
-                                                    {questions.indexOf(q) + 1}
-                                                </a>
+                                            <div key={q.id} id={q.id}>
+                                                <Question id={q.id} retro={retro} suma={suma} ansList={ansList} setAnsList={setAnsList} />
+                                            </div>
                                         ))}
+                                        <div className='question-validate'>
+                                            <button className='btn' onClick={() => { setFinish(true) }}>Terminar intento</button>
+                                        </div>
                                     </div>
                                 </div>
 
-                            </div>
-                            {retro === false &&
                                 <div className='testresult-container inset'>
-                                    <span className='title'><b>TIEMPO RESTANTE</b></span>
-                                    <div className='testresult-score'>
-                                        <span className='lbl'>{hours > 9 ? hours : "0" + hours}:{minutes > 9 ? minutes : "0" + minutes}:{seconds > 9 ? seconds : "0" + seconds}</span>
+                                    <span className='title'><b>PROGRESO ACTUAL</b></span>
+                                    <div className='testresult-score inset'>
+                                        <span className='lbl'>Has obtenido</span>
+                                        <span className='lbl'>
+                                            <b>{total} de {questions.length}</b>
+                                        </span>
+                                        <span className='lbl'>aciertos.</span>
                                     </div>
 
+
+
+                                    <div className='testresult-btns-container'>
+                                        <span className='title'><b>NAVEGACIÓN DE PREGUNTAS</b></span>
+                                        <div className='testresult-btns inset'>
+                                            {questions.map(q => (
+                                                ansList[q.id] === undefined ?
+                                                    <a href={"#q" + q.id} type='button' className='btn-question-nans it-inset-shadow' key={q.id}>
+                                                        {questions.indexOf(q) + 1}
+                                                    </a> :
+                                                    <a href={"#q" + q.id} type='button' className='btn-question-ans it-inset-shadow' key={q.id}>
+                                                        {questions.indexOf(q) + 1}
+                                                    </a>
+                                            ))}
+                                        </div>
+
+                                    </div>
+
+
+                                    {retro === false &&
+                                        <div className='testresult-btns-container'>
+                                            <span className='title'><b>TIEMPO RESTANTE</b></span>
+                                            <div className='testresult-score inset'>
+                                                <span className='lbl'>{hours > 9 ? hours : "0" + hours}:{minutes > 9 ? minutes : "0" + minutes}:{seconds > 9 ? seconds : "0" + seconds}</span>
+                                            </div>
+
+                                        </div>
+                                    }
                                 </div>
-                            }
+                            </div>
+
+
+
                         </React.Fragment>
                     }
-                    {!!finish && <TestResult ansList={ansList} total={questions.length} approveTest={test.aprobacion} setCompleted={setCompleted}/>}
+                    {!!finish && <TestResult ansList={ansList} total={questions.length} approveTest={test.aprobacion} setCompleted={setCompleted} />}
                 </div>
             </div>
 

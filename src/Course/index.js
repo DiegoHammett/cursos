@@ -105,7 +105,7 @@ function Course({ id, userID }) {
             {!!rendered &&
                 <div className='course-body'>
 
-                    <div className='course-navigation'>
+                    <div className='course-navigation '>
                         <div className='course-navigation-item'>
                             {currentModule !== 0 &&
                                 <button className='btn-s' onClick={() => { setCurrentModule(currentModule - 1) }}>
@@ -113,12 +113,17 @@ function Course({ id, userID }) {
                                 </button>
                             }
                         </div>
-                        <div>
+                        <div className='course-navigation-item-nav'>
                             {modules.map(module => (
                                 <button onClick={() => { setCurrentModule(modules.indexOf(module)) }} key={module.id} className={modules.indexOf(module) === currentModule ? 'btn-nav-current' : 'btn-nav'}
                                     disabled={module.completado === null ? true
                                         : false}>
-                                    {module.nombre}
+                                    {module.tipo === 1 &&
+                                        <i class='bx bx-book-reader'></i>
+                                    }
+                                    {module.tipo === 2 &&
+                                        <i class='bx bxs-graduation'></i>
+                                    }
                                 </button>
                             ))}
                         </div>
@@ -130,7 +135,8 @@ function Course({ id, userID }) {
                             }
                         </div>
                     </div>
-                    <div>
+
+                    <div className='course-content'>
                         {parseInt(modules[currentModule].tipo) === 1 && <Class id={modules[currentModule].id} />}
                         {parseInt(modules[currentModule].tipo) === 2 && <Test id={modules[currentModule].id} retro={true} setCompleted={setCompleted} />}
                     </div>
