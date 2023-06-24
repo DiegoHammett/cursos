@@ -45,7 +45,7 @@ function CourseList({ id, admin, setItemID, setMenuSelect }) {
                     </div>
                 </div>
             )) :
-                <p>Sin cursos</p>
+                <label className='lbl'>Sin cursos</label>
             }
         </React.Fragment>
     )

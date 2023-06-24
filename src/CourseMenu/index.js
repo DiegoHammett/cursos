@@ -6,7 +6,7 @@ import EditCourse from '../EditCourse'
 
 
 
-function CourseMenu({admin}) {
+function CourseMenu({ admin }) {
 
     const [menuSelect, setMenuSelect] = useState(0)
     const [asignaturas, setAsignaturas] = useState([])
@@ -26,9 +26,13 @@ function CourseMenu({admin}) {
         <React.Fragment>
             {menuSelect === 0 &&
                 <div>
-                    <div className="nine">
-                        <h1>Cursos<span>Todos los cursos disponibles</span></h1>
+
+                    <div className='coursemenu-header'>
+                        <h1 className='title'>Todos los cursos</h1>
+                        <button className='btn'><i class='bx bx-plus-circle icon'></i>Agregar curso</button>
                     </div>
+
+
                     <section className='cursos-container'>
                         {asignaturas.map(asignatura => (
                             <div key={asignatura.id}>

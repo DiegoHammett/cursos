@@ -55,21 +55,21 @@ function Course({ id }) {
             <div className='course-body'>
 
                 <div className='course-navigation'>
-                    <div className='course-navigation-item'>
+                    <div className='course-navigation-item inset'>
                         {currentModule !== 0 &&
                             <button className='btn-s' onClick={() => { setCurrentModule(currentModule - 1) }}>
                                 <i className='bx bx-arrow-back icon'></i>Anterior
                             </button>
                         }
                     </div>
-                    <div>
+                    <div className='course-navigation-item inset'>
                         {modules.map(module => (
                             <button onClick={() => { setCurrentModule(modules.indexOf(module)) }} key={module.id} className={modules.indexOf(module) === currentModule ? 'btn-nav-current' : 'btn-nav'}>
                                 {module.nombre}
                             </button>
                         ))}
                     </div>
-                    <div className='course-navigation-item'>
+                    <div className='course-navigation-item inset'>
                         {currentModule !== modules.length - 1 &&
                             <button className='btn-s' onClick={() => { setCurrentModule(currentModule + 1) }}>
                                 Siguiente<i className='bx bx-right-arrow-alt icon-r' ></i>
