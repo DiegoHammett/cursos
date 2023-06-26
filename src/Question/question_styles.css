@@ -61,7 +61,7 @@
     width: 100%;
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: left;
     transition: all .3s;
     margin: 1rem 0;
     color: var(--text-100);
@@ -136,10 +136,14 @@
 }
 
 .q_content {
-    position: absolute;
     cursor: pointer;
-    text-align: left;
+    display: flex;
+    text-align: center;
     padding: 2rem;
+    width: auto;
+    gap: 1rem;
+    flex-direction: column;
+    z-index: 20;
 }
 
 .question-img {
@@ -148,8 +152,9 @@
 }
 
 .ans-img {
-    max-width: min-content;
-    max-height: 15rem;
+    width: 80%;
+    height: auto;
+    position: relative;
 }
 
 

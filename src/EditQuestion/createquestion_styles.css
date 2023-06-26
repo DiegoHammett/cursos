@@ -102,11 +102,10 @@
 
 
 .ans1-container {
-    width: 100%;
+    width: auto;
     display: flex;
     gap: 1rem;
     align-items: center;
-    border-style: solid;
     border-radius: 1rem;
     padding: 1rem;
     border-radius: .5rem;
