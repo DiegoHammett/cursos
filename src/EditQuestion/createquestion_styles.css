@@ -106,6 +106,15 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+    border-style: solid;
+    border-radius: 1rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
 }
 
 .ans-container-answer {

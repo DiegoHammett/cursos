@@ -147,6 +147,11 @@
     max-height: 20rem;
 }
 
+.ans-img {
+    max-width: min-content;
+    max-height: 15rem;
+}
+
 
 
 

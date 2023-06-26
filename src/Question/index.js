@@ -76,7 +76,9 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
                         <div className='q_card' key={op.id}>
                             <input className='q_radio it-inset-shadow' type='radio' name={question.id} id={op.id} onClick={handleSelectOption} />
                             <label className='q_content ' htmlFor={op.id}>
-                                <TextVisualizer text={op.respuesta} />
+                                {op.respuesta && <TextVisualizer text={op.respuesta} />}
+                                {op.imagen && <img src={db.docs + op.imagen} className='ans-img'></img>}
+                                {op.imagen && op.id}
                             </label>
                         </div>
                     ))}

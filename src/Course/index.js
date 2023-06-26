@@ -7,19 +7,17 @@ import './course_styles.css'
 function Course({ id, userID }) {
 
     const [modules, setModules] = useState([])
-    const [currentModule, setCurrentModule] = useState(0)
+    const [currentModule, setCurrentModule] = useState()
     const [rendered, setRendered] = useState(false)
     const [completed, setCompleted] = useState(false)
     const [error, setError] = useState(false)
 
     const getModules = useCallback(() => {
-        console.log("MODULES")
         fetch(db.url + "?table=lista_modulos a,modulo_usuario b&column=a.*, b.completado&where=a.modulo IN (b.modulo) AND curso in (" + id + ") ORDER BY orden")
             .then(res => res.json())
             .then(res => {
                 if (res.length > 0) {
                     setModules(res)
-                    setCompleted(false)
                     setRendered(true)
                 }
             })
@@ -27,7 +25,6 @@ function Course({ id, userID }) {
     }, [id])
 
     const insertUserModule = useCallback((module) => {
-        console.log("INSERT 1")
         const formData = new FormData()
         formData.append("modulo", module)
         formData.append("usuario", userID)
@@ -42,7 +39,6 @@ function Course({ id, userID }) {
     }, [userID])
 
     const insertUserModules = useCallback(() => {
-        console.log("INSERT")
         fetch(db.url + "?table=lista_modulos&where=curso in (" + id + ") ORDER BY orden")
             .then(res => res.json())
             .then(res => {
@@ -54,8 +50,8 @@ function Course({ id, userID }) {
             .catch(err => console.log(err))
     }, [insertUserModule, id, getModules])
 
+    /// INICIO
     useEffect(() => {
-        console.log("INIT")
         const getUserModules = () => {
             fetch(db.url + "?table=modulo_usuario&where=modulo in (SELECT id FROM modulos WHERE curso IN (" + id + ")) AND usuario IN (" + userID + ")")
                 .then(res => res.json())
@@ -63,6 +59,7 @@ function Course({ id, userID }) {
                     if (res.length === 0)
                         insertUserModules()
                     else getModules()
+                    setCurrentModule(0)
                 })
                 .catch(err => console.log(err))
         }
@@ -77,24 +74,18 @@ function Course({ id, userID }) {
             body: formData
         }).then(res => res.json())
             .then(res => {
-                if (res.status !== "OK") console.log(res)
+                if (res.status === "OK") getModules()
             }).catch(err => setError(true))
     }, [])
 
     useEffect(() => {
-        if (parseInt(modules[currentModule].tipo) === 1 && rendered) {
-            updateModule(modules[currentModule].modulo, 1)
-            updateModule(modules[currentModule + 1].modulo, 0)
+        if (currentModule !== undefined && !!rendered) {
+            if (parseInt(modules[currentModule].tipo) === 1) {
+                updateModule(modules[currentModule].modulo, 1)
+                updateModule(modules[currentModule + 1].modulo, 0)
+            }
         }
-        getModules()
-    }, [currentModule, updateModule, modules])
-
-    useEffect(() => {
-        if (completed) {
-            updateModule(modules[currentModule].modulo, 1)
-            updateModule(modules[currentModule + 1].modulo, 0)
-        }
-    }, [completed, updateModule, modules, currentModule])
+    }, [currentModule,rendered])
 
     return (
         <React.Fragment>
@@ -113,12 +104,12 @@ function Course({ id, userID }) {
                                 <button onClick={() => { setCurrentModule(modules.indexOf(module)) }} key={module.modulo} className={modules.indexOf(module) === currentModule ? 'btn-nav-current' : 'btn-nav'}
                                     disabled={module.completado === null ? true
                                         : false}>
-                                    {/* {module.tipo === 1 &&
+                                    {module.tipo === 1 &&
                                         <i className='bx bx-book-reader'></i>
                                     }
                                     {module.tipo === 2 &&
                                         <i className='bx bxs-graduation'></i>
-                                    } */}
+                                    }
                                 </button>
                             ))}
                         </div>
