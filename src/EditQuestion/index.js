@@ -138,7 +138,7 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
     }
 
     const UpdateAnswers = () => {
-        for (const k = 1; k < 5; k++) {
+        for (let k = 1; k < 5; k++) {
             if (answers[k] || answersImg[k]) {
                 const formData = new FormData()
                 if (answersImg[k]) {
@@ -223,7 +223,7 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                         Llene todos los campos con la información que se indica para crear/editar una pregunta.
                     </span>
                     <p className='pill'>
-                        <i className='bx bx-info-circle'></i>Todos los campos deben ser llenados.
+                        <i className='bx bx-info-circle icon'></i>Todos los campos deben ser llenados.
                     </p>
 
                 </div>
@@ -280,9 +280,10 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                     <div className='cq-answers_inputs'>
 
                         <div className='ans1-container'>
-                            <input type='radio' name='answers' id="rans1" onChange={(e) => { setCQuest(1) }} />
+                            {/* <input type='radio' name='answers' id="rans1" onChange={(e) => { setCQuest(1) }} /> */}
                             {!editAns1 &&
                                 <div className='ans-container-answer '>
+                                    <input type='radio' name='answers' id="rans1" onChange={(e) => { setCQuest(1) }} />
                                     {defAns1 !== undefined &&
                                         <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns1(true) }}>
                                             <TextVisualizer text={defAns1} />
@@ -321,9 +322,10 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                         </div>
 
                         <div className='ans1-container'>
-                            <input type='radio' name='answers' id="rans2" onChange={(e) => { setCQuest(2) }} />
+                            {/* <input type='radio' name='answers' id="rans2" onChange={(e) => { setCQuest(2) }} /> */}
                             {!editAns2 &&
                                 <div className='ans-container-answer '>
+                                    <input type='radio' name='answers' id="rans2" onChange={(e) => { setCQuest(2) }} />
                                     {defAns2 !== undefined &&
                                         <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns2(true) }}>
                                             <TextVisualizer text={defAns2} />
@@ -362,9 +364,10 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                         </div>
 
                         <div className='ans1-container'>
-                            <input type='radio' name='answers' id="rans3" onChange={(e) => { setCQuest(3) }} />
+                            {/* <input type='radio' name='answers' id="rans3" onChange={(e) => { setCQuest(3) }} /> */}
                             {!editAns3 &&
                                 <div className='ans-container-answer '>
+                                    <input type='radio' name='answers' id="rans3" onChange={(e) => { setCQuest(3) }} />
                                     {defAns3 !== undefined &&
                                         <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns3(true) }}>
                                             <TextVisualizer text={defAns3} />
@@ -403,9 +406,10 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                         </div>
 
                         <div className='ans1-container'>
-                            <input type='radio' name='answers' id="rans4" onChange={(e) => { setCQuest(4) }} />
+                            {/* <input type='radio' name='answers' id="rans4" onChange={(e) => { setCQuest(4) }} /> */}
                             {!editAns4 &&
                                 <div className='ans-container-answer '>
+                                    <input type='radio' name='answers' id="rans4" onChange={(e) => { setCQuest(4) }} />
                                     {defAns4 !== undefined &&
                                         <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns4(true) }}>
                                             <TextVisualizer text={defAns4} />
