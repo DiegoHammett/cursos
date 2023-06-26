@@ -138,7 +138,7 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
     }
 
     const UpdateAnswers = () => {
-        for (const k = 1; k < 5; k++) {
+        for (let k = 1; k < 5; k++) {
             if (answers[k] || answersImg[k]) {
                 const formData = new FormData()
                 if (answersImg[k]) {
