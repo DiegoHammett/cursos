@@ -7,15 +7,28 @@
 
 .question-header {
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 1rem;
 }
+
 
 
 .question-pregunta {
     text-align: left;
     font-weight: 600;
     margin: 0;
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+
+.question-imagen {
+    background-color: var(--bg-100);
+    border-radius: .5rem;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
 }
 
 .question-respuesta {
@@ -51,6 +64,7 @@
     align-items: center;
     transition: all .3s;
     margin: 1rem 0;
+    color: var(--text-100);
 }
 
 .q_card:hover {

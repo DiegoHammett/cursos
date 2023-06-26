@@ -12,7 +12,13 @@ function MathQ({ latex, setLatex }) {
     }
 
     return (
-        <div>
+        <div className='math-body'>
+            <div className='math-header'>
+                <div className='cq-title title'>
+                    <b className='b-medium'>Editor de expresiones matemáticas</b>
+                </div>
+                <span className='description'>Construya la expresión matemática deseada. Posteriormente, presione '<b>Insertar expresión</b>' para agregarla al texto que está editando:</span>
+            </div>
             <EditableMathField
                 latex={latex}
                 onChange={(mathField) => {

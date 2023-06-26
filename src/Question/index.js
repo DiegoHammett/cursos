@@ -59,13 +59,13 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
         <React.Fragment>
             <div className='question-container inset' id={'q' + question.id}>
                 <div className='question-header'>
-                    <span className='pill'>Pregunta:</span>
+                    {/* <span className='pill'>Pregunta:</span> */}
                     <h4 className='question-pregunta title'>
                         <TextVisualizer text={question.pregunta} />
                     </h4>
                 </div>
                 {question.imagen &&
-                    <div>
+                    <div className='question-imagen it-inset-shadow'>
                         <img src={db.docs + question.imagen} className='question-img'></img>
                     </div>
                 }

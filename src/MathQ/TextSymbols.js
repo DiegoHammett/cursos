@@ -10,7 +10,7 @@ export default function Symbols({ onClick }) {
   ));
 
   return (
-    <div style={{ display: 'grid', gridAutoFlow: 'column', gridTemplateRows: 'auto auto', gridGap: 5 }}>
+    <div className='math-btns'>
       {buttonNodes}
     </div>
   )

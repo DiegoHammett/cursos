@@ -213,37 +213,46 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                     <label className='lbl'>Pregunta:</label>
 
                     {!editQuestionText &&
-                        <div className='ec-lbl-name inset'>
+                        <div className='eq-lbl-container '>
                             {defQuest !== undefined &&
-                                <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditQuestionText(true) }}>
+                                <div className='eq-lbl-editar-pregunta it-inset-shadow' onClick={() => { setEditQuestionText(true) }}>
                                     <TextVisualizer text={defQuest} />
                                 </div>
                             }
-                            <button className='ec-btn-editar' onClick={() => { setEditQuestionText(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                            <button className='eq-btn-editar' onClick={() => { setEditQuestionText(true) }}><i className='bx bx-edit icon' ></i>Editar pregunta</button>
                         </div>
                     }
                     {!!editQuestionText &&
-                        <div>
-                            <textarea className='input-text' type='text' onChange={(e) => { setQuest(e.target.value) }} defaultValue={defQuest} id='textAreaQuestion'></textarea>
+                        <div className='eq-editquestiontext-container'>
+                            <textarea autoFocus className='eq-input-text it-inset-shadow' type='text' onChange={(e) => { setQuest(e.target.value) }} defaultValue={defQuest} id='textAreaQuestion'></textarea>
                             <TextVisualizer text={quest}></TextVisualizer>
-                            {!mathEditor && 
-                                <div>
-                                    <button className='btn' onClick={() => { setMathEditor(true) }}>Insertar ecuación</button>
-                                    <div className='eclass-content'>
-                                        <label className='lbl'>Insertar imagen</label>
-                                        <input type="file" name="questionImage" onChange={(e) => { setQuestionImage(e.target.files[0]) }} />
-                                    </div>
-                                    <button className='btn' onClick={() => { setEditQuestionText(false) }}>Cancelar</button>
-                                </div>
-                            }
 
-                            {!!mathEditor &&
-                                <div>
-                                    <MathQ latex={latex} setLatex={setLatex} />
-                                    <button className='btn' onClick={() => { handleInsertMathQuestion('textAreaQuestion') }}>Insertar</button>
-                                    <button className='btn' onClick={() => { setMathEditor(false) }}>Cancelar</button>
-                                </div>
-                            }
+                            <div className='eq-editquestiontext-btns'>
+                                {!mathEditor &&
+                                    <div className='eq-editquestiontext-btns-1'>
+                                        <div className='eq-content-item1'>
+                                            <label className='lbl'>Insertar imagen:</label>
+                                            <input className='file-input__input it-inset-shadow' type="file" name="questionImage" onChange={(e) => { setQuestionImage(e.target.files[0]) }} />
+                                        </div>
+                                        <div className='eq-editquestiontext-btns-item1'>
+                                            <button className='btn' onClick={() => { setMathEditor(true) }}>Insertar expresión</button>
+                                            <button className='btn' onClick={() => { setEditQuestionText(false) }}>Cancelar</button>
+                                        </div>
+                                    </div>
+
+                                }
+
+                                {!!mathEditor &&
+                                    <div className='eq-ecuaciones-contenedor inset'>
+                                        <MathQ latex={latex} setLatex={setLatex} />
+                                        <div className='eq-editquestiontext-btns-2'>
+                                            <button className='btn' onClick={() => { handleInsertMathQuestion('textAreaQuestion') }}>Insertar expresión</button>
+                                            <button className='btn' onClick={() => { setMathEditor(false) }}>Cancelar</button>
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
                         </div>
                     }
 
@@ -251,64 +260,71 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                 <div className='cq-answers'>
                     <label className='lbl'>Respuestas:</label>
                     <div className='cq-answers_inputs'>
+
                         <div className='ans1-container'>
-                            <input type='radio' name='answers' id="rans1" onChange={(e) => { setCQuest(1) }} />
                             {!editAns1 &&
-                                <div className='ec-lbl-name inset'>
+                                <div className='ans-container-answer '>
+                                    <input type='radio' name='answers' id="rans1" onChange={(e) => { setCQuest(1) }} />
                                     {defAns1 !== undefined &&
                                         <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns1(true) }}>
                                             <TextVisualizer text={defAns1} />
                                         </div>
                                     }
-                                    <button className='ec-btn-editar' onClick={() => { setEditAns1(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                    <button className='eq-btn-editar' onClick={() => { setEditAns1(true) }}><i className='bx bx-edit icon' ></i>Editar respuesta</button>
                                 </div>
                             }
                             {!!editAns1 &&
                                 <div className='cq-answers_inputs-item'>
-                                    <textarea className='input-text' type='text' id="anstext1" onChange={(e) => { handleAnswers(1, e.target.value) }} defaultValue={defAns1}></textarea>
+                                    <textarea className='input-text it-inset-shadow' autoFocus type='text' id="anstext1" onChange={(e) => { handleAnswers(1, e.target.value) }} defaultValue={defAns1}></textarea>
                                     {!mathEditor &&
-                                        <div>
-                                            <button className='btn' onClick={() => { setMathEditor(true) }}>Insertar ecuación</button>
+                                        <div className='eq-editquestiontext-btns-item1'>
+                                            <button className='btn' onClick={() => { setMathEditor(true) }}>Insertar expresión</button>
                                             <button className='btn' onClick={() => { setEditAns1(false) }}>Cancelar</button>
                                         </div>
                                     }
                                     {!!mathEditor &&
-                                        <div>
+                                        <div className='eq-ecuaciones-contenedor inset'>
                                             <MathQ latex={latex} setLatex={setLatex} />
-                                            <button className='btn' onClick={() => { handleInsertMathAns(1, 'anstext1') }}>Insertar</button>
-                                            <button className='btn' onClick={() => { setMathEditor(false) }}>Cancelar</button>
+                                            <div className='eq-editquestiontext-btns-2'>
+                                                <button className='btn' onClick={() => { handleInsertMathAns(1, 'anstext1') }}>Insertar</button>
+                                                <button className='btn' onClick={() => { setMathEditor(false) }}>Cancelar</button>
+                                            </div>
+
                                         </div>
                                     }
                                 </div>
                             }
                         </div>
+
                         <div className='ans2-container'>
-                            <input type='radio' name='answers' id="rans2" onChange={() => { setCQuest(2) }} />
                             {!editAns2 &&
-                                <div className='ec-lbl-name inset'>
+                                <div className='ans-container-answer '>
+                                    <input type='radio' name='answers' id="rans2" onChange={(e) => { setCQuest(2) }} />
                                     {defAns2 !== undefined &&
                                         <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns2(true) }}>
                                             <TextVisualizer text={defAns2} />
                                         </div>
                                     }
-                                    <button className='ec-btn-editar' onClick={() => { setEditAns2(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                    <button className='eq-btn-editar' onClick={() => { setEditAns2(true) }}><i className='bx bx-edit icon' ></i>Editar respuesta</button>
                                 </div>
                             }
                             {!!editAns2 &&
                                 <div className='cq-answers_inputs-item'>
-                                    <textarea className='input-text' type='text' id="anstext2" onChange={(e) => { handleAnswers(2, e.target.value) }} defaultValue={defAns2}></textarea>
-                                    <TextVisualizer text={answers[2]}></TextVisualizer>
+                                    <textarea className='input-text it-inset-shadow' autoFocus type='text' id="anstext2" onChange={(e) => { handleAnswers(2, e.target.value) }} defaultValue={defAns2}></textarea>
                                     {!mathEditor &&
-                                        <div>
-                                            <button className='btn' onClick={() => { setMathEditor(true) }}>Insertar ecuación</button>
+                                        <div className='eq-editquestiontext-btns-item1'>
+                                            <button className='btn' onClick={() => { setMathEditor(true) }}>Insertar expresión</button>
                                             <button className='btn' onClick={() => { setEditAns2(false) }}>Cancelar</button>
                                         </div>
                                     }
                                     {!!mathEditor &&
-                                        <div>
+                                        <div className='eq-ecuaciones-contenedor inset'>
                                             <MathQ latex={latex} setLatex={setLatex} />
-                                            <button className='btn' onClick={() => { handleInsertMathAns(2, 'anstext2') }}>Insertar</button>
-                                            <button className='btn' onClick={() => { setMathEditor(false) }}>Cancelar</button>
+                                            <div className='eq-editquestiontext-btns-2'>
+                                                <button className='btn' onClick={() => { handleInsertMathAns(2, 'anstext2') }}>Insertar</button>
+                                                <button className='btn' onClick={() => { setMathEditor(false) }}>Cancelar</button>
+                                            </div>
+
                                         </div>
                                     }
                                 </div>
@@ -316,32 +332,34 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                         </div>
 
                         <div className='ans3-container'>
-                            <input type='radio' name='answers' id="rans3" onChange={() => { setCQuest(3) }} />
                             {!editAns3 &&
-                                <div className='ec-lbl-name inset'>
+                                <div className='ans-container-answer '>
+                                    <input type='radio' name='answers' id="rans3" onChange={(e) => { setCQuest(3) }} />
                                     {defAns3 !== undefined &&
                                         <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns3(true) }}>
                                             <TextVisualizer text={defAns3} />
                                         </div>
                                     }
-                                    <button className='ec-btn-editar' onClick={() => { setEditAns3(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                    <button className='eq-btn-editar' onClick={() => { setEditAns3(true) }}><i className='bx bx-edit icon' ></i>Editar respuesta</button>
                                 </div>
                             }
                             {!!editAns3 &&
                                 <div className='cq-answers_inputs-item'>
-                                    <textarea className='input-text' type='text' id="anstext3" onChange={(e) => { handleAnswers(3, e.target.value) }} defaultValue={defAns3}></textarea>
-                                    <TextVisualizer text={answers[3]}></TextVisualizer>
+                                    <textarea className='input-text it-inset-shadow' autoFocus type='text' id="anstext3" onChange={(e) => { handleAnswers(3, e.target.value) }} defaultValue={defAns3}></textarea>
                                     {!mathEditor &&
-                                        <div>
-                                            <button className='btn' onClick={() => { setMathEditor(true) }}>Insertar ecuación</button>
+                                        <div className='eq-editquestiontext-btns-item1'>
+                                            <button className='btn' onClick={() => { setMathEditor(true) }}>Insertar expresión</button>
                                             <button className='btn' onClick={() => { setEditAns3(false) }}>Cancelar</button>
                                         </div>
                                     }
                                     {!!mathEditor &&
-                                        <div>
+                                        <div className='eq-ecuaciones-contenedor inset'>
                                             <MathQ latex={latex} setLatex={setLatex} />
-                                            <button className='btn' onClick={() => { handleInsertMathAns(3, 'anstext3') }}>Insertar</button>
-                                            <button className='btn' onClick={() => { setMathEditor(false) }}>Cancelar</button>
+                                            <div className='eq-editquestiontext-btns-2'>
+                                                <button className='btn' onClick={() => { handleInsertMathAns(3, 'anstext3') }}>Insertar</button>
+                                                <button className='btn' onClick={() => { setMathEditor(false) }}>Cancelar</button>
+                                            </div>
+
                                         </div>
                                     }
                                 </div>
@@ -349,37 +367,41 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                         </div>
 
                         <div className='ans4-container'>
-                            <input type='radio' name='answers' id="rans4" onChange={() => { setCQuest(4) }} />
                             {!editAns4 &&
-                                <div className='ec-lbl-name inset'>
+                                <div className='ans-container-answer '>
+                                    <input type='radio' name='answers' id="rans4" onChange={(e) => { setCQuest(4) }} />
                                     {defAns4 !== undefined &&
                                         <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns4(true) }}>
                                             <TextVisualizer text={defAns4} />
                                         </div>
                                     }
-                                    <button className='ec-btn-editar' onClick={() => { setEditAns4(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                    <button className='eq-btn-editar' onClick={() => { setEditAns4(true) }}><i className='bx bx-edit icon' ></i>Editar respuesta</button>
                                 </div>
                             }
                             {!!editAns4 &&
                                 <div className='cq-answers_inputs-item'>
-                                    <textarea className='input-text' type='text' id="anstext4" onChange={(e) => { handleAnswers(4, e.target.value) }} defaultValue={defAns4}></textarea>
-                                    <TextVisualizer text={answers[4]}></TextVisualizer>
+                                    <textarea className='input-text it-inset-shadow' autoFocus type='text' id="anstext4" onChange={(e) => { handleAnswers(4, e.target.value) }} defaultValue={defAns4}></textarea>
                                     {!mathEditor &&
-                                        <div>
-                                            <button className='btn' onClick={() => { setMathEditor(true) }}>Insertar ecuación</button>
+                                        <div className='eq-editquestiontext-btns-item1'>
+                                            <button className='btn' onClick={() => { setMathEditor(true) }}>Insertar expresión</button>
                                             <button className='btn' onClick={() => { setEditAns4(false) }}>Cancelar</button>
                                         </div>
                                     }
                                     {!!mathEditor &&
-                                        <div>
+                                        <div className='eq-ecuaciones-contenedor inset'>
                                             <MathQ latex={latex} setLatex={setLatex} />
-                                            <button className='btn' onClick={() => { handleInsertMathAns(4, 'anstext4') }}>Insertar</button>
-                                            <button className='btn' onClick={() => { setMathEditor(false) }}>Cancelar</button>
+                                            <div className='eq-editquestiontext-btns-2'>
+                                                <button className='btn' onClick={() => { handleInsertMathAns(4, 'anstext4') }}>Insertar</button>
+                                                <button className='btn' onClick={() => { setMathEditor(false) }}>Cancelar</button>
+                                            </div>
+
                                         </div>
                                     }
                                 </div>
                             }
                         </div>
+
+
                         {/* <div className='cq-answers_inputs-item'>
                             <input type='radio' name='answers' id="rans2" onChange={(e) => { setCQuest(2) }} />
                             <input className='input-text' type='text' id="2" onChange={() => {handleAnswers(2)}} defaultValue={defAns2}></input>
@@ -398,7 +420,7 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                 </div>
                 <div className='cq-question'>
                     <label className='lbl'>Justificación:</label>
-                    <input className='input-text' type='text' onChange={(e) => { setRetro(e.target.value) }} defaultValue={defRetro}></input>
+                    <input className='eq-input-text it-inset-shadow' type='text' onChange={(e) => { setRetro(e.target.value) }} defaultValue={defRetro}></input>
                 </div>
 
                 <div className='cq-footer'>

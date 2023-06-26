@@ -131,13 +131,15 @@ function EditTest({ testID, setEditTest }) {
                         <div className='et-nombretest'>
                             <label className='lbl'>Nombre del test </label>
                             {!editName &&
-                                <div className='ec-lbl-name inset'>
-                                    <label className='et-lbl-editar it-inset-shadow' onClick={() => { setEditName(true) }}><b className='b-medium'>{test.nombre}</b></label>
+                                <div className='ec-lbl-name'>
+                                    <label className='et-lbl-editar it-inset-shadow' onClick={() => { setEditName(true) }}>
+                                        <b className='b-medium'>{test.nombre}</b>
+                                    </label>
                                     <button className='ec-btn-editar' onClick={() => { setEditName(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
                                 </div>
                             }
                             {!!editName &&
-                                <div className='ec-lbl-name inset'>
+                                <div className='ec-lbl-name'>
                                     <input autoFocus className='et-input-text it-inset-shadow' type='text' defaultValue={test.nombre} onChange={(e) => { setTestName(e.target.value) }}></input>
 
                                     <button className='ec-btn-editar' onClick={handleChangeTestName}><i className='bx bx-save icon' ></i>Guardar</button>
@@ -148,13 +150,13 @@ function EditTest({ testID, setEditTest }) {
                         <div className='et-calificacion'>
                             <label className='lbl'>Calificación aprobatoria </label>
                             {!editApprove &&
-                                <div className='ec-lbl-name inset'>
+                                <div className='ec-lbl-name'>
                                     <label className='et-lbl-editar it-inset-shadow'><b className='b-medium'>{test.aprobacion}</b></label>
                                     <button className='ec-btn-editar' onClick={() => { setEditApprove(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
                                 </div>
                             }
                             {!!editApprove &&
-                                <div className='ec-lbl-name inset'>
+                                <div className='ec-lbl-name '>
                                     <input className='et-input-text it-inset-shadow' type='number' min='1' max='10' defaultValue={test.aprobacion} onChange={(e) => { setApprove(e.target.value) }}></input>
                                     <button className='ec-btn-editar' onClick={handleChangeApprove}><i className='bx bx-save icon' ></i>Guardar</button>
                                 </div>
@@ -164,13 +166,13 @@ function EditTest({ testID, setEditTest }) {
                         {!!sim && <div className='et-calificacion'>
                             <label className='lbl'>Tiempo límite </label>
                             {!editTime &&
-                                <div className='ec-lbl-name inset'>
+                                <div className='ec-lbl-name '>
                                     <label className='et-lbl-editar it-inset-shadow'><b className='b-medium'>{test.tiempo}</b></label>
                                     <button className='ec-btn-editar' onClick={() => { setEditTime(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
                                 </div>
                             }
                             {!!editTime &&
-                                <div className='ec-lbl-name inset'>
+                                <div className='ec-lbl-name '>
                                     <input className='et-input-text it-inset-shadow' defaultValue={test.tiempo} onChange={(e) => { setTime(e.target.value) }}></input>
                                     <button className='ec-btn-editar' onClick={handleChangeTime}><i className='bx bx-save icon' ></i>Guardar</button>
                                 </div>
@@ -201,7 +203,7 @@ function EditTest({ testID, setEditTest }) {
                                         <TextVisualizer text={q.pregunta} />
                                     </div>
                                     <div className='et-question-btns'>
-                                        <a href='#editQuestionDIV' className='btn-s' name={q.id} onClick={() => { handleEditQuestion(q.id) }}><i className='bx bx-edit icon-drag' ></i>Editar</a>
+                                        <a href='#editQuestionDIV' className='btn-s' name={q.id} onClick={() => { handleEditQuestion(q.id) }}><i className='bx bx-edit icon' ></i>Editar</a>
                                         <button className='btn-s' name={q.id} onClick={() => { handleDeleteQuestion(q.id) }}><i className='bx bx-trash icon'></i>Eliminar</button>
                                     </div>
                                 </div>

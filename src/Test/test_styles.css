@@ -13,9 +13,9 @@
 .test-header {
     display: flex;
     flex-direction: column;
-    width: 100%;
     height: max-content;
     margin-bottom: 1.5rem;
+    margin-left: 3rem;
 }
 
 .test-description i {
@@ -29,7 +29,7 @@
 }
 
 .test-questions-container {
-    width: 70%;
+    width: 60%;
 }
 
 .testresult-container {
@@ -308,5 +308,6 @@
 
 .test-contenedor {
     display: flex;
+    justify-content: center;
     gap: 1.5rem;
 }
