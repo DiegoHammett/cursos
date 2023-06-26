@@ -52,7 +52,7 @@ function Course({ id, userID }) {
                 getModules()
             })
             .catch(err => console.log(err))
-    }, [insertUserModule, id])
+    }, [insertUserModule, id, getModules])
 
     useEffect(() => {
         console.log("INIT")
@@ -77,17 +77,17 @@ function Course({ id, userID }) {
             body: formData
         }).then(res => res.json())
             .then(res => {
-                if (res.status !== "OK") setError(true)
+                if (res.status !== "OK") console.log(res)
             }).catch(err => setError(true))
     }, [])
 
-    const updateModules = useCallback(() => {
-        if (parseInt(modules[currentModule].tipo) === 1) {
+    useEffect(() => {
+        if (parseInt(modules[currentModule].tipo) === 1 && rendered) {
             updateModule(modules[currentModule].modulo, 1)
             updateModule(modules[currentModule + 1].modulo, 0)
         }
         getModules()
-    }, [currentModule, modules, updateModule])
+    }, [currentModule, updateModule, modules])
 
     useEffect(() => {
         if (completed) {
@@ -96,15 +96,10 @@ function Course({ id, userID }) {
         }
     }, [completed, updateModule, modules, currentModule])
 
-    useEffect(() => {
-        if (rendered) updateModules()
-    }, [rendered, currentModule, updateModules])
-
     return (
         <React.Fragment>
             {!!rendered &&
                 <div className='course-body'>
-
                     <div className='course-navigation '>
                         <div className='course-navigation-item'>
                             {currentModule !== 0 &&
@@ -115,15 +110,15 @@ function Course({ id, userID }) {
                         </div>
                         <div className='course-navigation-item-nav'>
                             {modules.map(module => (
-                                <button onClick={() => { setCurrentModule(modules.indexOf(module)) }} key={module.id} className={modules.indexOf(module) === currentModule ? 'btn-nav-current' : 'btn-nav'}
+                                <button onClick={() => { setCurrentModule(modules.indexOf(module)) }} key={module.modulo} className={modules.indexOf(module) === currentModule ? 'btn-nav-current' : 'btn-nav'}
                                     disabled={module.completado === null ? true
                                         : false}>
-                                    {module.tipo === 1 &&
-                                        <i class='bx bx-book-reader'></i>
+                                    {/* {module.tipo === 1 &&
+                                        <i className='bx bx-book-reader'></i>
                                     }
                                     {module.tipo === 2 &&
-                                        <i class='bx bxs-graduation'></i>
-                                    }
+                                        <i className='bx bxs-graduation'></i>
+                                    } */}
                                 </button>
                             ))}
                         </div>

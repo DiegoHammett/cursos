@@ -29,7 +29,7 @@ function CourseMenu({ admin, userID }) {
 
                     <div className='coursemenu-header'>
                         <h1 className='title'>Todos los cursos</h1>
-                        <button className='btn'><i class='bx bx-plus-circle icon'></i>Agregar curso</button>
+                        <button className='btn'><i className='bx bx-plus-circle icon'></i>Agregar curso</button>
                     </div>
 
 

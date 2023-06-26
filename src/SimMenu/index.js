@@ -22,7 +22,7 @@ function SimMenu({admin}) {
 
     const castTime = (t) => {
         const formatTime = t.split(":")
-        setTime((parseInt(formatTime[0]) * 3600) + (parseInt(formatTime[1]) * 60) + parseInt(formatTime[0]))
+        setTime((parseInt(formatTime[0]) * 3600) + (parseInt(formatTime[1]) * 60) + parseInt(formatTime[2]))
     }
 
     return (
@@ -31,7 +31,7 @@ function SimMenu({admin}) {
                 <div>
                     <div className='coursemenu-header'>
                         <h1 className='title'>Todos los simuladores</h1>
-                        <button className='btn'><i class='bx bx-plus-circle icon'></i>Agregar simulador</button>
+                        <button className='btn'><i className='bx bx-plus-circle icon'></i>Agregar simulador</button>
                     </div>
                     <section className='cursos-container'>
                         <div className='courseCards inset'>
@@ -42,8 +42,8 @@ function SimMenu({admin}) {
                                     </p>
                                     <div className='courseBtns'>
                                         <button className='acceptButton' onClick={() => {
-                                            setItemID(simulador.id)
                                             castTime(simulador.tiempo)
+                                            setItemID(simulador.id)
                                             setMenuSelect(1)
                                         }}>Ir al simulador</button>
                                         {!!admin && <button className='acceptButton2' onClick={() => {
@@ -58,7 +58,7 @@ function SimMenu({admin}) {
                 </div>
             }
 
-            {menuSelect === 1 &&
+            {menuSelect === 1 && 
                 <Test id={itemID} retro={false} time={time} />
             }
 

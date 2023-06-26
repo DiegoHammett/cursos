@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../dbconnect';
 import './question_styles.css';
+import TextVisualizer from '../TextVisualizer';
 
 function Question({ id, retro, suma, setAnsList, ansList }) {
 
@@ -56,13 +57,18 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
 
     return (
         <React.Fragment>
-            <div className='question-container inset' id={'q'+question.id}>
+            <div className='question-container inset' id={'q' + question.id}>
                 <div className='question-header'>
                     <span className='pill'>Pregunta:</span>
                     <h4 className='question-pregunta title'>
-                        {question.pregunta}
+                        <TextVisualizer text={question.pregunta} />
                     </h4>
                 </div>
+                {question.imagen &&
+                    <div>
+                        <img src={db.docs + question.imagen} className='question-img'></img>
+                    </div>
+                }
 
                 <div className='question-q-container'>
                     <span className='lbl'>Selecciona una respuesta:</span>
@@ -70,7 +76,7 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
                         <div className='q_card' key={op.id}>
                             <input className='q_radio it-inset-shadow' type='radio' name={question.id} id={op.id} onClick={handleSelectOption} />
                             <label className='q_content ' htmlFor={op.id}>
-                                <label className='lbl' htmlFor={op.id}>{op.respuesta}</label>
+                                <TextVisualizer text={op.respuesta} />
                             </label>
                         </div>
                     ))}
@@ -90,7 +96,7 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
                     </div>
                 }
             </div>
-        </React.Fragment>
+        </React.Fragment >
     );
 }
 

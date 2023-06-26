@@ -198,10 +198,10 @@ function EditTest({ testID, setEditTest }) {
                             {questions.map(q => (
                                 <div key={q.id} className='et-question-item inset'>
                                     <div className='et-question-q'>
-                                        <TextVisualizer text={q.pregunta}></TextVisualizer>
+                                        <TextVisualizer text={q.pregunta} />
                                     </div>
                                     <div className='et-question-btns'>
-                                        <button className='btn-s' name={q.id} onClick={() => { handleEditQuestion(q.id) }}><i className='bx bx-edit icon-drag' ></i>Editar</button>
+                                        <a href='#editQuestionDIV' className='btn-s' name={q.id} onClick={() => { handleEditQuestion(q.id) }}><i className='bx bx-edit icon-drag' ></i>Editar</a>
                                         <button className='btn-s' name={q.id} onClick={() => { handleDeleteQuestion(q.id) }}><i className='bx bx-trash icon'></i>Eliminar</button>
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@ function EditTest({ testID, setEditTest }) {
                             }
                         </div>
                         <div className='et-content-2_footer'>
-                            <div className='btn-container'>
+                            <div className='btn-container' id="editQuestionDIV">
                                 {!editQuestion && <button className='btn' onClick={handleCreateQuestion}><i className='bx bx-add-to-queue icon' ></i>Agregar pregunta</button>}
                                 {!!editQuestion && <EditQuestion testID={testID} setEditQuestion={setEditQuestion} mode={questionMode} questionID={questionID} />}
                             </div >

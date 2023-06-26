@@ -96,16 +96,17 @@ function Test({ id, time, setCompleted }) {
                                 </div>
 
                                 <div className='testresult-container inset'>
-                                    <span className='title'><b>PROGRESO ACTUAL</b></span>
-                                    <div className='testresult-score inset'>
-                                        <span className='lbl'>Has obtenido</span>
-                                        <span className='lbl'>
-                                            <b>{total} de {questions.length}</b>
-                                        </span>
-                                        <span className='lbl'>aciertos.</span>
-                                    </div>
-
-
+                                    {retro === true &&
+                                        <div>
+                                            <span className='title'><b>PROGRESO ACTUAL</b></span>
+                                            <div className='testresult-score inset'>
+                                                <span className='lbl'>Has obtenido</span>
+                                                <span className='lbl'>
+                                                    <b>{total} de {questions.length}</b>
+                                                </span>
+                                                <span className='lbl'>aciertos.</span>
+                                            </div>
+                                        </div>}
 
                                     <div className='testresult-btns-container'>
                                         <span className='title'><b>NAVEGACIÓN DE PREGUNTAS</b></span>

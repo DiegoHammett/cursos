@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StaticMathField } from 'react-mathquill'
+import './styles.css'
 
 function TextVisualizer({ text }) {
 
@@ -7,21 +8,23 @@ function TextVisualizer({ text }) {
     const [rendered, setRendered] = useState()
 
     useEffect(() => {
-        const parts = text.split("@")
-        const cleanParts = parts.filter(p => p !== "");
-        setSections(cleanParts)
-        setRendered(true)
+        if (text !== undefined) {
+            const parts = text.split("@")
+            const cleanParts = parts.filter(p => p !== "");
+            setSections(cleanParts)
+            setRendered(true)
+        }
     }, [text])
 
     return (
         <React.Fragment>
             {!!rendered &&
                 sections.map(section => (
-                    <div key={sections.indexOf(section)}>
+                    <label key={sections.indexOf(section)} className='text-visualizer'>
                         {section[0] === "#" && section[section.length - 1] === "#" ?
-                        <StaticMathField>{section.replaceAll("#",'')}</StaticMathField> :
-                        <label>{section}</label>}
-                    </div>
+                            <StaticMathField>{section.replaceAll("#", '')}</StaticMathField> :
+                            section}
+                    </label>
                 ))
             }
         </React.Fragment>

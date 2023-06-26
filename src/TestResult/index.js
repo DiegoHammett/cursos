@@ -11,17 +11,20 @@ function TestResult({ ansList, total, approveTest, setCompleted }) {
     useEffect(() => {
         const getCount = () => {
             const map = new Map(Object.entries(ansList))
+            console.log(map.size)
             if (map.size > 0) {
-                let idList
-                for (let [key, value] of map) {
-                    idList = idList + "," + value
+                if (map.size > 0) {
+                    let idList
+                    for (let [key, value] of map) {
+                        idList = idList + "," + value
+                    }
+                    idList = idList.replace("undefined,", "")
+                    fetch(db.url + '?table=respuesta&column=sum(tipo) as total&where=id IN (' + idList + ')')
+                        .then(res => res.json())
+                        .then(res => setCount(res[0].total))
+                        .catch(err => setError(true))
                 }
-                idList = idList.replace("undefined,", "")
-                fetch(db.url + '?table=respuesta&column=sum(tipo) as total&where=id IN (' + idList + ')')
-                    .then(res => res.json())
-                    .then(res => setCount(res[0].total))
-                    .catch(err => setError(true))
-            }
+            }else setCount(0)
         }
         getCount()
     }, [ansList])
@@ -29,7 +32,7 @@ function TestResult({ ansList, total, approveTest, setCompleted }) {
     useEffect(() => {
         if (count * 10 / total >= approveTest) {
             setApprove(true)
-            setCompleted(true)
+            if (setCompleted) setCompleted(true)
         }
     }, [count, approveTest, total, setCompleted])
 

@@ -46,6 +46,7 @@ CREATE TABLE pregunta (
     id INT(5) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     pregunta VARCHAR(1000),
     retro VARCHAR(1000),
+    imagen VARCHAR(600),
     orden INT(3),
     test INT(3),
     CONSTRAINT fk_test_pregunta FOREIGN KEY(test) REFERENCES test(id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -54,6 +55,7 @@ CREATE TABLE pregunta (
 CREATE TABLE respuesta (
     id INT(1) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     respuesta VARCHAR(500),
+    imagen VARCHAR(600),
     tipo INT(1),
     pregunta INT(5),
     CONSTRAINT fk_pregunta_respuesta FOREIGN KEY(pregunta) REFERENCES pregunta(id) ON DELETE CASCADE ON UPDATE CASCADE
