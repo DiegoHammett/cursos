@@ -250,3 +250,50 @@
     transform: skew(0deg);
     inset: -10px 40px;
 }
+
+
+.App {
+    overflow: hidden;
+}
+
+
+
+
+  /* ============================== BREAKPOINTS ============================== */
+
+  /* Breakpoint para dispositivos móviles pequeños (hasta 320px) */
+  @media screen and (max-width: 320px) {
+    
+  }
+  
+  /* Breakpoint para dispositivos móviles de tamaño mediano (hasta 480px) */
+  @media screen and (max-width: 480px) {
+    /* Agrega aquí tus estilos para dispositivos móviles de tamaño mediano */
+  }
+  
+  /* Breakpoint para tablets y dispositivos similares (hasta 768px) */
+  @media screen and (max-width: 768px) {
+    /* Agrega aquí tus estilos para tablets y dispositivos similares */
+  }
+  
+  /* Breakpoint para pantallas de computadoras portátiles (hasta 1024px) */
+  @media screen and (max-width: 1024px) {
+    /* Agrega aquí tus estilos para computadoras portátiles */
+  }
+  
+  /* Breakpoint para pantallas de computadoras de escritorio (hasta 1200px) */
+  @media screen and (max-width: 1200px) {
+    /* Agrega aquí tus estilos para computadoras de escritorio */
+  }
+  
+  /* Breakpoint para pantallas de computadoras de escritorio más grandes (hasta 1440px) */
+  @media screen and (max-width: 1440px) {
+    /* Agrega aquí tus estilos para pantallas de computadoras de escritorio más grandes */
+  }
+  
+  /* Breakpoint para pantallas muy grandes (1920px o superior) */
+  @media screen and (min-width: 1920px) {
+    /* Agrega aquí tus estilos para pantallas muy grandes */
+  }
+  
+  /* ============================== BREAKPOINTS ============================== */

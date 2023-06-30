@@ -1,5 +1,3 @@
-
-
 a {
     text-decoration: none;
 }
@@ -55,7 +53,6 @@ a {
 
 .navbar-links li {
     display: inline-block;
-    padding: 0 1.5rem;
     align-items: center;
 }
 
@@ -122,3 +119,745 @@ a {
 .dm-container {
     margin-right: 1rem;
 }
+
+.nav-links_items_1,
+.nav-links_items_2 {
+    display: flex;
+}
+
+
+
+.navbar-menu-icons {
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.nav-login-reg {
+    margin: 0;
+}
+
+.navbar-menu-icons i {
+    cursor: pointer;
+}
+
+/* ============================== BREAKPOINTS ============================== */
+
+/* Breakpoint para dispositivos móviles pequeños (hasta 320px) */
+@media screen and (max-width: 320px) {
+    .navbar-body {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .navbar-header_bg {
+        background-color: var(--bg-100);
+        box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -webkit-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -moz-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        padding: 15px 10%;
+    }
+
+    .navbar-links {
+        display: none;
+        transition: all 0.5s ease-in-out !important;
+
+    }
+
+    .navbar-links_item {
+        padding: 1.3rem 0;
+        margin: .5rem;
+    }
+
+    .navbar-links_item a {
+        padding: .5rem 6rem;
+        z-index: 1;
+    }
+
+    .navbar-menu-icons i {
+        font-size: 1.9rem;
+        color: var(--text-100);
+    }
+
+    .navbar-header {
+        align-items: center;
+    }
+
+    .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 4rem;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-100);
+        transition: all 0.5s ease-in-out;
+        padding: 0;
+        margin: 0;
+        padding: 1.5rem 0;
+        gap: 1rem;
+    }
+
+    .navbar-links.active .nav-links_items_1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0rem;
+    }
+    
+
+    .navbar-links.active .nav-links_items_2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .navbar-links.active .navbar-links_item-2,
+    .navbar-links.active .navbar-links_item-3 {
+        width: 80%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+    }
+
+
+    .dm-container {
+        margin: 0;
+        padding: 0;
+        transform: scale(.8);
+    }
+
+    .nav-login-reg-btns {
+        display: none;
+    }
+
+    .nav-login-reg {
+        padding: 0;
+    }
+
+    .navbar-buttons_1 {
+        display: flex;
+    }
+
+    .navbar-header {
+        align-items: center;
+    }
+
+    .navbar-header {
+        gap: 1rem;
+    }
+}
+
+/* Breakpoint para dispositivos móviles de tamaño mediano (hasta 480px) */
+@media screen and (min-width: 321px) and (max-width: 480px) {
+    .navbar-body {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .navbar-header_bg {
+        background-color: var(--bg-100);
+        box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -webkit-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -moz-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        padding: 15px 10%;
+    }
+
+    .navbar-links {
+        display: none;
+        transition: all 0.5s ease-in-out !important;
+
+    }
+
+    .navbar-links_item {
+        padding: 1.3rem 0;
+        margin: .5rem;
+    }
+
+    .navbar-links_item a {
+        padding: .5rem 6rem;
+        z-index: 1;
+    }
+
+    .navbar-menu-icons i {
+        font-size: 1.9rem;
+        color: var(--text-100);
+    }
+
+    .navbar-header {
+        align-items: center;
+    }
+
+    .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 4rem;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-100);
+        transition: all 0.5s ease-in-out;
+        padding: 0;
+        margin: 0;
+        padding: 1.5rem 0;
+        gap: 1rem;
+    }
+
+    .navbar-links.active .nav-links_items_1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0rem;
+    }
+    
+
+    .navbar-links.active .nav-links_items_2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .navbar-links.active .navbar-links_item-2,
+    .navbar-links.active .navbar-links_item-3 {
+        width: 80%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+    }
+
+
+    .dm-container {
+        margin-right: 0rem;
+        transform: scale(.8);
+    }
+
+    .nav-login-reg-btns {
+        display: none;
+    }
+
+    .navbar-buttons_1 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .navbar-header {
+        align-items: center;
+    }
+
+    .navbar-header {
+        gap: 1rem;
+    }
+}
+
+/* Breakpoint para tablets y dispositivos similares (hasta 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .navbar-body {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .navbar-header_bg {
+        background-color: var(--bg-100);
+        box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -webkit-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -moz-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        padding: 15px 10%;
+    }
+
+    .navbar-links {
+        display: none;
+        transition: all 0.5s ease-in-out !important;
+
+    }
+
+    .navbar-links_item {
+        padding: 1.3rem 0;
+        margin: .5rem;
+    }
+
+    .navbar-links_item a {
+        padding: .5rem 6rem;
+        z-index: 1;
+    }
+
+    .navbar-menu-icons i {
+        font-size: 1.9rem;
+        color: var(--text-100);
+    }
+
+    .navbar-header {
+        align-items: center;
+    }
+
+    .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 4.7rem;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-100);
+        transition: all 0.5s ease-in-out;
+        padding: 0;
+        margin: 0;
+        padding: 1.5rem 0;
+        gap: 1rem;
+    }
+
+    .navbar-links.active .nav-links_items_1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0rem;
+    }
+    
+
+    .navbar-links.active .nav-links_items_2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .navbar-links.active .navbar-links_item-2,
+    .navbar-links.active .navbar-links_item-3 {
+        width: 80%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+    }
+
+
+    .dm-container {
+        margin-right: 0rem;
+        transform: scale(.8);
+    }
+
+
+    .navbar-buttons_1 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .navbar-header {
+        align-items: center;
+    }
+
+    .navbar-header {
+        gap: 1rem;
+    }
+
+    .nav-login-reg-btns {
+        display: none;
+    }
+
+
+}
+
+/* Breakpoint para pantallas de computadoras portátiles (hasta 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .navbar-body {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .navbar-header_bg {
+        background-color: var(--bg-100);
+        box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -webkit-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -moz-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        padding: 15px 10%;
+    }
+
+    .navbar-links {
+        display: none;
+        transition: all 0.5s ease-in-out !important;
+    }
+
+    .navbar-buttons_1 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .nav-login-reg {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        transform: scale(.8);
+        gap: 1rem;
+    }
+
+    .nav-login-reg-btns {
+        display: flex;
+        margin: 0;
+        gap: .5rem;
+    }
+
+    .navbar-links_item {
+        padding: 1.3rem 0;
+        margin: .5rem;
+    }
+
+    .navbar-links_item a {
+        padding: .5rem 6rem;
+        z-index: 1;
+    }
+
+    .navbar-menu-icons i {
+        font-size: 1.7rem;
+        color: var(--text-100);
+    }
+
+    .navbar-header {
+        align-items: center;
+    }
+
+    .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 5.2rem;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-100);
+        transition: all 0.5s ease-in-out;
+        padding: 0;
+        margin: 0;
+        padding: 1.5rem 0 1rem;
+        gap: 1rem;
+    }
+
+    .navbar-links.active .nav-links_items_1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0rem;
+    }
+    
+
+    .navbar-links.active .nav-links_items_2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .navbar-links.active .navbar-links_item-2,
+    .navbar-links.active .navbar-links_item-3 {
+        display: none;
+    }
+
+
+    .navbar-menu-icons {
+        display: flex;
+        align-items: center;
+    }
+    
+}
+
+/* Breakpoint para pantallas de computadoras de escritorio (hasta 1200px) */
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+    .navbar-body {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .navbar-header_bg {
+        background-color: var(--bg-100);
+        box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -webkit-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -moz-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        padding: 15px 10%;
+    }
+
+    .navbar-links {
+        display: none;
+        transition: all 0.5s ease-in-out !important;
+    }
+
+    .navbar-buttons_1 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .nav-login-reg {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        transform: scale(.8);
+        gap: 1rem;
+    }
+
+    .nav-login-reg-btns {
+        display: flex;
+        margin: 0;
+        gap: .5rem;
+    }
+
+    .navbar-links_item {
+        padding: 1.3rem 0;
+        margin: .5rem;
+    }
+
+    .navbar-links_item a {
+        padding: .5rem 6rem;
+        z-index: 1;
+    }
+
+    .navbar-menu-icons i {
+        font-size: 1.7rem;
+        color: var(--text-100);
+    }
+
+    .navbar-header {
+        align-items: center;
+    }
+
+    .navbar-links.active {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 5.2rem;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-100);
+        transition: all 0.5s ease-in-out;
+        padding: 0;
+        margin: 0;
+        padding: 1.5rem 0 1rem;
+        gap: 1rem;
+    }
+
+    .navbar-links.active .nav-links_items_1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0rem;
+    }
+    
+
+    .navbar-links.active .nav-links_items_2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .navbar-links.active .navbar-links_item-2,
+    .navbar-links.active .navbar-links_item-3 {
+        display: none;
+    }
+
+
+    .navbar-menu-icons {
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Breakpoint para pantallas de computadoras de escritorio más grandes (hasta 1440px) */
+@media screen and (min-width: 1201px) and (max-width: 1440px) {
+    .navbar-body {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .navbar-header_bg {
+        background-color: var(--bg-100);
+        box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -webkit-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -moz-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        padding: 15px 10%;
+    }
+
+    .navbar-buttons_1 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .nav-login-reg {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin: 0;
+        transform: scale(.9);
+        gap: 1rem;
+        padding: 0;
+        justify-content: right;
+    }
+
+    .nav-login-reg-btns {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        margin: 0;
+        gap: .5rem;
+        padding: 0;
+    }
+
+
+    .navbar-links_item {
+        margin: .5rem;
+    }
+
+    .navbar-links_item a {
+        z-index: 1;
+    }
+
+    .navbar-menu-icons i {
+        font-size: 1.7rem;
+        color: var(--text-100);
+    }
+
+    .navbar-header {
+        align-items: center;
+    }
+
+    .navbar-links {
+        display: flex;
+        width: 100%;
+        transition: all 0.5s ease-in-out;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+    }
+
+    .nav-links_items_1 {
+        gap: 1rem;
+    }
+
+    .nav-links_items_2 {
+        display: none;
+    }
+
+
+    .navbar-menu-icons {
+        display: none;
+    }
+
+}
+
+/* Breakpoint para pantallas muy grandes (1920px o superior) */
+@media screen and (min-width: 1440px) {
+    .navbar-body {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .navbar-header_bg {
+        background-color: var(--bg-100);
+        box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -webkit-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        -moz-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.37);
+        padding: 15px 10%;
+    }
+
+
+    .navbar-buttons_1 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .nav-login-reg {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin: 0;
+        transform: scale(.9);
+        gap: 1rem;
+        padding: 0;
+        justify-content: right;
+    }
+
+    .nav-login-reg-btns {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        margin: 0;
+        gap: .5rem;
+        padding: 0;
+    }
+
+
+    .navbar-links_item {
+        margin: .5rem;
+    }
+
+    .navbar-links_item a {
+        z-index: 1;
+    }
+
+    .navbar-menu-icons i {
+        font-size: 1.7rem;
+        color: var(--text-100);
+    }
+
+    .navbar-header {
+        align-items: center;
+    }
+
+    .navbar-links {
+        display: flex;
+        width: 100%;
+        transition: all 0.5s ease-in-out;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+    }
+
+    .nav-links_items_1 {
+        gap: 1rem;
+    }
+
+    .nav-links_items_2 {
+        display: none;
+    }
+
+    .navbar-menu-icons {
+        display: none;
+    }
+}
+
+/* Breakpoint para pantallas 2k (2048px o superior) */
+@media screen and (min-width: 2048px) {
+    .navbar-body {
+        zoom: 1.25;
+    }
+}
+
+/* Breakpoint para pantallas 4k (3840px o superior) */
+@media screen and (min-width: 2048px) {
+    .navbar-body {
+        zoom: 1.25;
+    }
+}
+
+/* ============================== BREAKPOINTS ============================== */

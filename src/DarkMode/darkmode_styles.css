@@ -1,5 +1,6 @@
 .darkmode-body {
   cursor: pointer;
+  overflow: hidden;
 }
 
 .toggle-checkbox {

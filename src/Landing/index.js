@@ -6,6 +6,7 @@ function Landing() {
 
     return (
         <div className="App">
+            
             <div className='landing-body'>
                 <section className='landing-header'>
                     <Navbar />
