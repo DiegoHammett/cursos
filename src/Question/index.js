@@ -78,7 +78,6 @@ function Question({ id, retro, suma, setAnsList, ansList }) {
                             <label className='q_content ' htmlFor={op.id}>
                                 {op.respuesta && <TextVisualizer text={op.respuesta} />}
                                 {op.imagen && <img src={db.docs + op.imagen} className='ans-img inset'></img>}
-                                {op.imagen && op.id}
                             </label>
                         </div>
                     ))}

@@ -100,12 +100,6 @@ function EditClass({ classID, mode, setEditClass }) {
                         <button className='btn' onClick={handleSubmit}>Guardar cambios</button>
                     </div>
                 </div>
-
-
-
-
-
-
             </div>
 
         </React.Fragment>

@@ -8,6 +8,7 @@ import SimMenu from '../SimMenu';
 
 import { Tabs, TabList, Tab, TabPanel } from "https://cdn.skypack.dev/react-tabs@3.2.2";
 import StatsMenu from '../StatsMenu';
+import ZoomClass from '../ZoomClass';
 
 function UserMenu({ userID, admin }) {
 
@@ -32,10 +33,8 @@ function UserMenu({ userID, admin }) {
 
     return (
         <React.Fragment>
-
             <Tabs>
                 <div className='dashboard_body'>
-
 
                     <div className={sidebarActive ? 'dashboard_menu-sidebar active' : 'dashboard_menu-sidebar'}>
                         <div className='d_m-s_top'>
@@ -56,6 +55,7 @@ function UserMenu({ userID, admin }) {
 
                         <div className='d_m-s_menu'>
                             <TabList className="mt--10">
+
                                 <Tab>
                                     <button>
                                         <i className='bx bxs-home'></i>
@@ -63,6 +63,7 @@ function UserMenu({ userID, admin }) {
                                     </button>
                                     <span className='d_m-s_menu-tooltip'>Inicio</span>
                                 </Tab>
+
                                 <Tab>
                                     <button>
                                         <i className='bx bxs-book-open'></i>
@@ -70,6 +71,7 @@ function UserMenu({ userID, admin }) {
                                     </button>
                                     <span className='d_m-s_menu-tooltip'>Cursos</span>
                                 </Tab>
+
                                 <Tab>
                                     <button>
                                         <i className='bx bx-desktop'></i>
@@ -78,14 +80,26 @@ function UserMenu({ userID, admin }) {
                                     <span className='d_m-s_menu-tooltip'>Simuladores</span>
                                 </Tab>
 
+                                <Tab>
+                                    <button>
+                                        <i className='bx bxl-zoom'></i>
+                                        <span className='d_m-s_menu-item'>Zoom</span>
+                                    </button>
+                                    <span className='d_m-s_menu-tooltip'>Sesiones de Zoom</span>
+                                </Tab>
+
+                                <Tab>
+                                    <button>
+                                        <i className='bx bxs-cog'></i>
+                                        <span className='d_m-s_menu-item'>Configuración</span>
+                                    </button>
+                                    <span className='d_m-s_menu-tooltip'>Configuración</span>
+                                </Tab>
+
                             </TabList>
 
-
                         </div>
-
-                        <div className='d_m-s_bottom'>
-
-                        </div>
+                        <div className='d_m-s_bottom'></div>
                     </div>
 
                     <div className='dashboard_main'>
@@ -109,31 +123,35 @@ function UserMenu({ userID, admin }) {
                                         <a href='/logout' className='btn-xs'>Cerrar sesión</a>
                                     </div>
                                 </div>
-
-
                             </div>
-
                         </div>
 
                         <div className='dashboard_main_container '>
+
                             <TabPanel>
-                                <StatsMenu admin={admin} user={user}/>
+                                <StatsMenu admin={admin} user={user} />
                             </TabPanel>
-                            
+
                             <TabPanel>
-                                <CourseMenu admin={admin} userID={userID}/>
+                                <CourseMenu admin={admin} userID={userID} />
                             </TabPanel>
 
                             <TabPanel>
                                 <SimMenu admin={admin} />
                             </TabPanel>
-                            
+
+                            <TabPanel>
+                                <ZoomClass admin={admin}></ZoomClass>
+                            </TabPanel>
+
+                            <TabPanel>
+                                <p>Configuración</p>
+                            </TabPanel>
+
                         </div>
                     </div>
                 </div>
             </Tabs>
-
-
         </React.Fragment>
     );
 }

@@ -96,6 +96,13 @@ CREATE TABLE intento (
     CONSTRAINT fk_test_intento FOREIGN KEY(test) REFERENCES test(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE zoom (
+    id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(200),
+    descripcion VARCHAR(1000),
+    link VARCHAR(1000)
+);
+
 
 
 CREATE VIEW lista_modulos AS

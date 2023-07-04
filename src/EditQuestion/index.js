@@ -8,11 +8,16 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
 
     const [quest, setQuest] = useState()
     const [defQuest, setDefQuest] = useState()
+    const [defQuestImg, setDefQuestImg] = useState()
     const [defRetro, setDefRetro] = useState()
     const [defAns1, setDefAns1] = useState()
     const [defAns2, setDefAns2] = useState()
     const [defAns3, setDefAns3] = useState()
     const [defAns4, setDefAns4] = useState()
+    const [defAnsImg1, setDefAnsImg1] = useState()
+    const [defAnsImg2, setDefAnsImg2] = useState()
+    const [defAnsImg3, setDefAnsImg3] = useState()
+    const [defAnsImg4, setDefAnsImg4] = useState()
     const [editAns1, setEditAns1] = useState(false)
     const [editAns2, setEditAns2] = useState(false)
     const [editAns3, setEditAns3] = useState(false)
@@ -36,6 +41,7 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                 .then(res => res.json())
                 .then(res => {
                     setDefQuest(res[0].pregunta)
+                    setDefQuestImg(res[0].imagen)
                     setDefRetro(res[0].retro)
                 })
                 .catch(err => setError(true))
@@ -46,12 +52,16 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                 .then(res => {
                     setAnswersList(res)
                     setDefAns1(res[0].respuesta)
+                    setDefAnsImg1(res[0].imagen)
                     if (parseInt(res[0].tipo) === 1) document.getElementById("rans1").defaultChecked = true
                     setDefAns2(res[1].respuesta)
+                    setDefAnsImg2(res[1].imagen)
                     if (parseInt(res[1].tipo) === 1) document.getElementById("rans2").defaultChecked = true
                     setDefAns3(res[2].respuesta)
+                    setDefAnsImg3(res[2].imagen)
                     if (parseInt(res[2].tipo) === 1) document.getElementById("rans3").defaultChecked = true
                     setDefAns4(res[3].respuesta)
+                    setDefAnsImg4(res[3].imagen)
                     if (parseInt(res[3].tipo) === 1) document.getElementById("rans4").defaultChecked = true
                 })
                 .catch(err => setError(true))
@@ -145,7 +155,7 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                     formData.append("imagen", answersImg[k].name)
                     formData.append("fileImg" + k, answersImg[k])
                 }
-                if(answers[k]) formData.append("respuesta", answers[k])
+                if (answers[k]) formData.append("respuesta", answers[k])
                 fetch(db.url + '?mode=update&table=respuesta&id=id&condition=' + answersList[k - 1].id, {
                     method: 'POST',
                     body: formData
@@ -170,7 +180,7 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                 else
                     formData.append("tipo", 0)
                 if (answers[k]) {
-                    formData.append("respuesta", answers[k]) 
+                    formData.append("respuesta", answers[k])
                 }
                 formData.append("pregunta", id)
                 fetch(db.url + '?mode=insert&table=respuesta', {
@@ -227,7 +237,7 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                     </p>
 
                 </div>
-                <div className='cq-question'>
+                <div className='cq-question '>
                     <label className='lbl'>Pregunta:</label>
 
                     {!editQuestionText &&
@@ -236,6 +246,9 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                                 <div className='eq-lbl-editar-pregunta it-inset-shadow' onClick={() => { setEditQuestionText(true) }}>
                                     <TextVisualizer text={defQuest} />
                                 </div>
+                            }
+                            {defQuestImg !== undefined && defQuestImg !== null &&
+                                <img src={db.docs + defQuestImg} className='ans-img inset'></img>
                             }
                             <button className='eq-btn-editar' onClick={() => { setEditQuestionText(true) }}><i className='bx bx-edit icon' ></i>Editar pregunta</button>
                         </div>
@@ -250,7 +263,7 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                                     <div className='eq-editquestiontext-btns-1'>
                                         <div className='eq-content-item1'>
                                             <label className='lbl'>Insertar imagen:</label>
-                                            <input className='file-input__input it-inset-shadow' type="file" name="questionImage" onChange={(e) => { setQuestionImage(e.target.files[0]) }} />
+                                            <input className='file-input__input it-inset-shadow' type="file" name="questionImage" onChange={(e) => { setQuestionImage(e.target.files[0]); setDefQuestImg(e.target.files[0]) }} />
                                         </div>
                                         <div className='eq-editquestiontext-btns-item1'>
                                             <button className='btn' onClick={() => { setMathEditor(true); setMathSelector(0) }}>Insertar expresión</button>
@@ -279,15 +292,18 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                     <label className='lbl'>Respuestas:</label>
                     <div className='cq-answers_inputs'>
 
-                        <div className='ans1-container'>
-                            {/* <input type='radio' name='answers' id="rans1" onChange={(e) => { setCQuest(1) }} /> */}
+                        <div className='ans1-container it-inset-shadow'>
+                            <input type='radio' name='answers' id="rans1" onChange={(e) => { setCQuest(1) }} />
                             {!editAns1 &&
                                 <div className='ans-container-answer '>
-                                    <input type='radio' name='answers' id="rans1" onChange={(e) => { setCQuest(1) }} />
-                                    {defAns1 !== undefined &&
-                                        <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns1(true) }}>
-                                            <TextVisualizer text={defAns1} />
+                                    {/* <input type='radio' name='answers' id="rans1" onChange={(e) => { setCQuest(1) }} /> */}
+                                    {defAns1 !== undefined && defAns1 !== null &&
+                                        <div className='et-lbl-editar ' onClick={() => { setEditAns1(true) }}>
+                                            {<TextVisualizer text={defAns1} />}
                                         </div>
+                                    }
+                                    {defAnsImg1 !== undefined && defAnsImg1 !== null &&
+                                        <img src={db.docs + defAnsImg1} className='ans-img inset'></img>
                                     }
                                     <button className='eq-btn-editar' onClick={() => { setEditAns1(true) }}><i className='bx bx-edit icon' ></i>Editar respuesta</button>
                                 </div>
@@ -299,10 +315,10 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                                         <div className='eq-editquestiontext-btns-1'>
                                             <div className='eq-content-item1'>
                                                 <label className='lbl'>Insertar imagen:</label>
-                                                <input className='file-input__input it-inset-shadow' type="file" name="questionImage" onChange={(e) => { handleAnswersImg(1, e.target.files[0]) }} />
+                                                <input className='file-input__input it-inset-shadow' type="file" name="questionImage" onChange={(e) => { handleAnswersImg(1, e.target.files[0]); setDefAnsImg1(e.target.files[0]) }} />
                                             </div>
                                             <div className='eq-editquestiontext-btns-item1'>
-                                                <button className='btn' onClick={() => { setMathEditor(true); setMathSelector(1)}}>Insertar expresión</button>
+                                                <button className='btn' onClick={() => { setMathEditor(true); setMathSelector(1) }}>Insertar expresión</button>
                                                 <button className='btn' onClick={() => { setDefAns1(document.getElementById('anstext1').value); handleAnswers(1, document.getElementById('anstext1').value); setEditAns1(false) }}>Aceptar</button>
                                             </div>
                                         </div>
@@ -321,15 +337,18 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                             }
                         </div>
 
-                        <div className='ans1-container'>
-                            {/* <input type='radio' name='answers' id="rans2" onChange={(e) => { setCQuest(2) }} /> */}
+                        <div className='ans1-container it-inset-shadow'>
+                            <input type='radio' name='answers' id="rans2" onChange={(e) => { setCQuest(2) }} />
                             {!editAns2 &&
                                 <div className='ans-container-answer '>
-                                    <input type='radio' name='answers' id="rans2" onChange={(e) => { setCQuest(2) }} />
-                                    {defAns2 !== undefined &&
-                                        <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns2(true) }}>
+                                    {/* <input type='radio' name='answers' id="rans2" onChange={(e) => { setCQuest(2) }} /> */}
+                                    {defAns2 !== undefined && defAns2 !== null &&
+                                        <div className='et-lbl-editar ' onClick={() => { setEditAns2(true) }}>
                                             <TextVisualizer text={defAns2} />
                                         </div>
+                                    }
+                                    {defAnsImg2 !== undefined && defAnsImg2 !== null &&
+                                        <img src={db.docs + defAnsImg2} className='ans-img inset'></img>
                                     }
                                     <button className='eq-btn-editar' onClick={() => { setEditAns2(true) }}><i className='bx bx-edit icon' ></i>Editar respuesta</button>
                                 </div>
@@ -341,15 +360,15 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                                         <div className='eq-editquestiontext-btns-1'>
                                             <div className='eq-content-item1'>
                                                 <label className='lbl'>Insertar imagen:</label>
-                                                <input className='file-input__input it-inset-shadow' type="file" name="questionImage" onChange={(e) => { handleAnswersImg(2, e.target.files[0]) }} />
+                                                <input className='file-input__input it-inset-shadow' type="file" name="questionImage" onChange={(e) => { handleAnswersImg(2, e.target.files[0]); setDefAnsImg2(e.target.files[0]) }} />
                                             </div>
                                             <div className='eq-editquestiontext-btns-item1'>
                                                 <button className='btn' onClick={() => { setMathEditor(true); setMathSelector(2) }}>Insertar expresión</button>
-                                                <button className='btn' onClick={() => { setDefAns2(document.getElementById('anstext2').value); handleAnswers(2, document.getElementById('anstext2').value); setEditAns2(false)  }}>Aceptar</button>
+                                                <button className='btn' onClick={() => { setDefAns2(document.getElementById('anstext2').value); handleAnswers(2, document.getElementById('anstext2').value); setEditAns2(false) }}>Aceptar</button>
                                             </div>
                                         </div>
                                     }
-                                    {!!mathEditor &&  mathSelector === 2 &&
+                                    {!!mathEditor && mathSelector === 2 &&
                                         <div className='eq-ecuaciones-contenedor inset'>
                                             <MathQ latex={latex} setLatex={setLatex} />
                                             <div className='eq-editquestiontext-btns-2'>
@@ -363,15 +382,18 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                             }
                         </div>
 
-                        <div className='ans1-container'>
-                            {/* <input type='radio' name='answers' id="rans3" onChange={(e) => { setCQuest(3) }} /> */}
+                        <div className='ans1-container it-inset-shadow'>
+                            <input type='radio' name='answers' id="rans3" onChange={(e) => { setCQuest(3) }} />
                             {!editAns3 &&
                                 <div className='ans-container-answer '>
-                                    <input type='radio' name='answers' id="rans3" onChange={(e) => { setCQuest(3) }} />
-                                    {defAns3 !== undefined &&
-                                        <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns3(true) }}>
+                                    {/* <input type='radio' name='answers' id="rans3" onChange={(e) => { setCQuest(3) }} /> */}
+                                    {defAns3 !== undefined && defAns3 !== null &&
+                                        <div className='et-lbl-editar' onClick={() => { setEditAns3(true) }}>
                                             <TextVisualizer text={defAns3} />
                                         </div>
+                                    }
+                                    {defAnsImg3 !== undefined && defAnsImg3 !== null &&
+                                        <img src={db.docs + defAnsImg3} className='ans-img inset'></img>
                                     }
                                     <button className='eq-btn-editar' onClick={() => { setEditAns3(true) }}><i className='bx bx-edit icon' ></i>Editar respuesta</button>
                                 </div>
@@ -383,15 +405,15 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                                         <div className='eq-editquestiontext-btns-1'>
                                             <div className='eq-content-item1'>
                                                 <label className='lbl'>Insertar imagen:</label>
-                                                <input className='file-input__input it-inset-shadow' type="file" name="questionImage" onChange={(e) => { handleAnswersImg(3, e.target.files[0]) }} />
+                                                <input className='file-input__input it-inset-shadow' type="file" name="questionImage" onChange={(e) => { handleAnswersImg(3, e.target.files[0]); setDefAnsImg3(e.target.files[0]) }} />
                                             </div>
                                             <div className='eq-editquestiontext-btns-item1'>
-                                                <button className='btn' onClick={() => { setMathEditor(true); setMathSelector(3)}}>Insertar expresión</button>
-                                                <button className='btn' onClick={() => { setDefAns3(document.getElementById('anstext3').value); handleAnswers(3, document.getElementById('anstext3').value); setEditAns3(false)  }}>Aceptar</button>
+                                                <button className='btn' onClick={() => { setMathEditor(true); setMathSelector(3) }}>Insertar expresión</button>
+                                                <button className='btn' onClick={() => { setDefAns3(document.getElementById('anstext3').value); handleAnswers(3, document.getElementById('anstext3').value); setEditAns3(false) }}>Aceptar</button>
                                             </div>
                                         </div>
                                     }
-                                    {!!mathEditor &&  mathSelector === 3 &&
+                                    {!!mathEditor && mathSelector === 3 &&
                                         <div className='eq-ecuaciones-contenedor inset'>
                                             <MathQ latex={latex} setLatex={setLatex} />
                                             <div className='eq-editquestiontext-btns-2'>
@@ -405,15 +427,18 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                             }
                         </div>
 
-                        <div className='ans1-container'>
-                            {/* <input type='radio' name='answers' id="rans4" onChange={(e) => { setCQuest(4) }} /> */}
+                        <div className='ans1-container it-inset-shadow'>
+                            <input type='radio' name='answers' id="rans4" onChange={(e) => { setCQuest(4) }} />
                             {!editAns4 &&
                                 <div className='ans-container-answer '>
-                                    <input type='radio' name='answers' id="rans4" onChange={(e) => { setCQuest(4) }} />
-                                    {defAns4 !== undefined &&
-                                        <div className='et-lbl-editar it-inset-shadow' onClick={() => { setEditAns4(true) }}>
+                                    {/* <input type='radio' name='answers' id="rans4" onChange={(e) => { setCQuest(4) }} /> */}
+                                    {defAns4 !== undefined && defAns4 !== null &&
+                                        <div className='et-lbl-editar ' onClick={() => { setEditAns4(true) }}>
                                             <TextVisualizer text={defAns4} />
                                         </div>
+                                    }
+                                    {defAnsImg4 !== undefined && defAnsImg4 !== null &&
+                                        <img src={db.docs + defAnsImg4} className='ans-img inset'></img>
                                     }
                                     <button className='eq-btn-editar' onClick={() => { setEditAns4(true) }}><i className='bx bx-edit icon' ></i>Editar respuesta</button>
                                 </div>
@@ -425,15 +450,15 @@ function EditQuestion({ testID, setEditQuestion, mode, questionID }) {
                                         <div className='eq-editquestiontext-btns-1'>
                                             <div className='eq-content-item1'>
                                                 <label className='lbl'>Insertar imagen:</label>
-                                                <input className='file-input__input it-inset-shadow' type="file" name="questionImage" onChange={(e) => { handleAnswersImg(4, e.target.files[0]) }} />
+                                                <input className='file-input__input it-inset-shadow' type="file" name="questionImage" onChange={(e) => { handleAnswersImg(4, e.target.files[0]); setDefAnsImg4(e.target.files[0]) }} />
                                             </div>
                                             <div className='eq-editquestiontext-btns-item1'>
                                                 <button className='btn' onClick={() => { setMathEditor(true); setMathSelector(4) }}>Insertar expresión</button>
-                                                <button className='btn' onClick={() => { setDefAns4(document.getElementById('anstext4').value); handleAnswers(4, document.getElementById('anstext4').value); setEditAns4(false)  }}>Aceptar</button>
+                                                <button className='btn' onClick={() => { setDefAns4(document.getElementById('anstext4').value); handleAnswers(4, document.getElementById('anstext4').value); setEditAns4(false) }}>Aceptar</button>
                                             </div>
                                         </div>
                                     }
-                                    {!!mathEditor &&  mathSelector === 4 &&
+                                    {!!mathEditor && mathSelector === 4 &&
                                         <div className='eq-ecuaciones-contenedor inset'>
                                             <MathQ latex={latex} setLatex={setLatex} />
                                             <div className='eq-editquestiontext-btns-2'>

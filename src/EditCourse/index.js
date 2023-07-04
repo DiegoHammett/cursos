@@ -4,7 +4,7 @@ import EditTest from '../EditTest'
 import EditClass from '../EditClass'
 import './editcourse_styles.css'
 
-function EditCourse({ courseID }) {
+function EditCourse({ courseID, create }) {
 
     const [error, setError] = useState(false)
     const [editTest, setEditTest] = useState(false)
