@@ -3,7 +3,7 @@ import { db } from '../dbconnect'
 import Test from '../Test'
 import EditTest from '../EditTest'
 
-function SimMenu({admin}) {
+function SimMenu({ admin }) {
 
     const [menuSelect, setMenuSelect] = useState(0)
     const [simuladores, setSimuladores] = useState([])
@@ -12,7 +12,7 @@ function SimMenu({admin}) {
 
     useEffect(() => {
         const getSimuladores = () => {
-            fetch(db.url + "?table=test&where=tipo IN (2)")
+            fetch(db.url + "?table=test&where=tipo IN (2)" + (!admin ? " AND activo" : ""))
                 .then(res => res.json())
                 .then(res => setSimuladores(res))
                 .catch(err => console.log(err))
@@ -40,6 +40,11 @@ function SimMenu({admin}) {
                                     <p className='courseHeading'>
                                         {simulador.nombre}
                                     </p>
+                                    {!!admin && !simulador.activo &&
+                                        <p className='courseDescription'>
+                                            (Inactivo)
+                                        </p>
+                                    }
                                     <div className='courseBtns'>
                                         <button className='acceptButton' onClick={() => {
                                             castTime(simulador.tiempo)
@@ -58,7 +63,7 @@ function SimMenu({admin}) {
                 </div>
             }
 
-            {menuSelect === 1 && 
+            {menuSelect === 1 &&
                 <Test id={itemID} retro={false} time={time} />
             }
 

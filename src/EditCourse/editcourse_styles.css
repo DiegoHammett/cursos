@@ -226,3 +226,43 @@
 .ec-updown-item:hover {
     background-color: var(--accent-200);
 }
+
+input[type="checkbox"].editcourse-checkbox {
+    font-size: 30px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 2em;
+    height: 1em;
+    background: #ddd;
+    border-radius: 4em;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].editcourse-checkbox:checked {
+    background: rgb(0, 189, 0);
+}
+
+input[type="checkbox"].editcourse-checkbox:after {
+    position: absolute;
+    content: "";
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background: #fff;
+    -webkit-box-shadow: 0 0 .25em rgba(0, 0, 0, .3);
+    box-shadow: 0 0 .25em rgba(0, 0, 0, .3);
+    -webkit-transform: scale(.7);
+    transform: scale(.7);
+    left: 0;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].editcourse-checkbox:checked:after {
+    left: calc(100% - 1em);
+}

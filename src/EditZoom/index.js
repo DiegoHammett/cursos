@@ -6,6 +6,7 @@ function EditZoom({ zoomID, create }) {
     const [editName, setEditName] = useState(false)
     const [editDesc, setEditDesc] = useState(false)
     const [editLink, setEditLink] = useState(false)
+    const [editActive, setEditActive] = useState(false)
     const [zoomName, setZoomName] = useState()
     const [zoomDesc, setZoomDesc] = useState()
     const [zoomLink, setZoomLink] = useState()
@@ -23,7 +24,7 @@ function EditZoom({ zoomID, create }) {
         else {
             getZoom()
         }
-    }, [create, zoomID, editDesc, editLink, editName])
+    }, [create, zoomID, editDesc, editLink, editName, editActive])
 
     const handleEditName = () => {
         const formData = new FormData()
@@ -63,6 +64,23 @@ function EditZoom({ zoomID, create }) {
             .then(res => {
                 if (res.status === "OK")
                     setEditLink(false)
+                else setError(true)
+            }).catch(err => setError(true))
+    }
+
+    const handleActive = () => {
+        const formData = new FormData()
+        if(!zoom.activo) 
+            formData.append("activo", 1)
+        else
+            formData.append("activo", 0)
+        fetch(db.url + "?mode=update&table=zoom&id=id&condition=" + zoomID, {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK"){
+                    setEditActive(!editActive)}
                 else setError(true)
             }).catch(err => setError(true))
     }
@@ -132,6 +150,16 @@ function EditZoom({ zoomID, create }) {
                                     <button className='ec-btn-editar it-inset-shadow' onClick={handleEditLink}><i className='bx bx-save icon' ></i>Guardar</button>
                                 </div>
                             }
+                        </div>
+                        <div>
+                            <label className='input-label lbl'>Activo:</label>
+                            <input
+                                type="checkbox"
+                                className='editcourse-checkbox'
+                                id='darkmode-toggle'
+                                defaultChecked={zoom.activo}
+                                onClick={handleActive}
+                            />
                         </div>
                     </div>
 

@@ -9,7 +9,7 @@ function CourseList({ id, admin, setItemID, setMenuSelect }) {
 
     useEffect(() => {
         const getCourse = () => {
-            fetch(db.url + "?table=curso&where=asignatura IN (" + id + ")")
+            fetch(db.url + "?table=curso&where=asignatura IN (" + id + ")" + (!admin ? " AND activo" : ""))
                 .then(res => res.json())
                 .then(res => setCursos(res))
                 .catch(err => console.log(err))
@@ -35,6 +35,11 @@ function CourseList({ id, admin, setItemID, setMenuSelect }) {
                         <span className='courseHeading' onClick={() => { handleGetCourse(curso.id) }}>
                             {curso.nombre}
                         </span>
+                        {!!admin && !curso.activo &&
+                            <p className='courseDescription'>
+                                (Inactivo)
+                            </p>
+                        }
                         <p className='courseDescription'>
                             {curso.descripcion}
                         </p>

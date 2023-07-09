@@ -12,6 +12,7 @@ function EditTest({ testID, setEditTest }) {
     const [refresh, setRefresh] = useState(false)
     const [editName, setEditName] = useState(false)
     const [editApprove, setEditApprove] = useState(false)
+    const [editActive, setEditActive] = useState(false)
     const [editTime, setEditTime] = useState(false)
     const [approve, setApprove] = useState(false)
     const [time, setTime] = useState(false)
@@ -42,7 +43,7 @@ function EditTest({ testID, setEditTest }) {
                 .catch(err => setError(true))
         }
         getTest()
-    }, [editName, editApprove, editTime, testID])
+    }, [editName, editApprove, editTime, testID, editActive])
 
     const handleChangeTestName = () => {
         const formData = new FormData()
@@ -114,6 +115,23 @@ function EditTest({ testID, setEditTest }) {
         setQuestionMode("create")
     }
 
+    const handleActive = () => {
+        const formData = new FormData()
+        if(!test.activo) 
+            formData.append("activo", 1)
+        else
+            formData.append("activo", 0)
+        fetch(db.url + "?mode=update&table=test&id=id&condition=" + testID, {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK"){
+                    setEditActive(!editActive)}
+                else setError(true)
+            }).catch(err => setError(true))
+    }
+
     return (
         <React.Fragment>
             {setEditTest && <button className='btn' onClick={() => { setEditTest(false) }}><i className='bx bx-left-arrow-alt'></i>Regresar</button>}
@@ -163,23 +181,36 @@ function EditTest({ testID, setEditTest }) {
                             }
                         </div>
 
-                        {!!sim && <div className='et-calificacion'>
-                            <label className='lbl'>Tiempo límite </label>
-                            {!editTime &&
-                                <div className='ec-lbl-name '>
-                                    <label className='et-lbl-editar it-inset-shadow'><b className='b-medium'>{test.tiempo}</b></label>
-                                    <button className='ec-btn-editar' onClick={() => { setEditTime(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
-                                </div>
-                            }
-                            {!!editTime &&
-                                <div className='ec-lbl-name '>
-                                    <input className='et-input-text it-inset-shadow' defaultValue={test.tiempo} onChange={(e) => { setTime(e.target.value) }}></input>
-                                    <button className='ec-btn-editar' onClick={handleChangeTime}><i className='bx bx-save icon' ></i>Guardar</button>
-                                </div>
-                            }
-                        </div>}
-
+                        {!!sim &&
+                            <div className='et-calificacion'>
+                                <label className='lbl'>Tiempo límite </label>
+                                {!editTime &&
+                                    <div className='ec-lbl-name '>
+                                        <label className='et-lbl-editar it-inset-shadow'><b className='b-medium'>{test.tiempo}</b></label>
+                                        <button className='ec-btn-editar' onClick={() => { setEditTime(true) }}><i className='bx bx-edit icon' ></i>Editar</button>
+                                    </div>
+                                }
+                                {!!editTime &&
+                                    <div className='ec-lbl-name '>
+                                        <input className='et-input-text it-inset-shadow' defaultValue={test.tiempo} onChange={(e) => { setTime(e.target.value) }}></input>
+                                        <button className='ec-btn-editar' onClick={handleChangeTime}><i className='bx bx-save icon' ></i>Guardar</button>
+                                    </div>
+                                }
+                            </div>}
                     </div>
+
+                    {!!sim &&
+                        <div>
+                            <label className='input-label lbl'>Activo:</label>
+                            <input
+                                type="checkbox"
+                                className='editcourse-checkbox'
+                                id='darkmode-toggle'
+                                defaultChecked={test.activo}
+                                onClick={handleActive}
+                            />
+                        </div>
+                    }
                     <div className='et-content'>
                     </div>
                     <div className='et-footer'>

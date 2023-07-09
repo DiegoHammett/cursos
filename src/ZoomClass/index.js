@@ -10,7 +10,7 @@ function ZoomClass({ admin }) {
 
     useEffect(() => {
         const getZoom = () => {
-            fetch(db.url + "?table=zoom")
+            fetch(db.url + "?table=zoom" + (!admin ? "&where=activo" : ""))
                 .then(res => res.json())
                 .then(res => setZoom(res))
                 .catch(err => console.log(err))
@@ -50,6 +50,11 @@ function ZoomClass({ admin }) {
                                     <p className='courseHeading'>
                                         {z.nombre}
                                     </p>
+                                    {!!admin && !z.activo &&
+                                        <p className='courseDescription'>
+                                            (Inactivo)
+                                        </p>
+                                    }
                                     <p className='courseDescription'>
                                         {z.descripcion}
                                     </p>
@@ -64,7 +69,7 @@ function ZoomClass({ admin }) {
                 </div>
             }
             {menuSelect === 1 &&
-                <EditZoom zoomID={zID}/>
+                <EditZoom zoomID={zID} />
             }
         </React.Fragment>
     )

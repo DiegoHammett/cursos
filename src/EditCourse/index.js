@@ -13,6 +13,7 @@ function EditCourse({ courseID, create }) {
     const [modules, setModules] = useState([])
     const [editName, setEditName] = useState(false)
     const [editDesc, setEditDesc] = useState(false)
+    const [editActive, setEditActive] = useState(false)
     const [courseName, setCourseName] = useState()
     const [courseDesc, setCourseDesc] = useState()
     const [course, setCourse] = useState([])
@@ -36,7 +37,7 @@ function EditCourse({ courseID, create }) {
                 .catch(err => setError(true))
         }
         getCourse()
-    }, [courseID, editName, editDesc])
+    }, [courseID, editName, editDesc, editActive])
 
     const handleEdit = (id, tipo) => {
         setModuleID(id)
@@ -167,6 +168,23 @@ function EditCourse({ courseID, create }) {
             }).catch(err => setError(true))
     }
 
+    const handleActive = () => {
+        const formData = new FormData()
+        if(!course.activo) 
+            formData.append("activo", 1)
+        else
+            formData.append("activo", 0)
+        fetch(db.url + "?mode=update&table=curso&id=id&condition=" + courseID, {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK"){
+                    setEditActive(!editActive)}
+                else setError(true)
+            }).catch(err => setError(true))
+    }
+
     return (
         <React.Fragment>
             {!editClass && !editTest &&
@@ -230,9 +248,16 @@ function EditCourse({ courseID, create }) {
                                         </div>
                                     }
                                 </div>
-
-
-
+                                <div>
+                                    <label className='input-label lbl'>Activo:</label>
+                                    <input
+                                        type="checkbox"
+                                        className='editcourse-checkbox'
+                                        id='darkmode-toggle'
+                                        defaultChecked={course.activo}
+                                        onClick={handleActive}
+                                    />
+                                </div>
                             </div>
 
                         </div>

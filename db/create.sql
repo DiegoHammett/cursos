@@ -12,6 +12,7 @@ CREATE TABLE curso (
     nombre VARCHAR(100),
     descripcion VARCHAR(400),
     asignatura INT(2),
+    activo BOOLEAN DEFAULT '0',
     CONSTRAINT fk_asignatura_curso FOREIGN KEY(asignatura) REFERENCES asignatura(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -27,7 +28,8 @@ CREATE TABLE test (
     nombre VARCHAR(250),
     tipo INT(1),
     tiempo TIME,
-    aprobacion DECIMAL(3,1)
+    aprobacion DECIMAL(3,1),
+    activo BOOLEAN DEFAULT '0'
 );
 
 CREATE TABLE modulos (
@@ -100,7 +102,8 @@ CREATE TABLE zoom (
     id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(200),
     descripcion VARCHAR(1000),
-    link VARCHAR(1000)
+    link VARCHAR(1000),
+    activo BOOLEAN DEFAULT '0'
 );
 
 
