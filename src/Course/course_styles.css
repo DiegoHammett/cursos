@@ -97,3 +97,28 @@
     z-index: 100;
     top: 0;
 }
+
+
+
+.class-body {
+    background-color: var(--bg-200);
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.class-body iframe {
+    box-sizing: border-box;
+    color: var(--text-100);
+}
+
+.class-description {
+    background-color: var(--bg-200);
+    padding: 2rem;
+    border-radius: .5rem;
+    color: var(--text-100);
+}

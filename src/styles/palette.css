@@ -33,6 +33,7 @@
 html {
     background: var(--bg-100);
     scroll-behavior: smooth;
+    
 }
 
 * {

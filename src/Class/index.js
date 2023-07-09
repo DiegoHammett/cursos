@@ -21,7 +21,7 @@ function Class({ id }) {
                             <b className='b-medium'>{clase.nombre}</b>
                         </div>
                     </div>
-                    <div className='class-body'>
+                    <div className='class-body inset'>
                         <div className='test-questions-container'>
                             {clase.contenido && <iframe src={db.docs + clase.contenido} title='Curso' width="80%" height="700" > </iframe>}
                         </div>
@@ -29,15 +29,10 @@ function Class({ id }) {
 
                 </div>
             </div>
+            <div className='class-description inset'>
+                <p>{clase.descripcion}</p>
+            </div>
 
-
-
-
-
-
-
-
-            <p>{clase.descripcion}</p>
         </React.Fragment>
     )
 }
