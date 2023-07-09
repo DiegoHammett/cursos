@@ -63,7 +63,7 @@ function Register() {
             body: formData
         }).then(res => res.json())
             .then(res => {
-                if(res.status === 'OK'){
+                if (res.status === 'OK') {
                     setOk(true)
                     nav('/login')
                 } else if (res.error.errorInfo[2].includes("Duplicate entry") && res.error.errorInfo[2].includes("for key 'email'")) {
@@ -80,12 +80,11 @@ function Register() {
             <Navbar />
             <div className='register-body'>
                 <div className='register-container '>
-
                     <div className='register-header'>
                         <div className='register-header_logo inset'>
                             <i className='bx bx-cube'> </i><span>Logo</span>
                         </div>
-                        <div>
+                        <div className='register-header_info'>
                             <h1 className='title'>Bienvenido a MARCA</h1>
                             <p className='description'>A continuación, llene todos los campos con su información. Al finalizar, presione 'Registrarse'.</p>
                             <p className='pill'><i className='bx bx-right-arrow-alt icon'></i>Todos los campos son obligatorios.</p>
@@ -95,17 +94,16 @@ function Register() {
 
                     <div className='register-info'>
                         <div className='register-left inset'>
-
                             <form className='register-form'>
                                 <div className='register-form_content'>
-                                    <span className='register-form_subtitle title'>
-                                        <b className='b-medium'>Información personal</b>
-                                    </span>
-                                    <span className='register-form_description'>
-                                        <p className='description'>Ingresa tu información personal para conocernos mejor. </p>
-                                    </span>
-
-
+                                    <div className='register-form-header'>
+                                        <span className='register-form_subtitle title'>
+                                            <b className='b-medium'>Información personal</b>
+                                        </span>
+                                        <span className='register-form_description'>
+                                            <p className='description'>Ingresa tu información personal para conocernos mejor. </p>
+                                        </span>
+                                    </div>
                                     <div className='register-forms-container'>
                                         <div className='register-form_item'>
                                             <label className='input-label lbl'>Nombre/s:</label>
@@ -115,8 +113,8 @@ function Register() {
                                                 type='text'
                                                 required
                                                 onChange={handleChange}
-                                                id="inputName" />
-
+                                                id="inputName"
+                                            />
                                         </div>
 
                                         <div className='register-form_item'>
@@ -143,23 +141,21 @@ function Register() {
                                             />
                                         </div>
                                     </div>
-
-
-
                                 </div>
                             </form>
-
                         </div>
-
                         <div className='register-right inset'>
                             <form className='register-form'>
                                 <div className='register-form_content'>
-                                    <span className='register-form_subtitle title'>
-                                        <b className='b-medium'>Información de la cuenta</b>
-                                    </span>
-                                    <span className='register-form_description'>
-                                        <p className='description'>Con esta información podrás acceder a la plataforma.</p>
-                                    </span>
+
+                                    <div className='register-form-header'>
+                                        <span className='register-form_subtitle title'>
+                                            <b className='b-medium'>Información de la cuenta</b>
+                                        </span>
+                                        <span className='register-form_description'>
+                                            <p className='description'>Con esta información podrás acceder a la plataforma.</p>
+                                        </span>
+                                    </div>
 
 
                                     <div className='register-forms-container'>
@@ -204,36 +200,44 @@ function Register() {
                         </div>
                     </div>
 
-
                     <div className='register-pricing '>
                         <div className='register-pricing-table inset'>
+                            
                             <div className='register-pricing_content'>
-                                <span className='register-form_subtitle title'>
-                                    <b className='b-medium'>Planes disponibles</b>
-                                </span>
-                                <span className='register-form_description'>
-                                    <p className='description'>Elige el plan que mejor se ajuste a ti. </p>
-                                </span>
-
+                                <div className='register-form-header'>
+                                    <span className='register-form_subtitle title'>
+                                        <b className='b-medium'>Planes disponibles</b>
+                                    </span>
+                                    <span className='register-form_description'>
+                                        <p className='description'>Elige el plan que mejor se ajuste a ti. </p>
+                                    </span>
+                                </div>
                             </div>
+
                             <div className='register-pricing_cards'>
                                 <div className='pricing_card'>
-                                    <input className='pricing_radio it-inset-shadow ' type='radio' name='pricing' id='card1' onClick={() => {setPlan(1)}}/>
+                                    <input className='pricing_radio it-inset-shadow ' type='radio' name='pricing' id='card1' onClick={() => { setPlan(1) }} />
                                     <label className='pricing_content' htmlFor='card1'>
-                                        <label className='lbl'>Plan</label>
-                                        <h5 className='pricing_title title'><b>BASIC</b></h5>
+                                        <div className='pricing_title_container'>
+                                            <label className='lbl'>Plan</label>
+                                            <h5 className='pricing_title title'><b>BASIC</b></h5>
+                                        </div>
+
                                         <h2 className='pricing_price inset'>
                                             <span className='pricing_price_symbol'><i className='bx bx-dollar' ></i></span>
-                                            <span className='pricing_price_amount'>99<sup className='pricing_price_cents'>99</sup></span>
+                                            <span className='pricing_price_amount'>100<sup className='pricing_price_cents'>00</sup></span>
                                             <span className='pricing_price_currency'>MXN</span>
                                         </h2>
                                     </label>
                                 </div>
                                 <div className='pricing_card'>
-                                    <input className='pricing_radio it-inset-shadow' type='radio' name='pricing' id='card2' onClick={() => {setPlan(2)}}/>
+                                    <input className='pricing_radio it-inset-shadow' type='radio' name='pricing' id='card2' onClick={() => { setPlan(2) }} />
                                     <label className='pricing_content' htmlFor='card2'>
-                                        <label className='lbl'>Plan</label>
-                                        <h5 className='pricing_title title'><b>STANDARD</b></h5>
+                                        <div className='pricing_title_container'>
+                                            <label className='lbl'>Plan</label>
+                                            <h5 className='pricing_title title'><b>STANDARD</b></h5>
+                                        </div>
+
                                         <h2 className='pricing_price inset'>
                                             <span className='pricing_price_symbol'><i className='bx bx-dollar' ></i></span>
                                             <span className='pricing_price_amount'>249<sup className='pricing_price_cents'>99</sup></span>
@@ -242,10 +246,13 @@ function Register() {
                                     </label>
                                 </div>
                                 <div className='pricing_card'>
-                                    <input className='pricing_radio it-inset-shadow' type='radio' name='pricing' id='card3' onClick={() => {setPlan(3)}}/>
+                                    <input className='pricing_radio it-inset-shadow' type='radio' name='pricing' id='card3' onClick={() => { setPlan(3) }} />
                                     <label className='pricing_content' htmlFor='card3'>
-                                        <label className='lbl'>Plan</label>
-                                        <h5 className='pricing_title title'><b>PREMIUM</b></h5>
+                                        <div className='pricing_title_container'>
+                                            <label className='lbl'>Plan</label>
+                                            <h5 className='pricing_title title'><b>PREMIUM</b></h5>
+                                        </div>
+
                                         <h2 className='pricing_price inset'>
                                             <span className='pricing_price_symbol'><i className='bx bx-dollar' ></i></span>
                                             <span className='pricing_price_amount'>499<sup className='pricing_price_cents'>99</sup></span>
@@ -253,7 +260,9 @@ function Register() {
                                         </h2>
                                     </label>
                                 </div>
+
                             </div>
+
                             <div className='register-pricing_moreinfo'>
                                 <span className='description'>
                                     ¿No sabes qué plan elegir? Visita la sección de <a className='link-icon-text' href='/planes'>Planes<i className='bx bx-link-external' ></i></a> para obtener más información.
@@ -282,13 +291,11 @@ function Register() {
                         <button className='btn' type="button" onClick={handleSubmit}>
                             Registrarse
                         </button>
-                        <br></br>
                         <span className='description'>¿Ya tienes una cuenta?</span>
                         <a className='btn2' href='/login'>
-                            Inicia sesión 
+                            Inicia sesión
                         </a>
-                    </div>
-
+                    </div> 
                 </div>
             </div>
 

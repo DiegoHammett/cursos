@@ -39,37 +39,7 @@
 }
 
 
-.register-info {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding: 0 3rem;
-}
 
-.register-left {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--bg-200);
-    text-align: center;
-    padding: 2rem 3rem  3rem;
-    border-radius: 15px;
-    width: 100%;
-}
-
-.register-right {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--bg-200);
-    gap: 1rem;
-    text-align: center;
-    padding: 2rem 3rem 3rem;
-    border-radius: 15px;
-    width: 100%;
-}
-
-.register-right img {
-    width: 80%;
-}
 
 .register-header {
     display: flex;
@@ -97,33 +67,13 @@
     margin-top: .67rem;
 }
 
-.register-form_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: .1rem;
-}
-
-.register-forms-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 1rem 0;
-    padding: 0 .37rem;
-}
-
-.register-form_item {
-    position: relative;
-    text-align: left;
-}
 
 
 
 .input-label {
-    display: flex; 
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     height: 2rem;
 }
 
@@ -154,199 +104,2188 @@
 }
 
 
+/* ============================== BREAKPOINTS ============================== */
 
-.register-pricing {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding: 3rem;
-    margin-top: 2rem;
+/* Breakpoint para dispositivos móviles pequeños (hasta 320px) */
+@media screen and (max-width: 320px) {
+    .register-body {
+        padding: 6rem 1rem;
+        margin: 0;
+        background: var(--bg-100);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.3fr 1.7fr;
+        grid-template-areas:
+            "register-header "
+            "register-info"
+            "register-pricing"
+            "register-footer"
+        ;
+        border-radius: 15px;
+        background-color: var(--bg-100);
+        overflow: hidden;
+    }
+
+    .register-header {
+        grid-area: register-header;
+    }
+
+    .register-footer {
+        grid-area: register-footer;
+    }
+
+    .register-info {
+        grid-area: register-info;
+    }
+
+    .register-pricing {
+        grid-area: register-pricing;
+    }
+
+    .register-header {
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    /* HEADER */
+
+    .register-header_logo {
+        display: none;
+    }
+
+    .register-header .register-header_info .pill i {
+        display: none;
+    }
+
+    .register-header .register-header_info .pill {
+        text-align: center;
+        white-space: nowrap;
+        font-size: .8rem;
+    }
+
+    /* REGISTER INFO */
+
+    .register-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    .register-left,
+    .register-right {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        text-align: center;
+        padding: 0;
+        border-radius: 15px;
+        width: 100%;
+    }
+
+    .register-form {
+        padding: 1.5rem;
+    }
+
+    .register-form_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .1rem;
+    }
+
+    .register-form-header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: .5rem;
+    }
+
+    .register-forms-container {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+
+    /* PRICING */
+    .register-pricing {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    .register-pricing-table {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        gap: 1rem;
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 15px;
+
+    }
+
+    .register-pricing_cards {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .pricing_card {
+        height: 200px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s;
+        overflow: hidden;
+    }
+
+    .pricing_card:hover {
+        transform: scale(1.03);
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--bg-100);
+        height: 100%;
+        width: 100%;
+        border-radius: 15px;
+        position: absolute;
+        cursor: pointer;
+        transition: all .3s;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .pricing_radio[type="radio"]::before {
+        content: "";
+        position: absolute;
+        height: 26px;
+        width: 26px;
+        background-color: #f9fafd;
+        border: 1px solid #e2e6f3;
+        border-radius: 50%;
+        top: 36px;
+        right: 20px;
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"]::after {
+        content: "";
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        background-color: transparent;
+        border-radius: 50%;
+        top: 41px;
+        right: 25.05px;
+        transition: all .3s;
+    }
+
+
+    .pricing_radio[type="radio"]:checked {
+        border: 3px solid var(--accent-100);
+        transition: all .05s;
+    }
+
+    .pricing_radio[type="radio"]:checked::after {
+        background-color: var(--accent-100);
+        transition: all .3s;
+    }
+
+    .pricing_content {
+        position: absolute;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .pricing_title_container {
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        margin-bottom: .5rem;
+    }
+
+    .pricing_title {
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        margin: 0;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        justify-content: center;
+        font-weight: 400;
+        gap: .3rem;
+        margin: 0;
+        margin-top: .57rem;
+        border-radius: 15px;
+        color: var(--text-200);
+        background-color: var(--bg-200);
+        width: fit-content;
+        padding: .8rem 1rem;
+        box-sizing: border-box;
+    }
+
+    .pricing_price_symbol {
+        font-size: 1.5rem;
+    }
+
+    .pricing_price_amount {
+        font-weight: 500;
+        font-size: 2rem;
+    }
+
+    .pricing_price_cents {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-left: .1rem;
+    }
+
+    .pricing_price_currency {
+        font-size: 1rem;
+    }
+
+    .register-pricing_moreinfo {
+        display: flex;
+
+        justify-content: center;
+    }
+
+    .register-pricing_moreinfo span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+
+
+    /* FOOTER */
+    .register-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: .5rem;
+        margin-top: 1.5rem;
+    }
+
+    .register-footer .description {
+        text-align: center;
+    }
+
+    .register-form_subtitle {
+        font-size: 1rem;
+        text-align: left;
+        font-weight: 600;
+    }
+
+
 }
 
-.register-pricing-table {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--bg-200);
-    gap: 1rem;
-    text-align: center;
-    padding: 2rem 3rem 3rem;
-    border-radius: 15px;
-    width: 100%;
+/* Breakpoint para dispositivos móviles de tamaño mediano (hasta 480px) */
+@media screen and (min-width: 321px) and (max-width: 480px) {
+    .register-body {
+        padding: 6rem 1.5rem;
+        margin: 0;
+        background: var(--bg-100);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.3fr 1.7fr;
+        grid-template-areas:
+            "register-header "
+            "register-info"
+            "register-pricing"
+            "register-footer"
+        ;
+        border-radius: 15px;
+        background-color: var(--bg-100);
+        overflow: hidden;
+    }
+
+    .register-header {
+        grid-area: register-header;
+    }
+
+    .register-footer {
+        grid-area: register-footer;
+    }
+
+    .register-info {
+        grid-area: register-info;
+    }
+
+    .register-pricing {
+        grid-area: register-pricing;
+    }
+
+    .register-header {
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    /* HEADER */
+
+    .register-header_logo {
+        display: none;
+    }
+
+    .register-header .register-header_info .pill i {
+        display: none;
+    }
+
+    .register-header .register-header_info .pill {
+        text-align: center;
+        white-space: nowrap;
+        font-size: .8rem;
+    }
+
+    /* REGISTER INFO */
+
+    .register-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    .register-left,
+    .register-right {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        text-align: center;
+        padding: 0;
+        border-radius: 15px;
+        width: 100%;
+    }
+
+    .register-form {
+        padding: 1.5rem;
+    }
+
+    .register-form_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .1rem;
+    }
+
+    .register-form-header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: .5rem;
+    }
+
+    .register-forms-container {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+
+    /* PRICING */
+    .register-pricing {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    .register-pricing-table {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        gap: 1rem;
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 15px;
+
+    }
+
+    .register-pricing_cards {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .pricing_card {
+        height: 200px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s;
+        overflow: hidden;
+    }
+
+    .pricing_card:hover {
+        transform: scale(1.03);
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--bg-100);
+        height: 100%;
+        width: 100%;
+        border-radius: 15px;
+        position: absolute;
+        cursor: pointer;
+        transition: all .3s;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .pricing_radio[type="radio"]::before {
+        content: "";
+        position: absolute;
+        height: 26px;
+        width: 26px;
+        background-color: #f9fafd;
+        border: 1px solid #e2e6f3;
+        border-radius: 50%;
+        top: 36px;
+        right: 20px;
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"]::after {
+        content: "";
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        background-color: transparent;
+        border-radius: 50%;
+        top: 41px;
+        right: 25.05px;
+        transition: all .3s;
+    }
+
+
+    .pricing_radio[type="radio"]:checked {
+        border: 3px solid var(--accent-100);
+        transition: all .05s;
+    }
+
+    .pricing_radio[type="radio"]:checked::after {
+        background-color: var(--accent-100);
+        transition: all .3s;
+    }
+
+    .pricing_content {
+        position: absolute;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        align-items: center;
+    }
+
+    .pricing_title_container {
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        margin-bottom: .5rem;
+    }
+
+    .pricing_title {
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        margin: 0;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        justify-content: center;
+        font-weight: 400;
+        gap: .3rem;
+        margin: 0;
+        margin-top: .57rem;
+        border-radius: 15px;
+        color: var(--text-200);
+        background-color: var(--bg-200);
+        width: fit-content;
+        padding: .5rem 1.5rem;
+
+    }
+
+    .pricing_price_symbol {
+        font-size: 1.5rem;
+    }
+
+    .pricing_price_amount {
+        font-weight: 500;
+        font-size: 2.5rem;
+    }
+
+    .pricing_price_cents {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-left: .1rem;
+    }
+
+    .pricing_price_currency {
+        font-size: 1rem;
+    }
+
+    .register-pricing_moreinfo {
+        display: flex;
+
+        justify-content: center;
+    }
+
+    .register-pricing_moreinfo span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* FOOTER */
+    .register-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: .5rem;
+        margin-top: 1.5rem;
+    }
+
+    .register-footer .description {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .register-form_subtitle {
+        font-size: 1.5rem;
+        text-align: left;
+        font-weight: 600;
+    }
 }
 
-.register-pricing_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: .1rem;
+/* Breakpoint para tablets y dispositivos similares (hasta 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .register-body {
+        padding: 6rem 2rem;
+        margin: 0;
+        background: var(--bg-100);
+        width: 100vw;
+        box-sizing: border-box;
+    }
+
+    .register-container {
+        display: grid;
+        box-sizing: border-box;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.3fr 1.7fr;
+        grid-template-areas:
+            "register-header "
+            "register-info"
+            "register-pricing"
+            "register-footer"
+        ;
+        border-radius: 15px;
+        background-color: var(--bg-100);
+        overflow: hidden;
+    }
+
+    .register-header {
+        grid-area: register-header;
+    }
+
+    .register-footer {
+        grid-area: register-footer;
+    }
+
+    .register-info {
+        grid-area: register-info;
+    }
+
+    .register-pricing {
+        grid-area: register-pricing;
+    }
+
+    .register-header {
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    /* HEADER */
+
+    .register-header_logo {
+        display: flex;
+    }
+
+    .register-header .register-header_info .pill i {
+        display: flex;
+    }
+
+    .register-header .register-header_info .pill {
+        text-align: center;
+        white-space: nowrap;
+        font-size: .8rem;
+    }
+
+    /* REGISTER INFO */
+
+    .register-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    .register-left,
+    .register-right {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        text-align: center;
+        padding: 0;
+        border-radius: 15px;
+        width: 100%;
+    }
+
+    .register-form {
+        padding: 1.5rem;
+    }
+
+    .register-form_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .1rem;
+    }
+
+    .register-form-header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: .5rem;
+    }
+
+    .register-forms-container {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+
+    /* PRICING */
+    .register-pricing {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-pricing-table {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        gap: 1rem;
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 15px;
+
+    }
+
+    .register-pricing_cards {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        justify-items: center;
+    }
+
+    .register-pricing_cards:last-child {
+
+        justify-self: center;
+    }
+
+    .pricing_card {
+        height: 200px;
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s;
+        overflow: hidden;
+    }
+
+    .pricing_card:hover {
+        transform: scale(1.03);
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--bg-100);
+        height: 100%;
+        width: 100%;
+        border-radius: 15px;
+        position: absolute;
+        cursor: pointer;
+        transition: all .3s;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .pricing_radio[type="radio"]::before {
+        content: "";
+        position: absolute;
+        height: 26px;
+        width: 26px;
+        background-color: #f9fafd;
+        border: 1px solid #e2e6f3;
+        border-radius: 50%;
+        top: 36px;
+        right: 20px;
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"]::after {
+        content: "";
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        background-color: transparent;
+        border-radius: 50%;
+        top: 41px;
+        right: 25.05px;
+        transition: all .3s;
+    }
+
+
+    .pricing_radio[type="radio"]:checked {
+        border: 3px solid var(--accent-100);
+        transition: all .05s;
+    }
+
+    .pricing_radio[type="radio"]:checked::after {
+        background-color: var(--accent-100);
+        transition: all .3s;
+    }
+
+    .pricing_content {
+        position: absolute;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        align-items: center;
+    }
+
+    .pricing_title_container {
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        margin-bottom: .5rem;
+    }
+
+    .pricing_title {
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        margin: 0;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        justify-content: center;
+        font-weight: 400;
+        gap: .3rem;
+        margin: 0;
+        margin-top: .57rem;
+        border-radius: 15px;
+        color: var(--text-200);
+        background-color: var(--bg-200);
+        width: fit-content;
+        padding: .5rem 1.5rem;
+
+    }
+
+    .pricing_price_symbol {
+        font-size: 1.5rem;
+    }
+
+    .pricing_price_amount {
+        font-weight: 500;
+        font-size: 2.5rem;
+    }
+
+    .pricing_price_cents {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-left: .1rem;
+    }
+
+    .pricing_price_currency {
+        font-size: 1rem;
+    }
+
+    .register-pricing_moreinfo {
+        display: flex;
+
+        justify-content: center;
+    }
+
+    .register-pricing_moreinfo span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* FOOTER */
+    .register-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: .5rem;
+        margin-top: 1.5rem;
+    }
+
+    .register-footer .description {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .register-form_subtitle {
+        font-size: 1.5rem;
+        text-align: left;
+        font-weight: 600;
+    }
 }
 
-.register-pricing_cards {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 1rem 0;
+/* Breakpoint para pantallas de computadoras portátiles (hasta 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .register-body {
+        padding: 6rem 2rem;
+        margin: 0;
+        background: var(--bg-100);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-container {
+        display: grid;
+        box-sizing: border-box;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.3fr 1.7fr;
+        grid-template-areas:
+            "register-header "
+            "register-info"
+            "register-pricing"
+            "register-footer"
+        ;
+        border-radius: 15px;
+        background-color: var(--bg-100);
+        overflow: hidden;
+    }
+
+    .register-header {
+        grid-area: register-header;
+    }
+
+    .register-footer {
+        grid-area: register-footer;
+    }
+
+    .register-info {
+        grid-area: register-info;
+    }
+
+    .register-pricing {
+        grid-area: register-pricing;
+    }
+
+    .register-header {
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    /* HEADER */
+
+    .register-header_logo {
+        display: flex;
+    }
+
+    .register-header .register-header_info .pill i {
+        display: flex;
+    }
+
+    .register-header .register-header_info .pill {
+        text-align: center;
+        white-space: nowrap;
+        font-size: .8rem;
+    }
+
+    /* REGISTER INFO */
+
+    .register-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    .register-left,
+    .register-right {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        text-align: center;
+        padding: 0;
+        border-radius: 15px;
+        width: 100%;
+    }
+
+    .register-form {
+        padding: 1.5rem;
+    }
+
+    .register-form_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .1rem;
+    }
+
+    .register-form-header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: .5rem;
+    }
+
+    .register-forms-container {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+
+    /* PRICING */
+    .register-pricing {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-pricing-table {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        gap: 1rem;
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 15px;
+
+    }
+
+    .register-pricing_cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        justify-items: center;
+        
+    }
+
+    .register-pricing_cards .pricing_card:last-child {
+        justify-self: center;
+        width: calc(50%);
+        grid-column-start: span 2;
+       }
+
+
+    .pricing_card {
+        height: 200px;
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s;
+        overflow: hidden;
+        flex: 0 0 calc(33.3% - 20px);
+    }
+
+    .pricing_card:hover {
+        transform: scale(1.03);
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--bg-100);
+        height: 100%;
+        width: 100%;
+        border-radius: 15px;
+        position: absolute;
+        cursor: pointer;
+        transition: all .3s;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .pricing_radio[type="radio"]::before {
+        content: "";
+        position: absolute;
+        height: 26px;
+        width: 26px;
+        background-color: #f9fafd;
+        border: 1px solid #e2e6f3;
+        border-radius: 50%;
+        top: 36px;
+        right: 20px;
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"]::after {
+        content: "";
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        background-color: transparent;
+        border-radius: 50%;
+        top: 41px;
+        right: 25.05px;
+        transition: all .3s;
+    }
+
+
+    .pricing_radio[type="radio"]:checked {
+        border: 3px solid var(--accent-100);
+        transition: all .05s;
+    }
+
+    .pricing_radio[type="radio"]:checked::after {
+        background-color: var(--accent-100);
+        transition: all .3s;
+    }
+
+    .pricing_content {
+        position: absolute;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        align-items: center;
+    }
+
+    .pricing_title_container {
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        margin-bottom: .5rem;
+    }
+
+    .pricing_title {
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        margin: 0;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        justify-content: center;
+        font-weight: 400;
+        gap: .3rem;
+        margin: 0;
+        margin-top: .57rem;
+        border-radius: 15px;
+        color: var(--text-200);
+        background-color: var(--bg-200);
+        width: fit-content;
+        padding: .5rem 1.5rem;
+
+    }
+
+    .pricing_price_symbol {
+        font-size: 1.5rem;
+    }
+
+    .pricing_price_amount {
+        font-weight: 500;
+        font-size: 2.5rem;
+    }
+
+    .pricing_price_cents {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-left: .1rem;
+    }
+
+    .pricing_price_currency {
+        font-size: 1rem;
+    }
+
+    .register-pricing_moreinfo {
+        display: flex;
+
+        justify-content: center;
+    }
+
+    .register-pricing_moreinfo span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* FOOTER */
+    .register-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: .5rem;
+        margin-top: 2rem;
+    }
+
+    .register-footer .description {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .register-form_subtitle {
+        font-size: 1.5rem;
+        text-align: left;
+        font-weight: 600;
+    }
 }
 
-.pricing_card {
-    height: 200px;
-    width: 400px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    transition: all .3s;
+/* Breakpoint para pantallas de computadoras de escritorio (hasta 1200px) */
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+    .register-body {
+        padding: 6rem 2rem;
+        margin: 0;
+        background: var(--bg-100);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-container {
+        display: grid;
+        box-sizing: border-box;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 0.3fr 1.7fr;
+        grid-template-areas:
+            "register-header register-header"
+            "register-info register-info" 
+            "register-pricing register-pricing"
+            "register-footer register-footer"
+        ;
+        border-radius: 15px;
+        background-color: var(--bg-100);
+        overflow: hidden;
+    }
+
+    .register-header {
+        grid-area: register-header;
+    }
+
+    .register-footer {
+        grid-area: register-footer;
+    }
+
+    .register-info {
+        grid-area: register-info;
+    }
+
+    .register-pricing {
+        grid-area: register-pricing;
+    }
+
+    .register-header {
+        box-sizing: border-box;
+        padding: 2rem;
+    }
+
+    /* HEADER */
+
+    .register-header_logo {
+        display: flex;
+    }
+
+    .register-header .register-header_info .pill i {
+        display: flex;
+    }
+
+    .register-header .register-header_info .pill {
+        text-align: center;
+        white-space: nowrap;
+        font-size: .8rem;
+    }
+
+    /* REGISTER INFO */
+
+    .register-info {
+        display: flex;
+        /* flex-direction: column; */
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    .register-left,
+    .register-right {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        text-align: center;
+        padding: 0;
+        border-radius: 15px;
+        width: 100%;
+    }
+
+    .register-form {
+        padding: 1.5rem;
+    }
+
+    .register-form_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .1rem;
+    }
+
+    .register-form-header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: .5rem;
+    }
+
+    .register-forms-container {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+
+    /* PRICING */
+    .register-pricing {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-pricing-table {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        gap: 1rem;
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 15px;
+        margin-top: .5rem;
+
+    }
+
+    .register-pricing_cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        justify-items: center;
+        
+    }
+
+    .register-pricing_cards .pricing_card:last-child {
+        justify-self: center;
+        width: calc(50%);
+        grid-column-start: span 2;
+       }
+
+
+    .pricing_card {
+        height: 200px;
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s;
+        overflow: hidden;
+        flex: 0 0 calc(33.3% - 20px);
+    }
+
+    .pricing_card:hover {
+        transform: scale(1.03);
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--bg-100);
+        height: 100%;
+        width: 100%;
+        border-radius: 15px;
+        position: absolute;
+        cursor: pointer;
+        transition: all .3s;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .pricing_radio[type="radio"]::before {
+        content: "";
+        position: absolute;
+        height: 26px;
+        width: 26px;
+        background-color: #f9fafd;
+        border: 1px solid #e2e6f3;
+        border-radius: 50%;
+        top: 36px;
+        right: 20px;
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"]::after {
+        content: "";
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        background-color: transparent;
+        border-radius: 50%;
+        top: 41px;
+        right: 25.05px;
+        transition: all .3s;
+    }
+
+
+    .pricing_radio[type="radio"]:checked {
+        border: 3px solid var(--accent-100);
+        transition: all .05s;
+    }
+
+    .pricing_radio[type="radio"]:checked::after {
+        background-color: var(--accent-100);
+        transition: all .3s;
+    }
+
+    .pricing_content {
+        position: absolute;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        align-items: center;
+    }
+
+    .pricing_title_container {
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        margin-bottom: .5rem;
+    }
+
+    .pricing_title {
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        margin: 0;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        justify-content: center;
+        font-weight: 400;
+        gap: .3rem;
+        margin: 0;
+        margin-top: .57rem;
+        border-radius: 15px;
+        color: var(--text-200);
+        background-color: var(--bg-200);
+        width: fit-content;
+        padding: .5rem 1.5rem;
+
+    }
+
+    .pricing_price_symbol {
+        font-size: 1.5rem;
+    }
+
+    .pricing_price_amount {
+        font-weight: 500;
+        font-size: 2.5rem;
+    }
+
+    .pricing_price_cents {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-left: .1rem;
+    }
+
+    .pricing_price_currency {
+        font-size: 1rem;
+    }
+
+    .register-pricing_moreinfo {
+        display: flex;
+
+        justify-content: center;
+    }
+
+    .register-pricing_moreinfo span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* FOOTER */
+    .register-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: .5rem;
+        margin-top: 2rem;
+    }
+
+    .register-footer .description {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .register-form_subtitle {
+        font-size: 1.5rem;
+        text-align: left;
+        font-weight: 600;
+    }
 }
 
-.pricing_card:hover {
-    transform: scale(1.03);
-    transition: all .3s;
+/* Breakpoint para pantallas de computadoras de escritorio más grandes (hasta 1440px) */
+@media screen and (min-width: 1201px) and (max-width: 1440px) {
+    .register-body {
+        padding: 6rem 2rem;
+        margin: 0;
+        background: var(--bg-100);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-container {
+        display: grid;
+        box-sizing: border-box;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 0.3fr 1.7fr;
+        grid-template-areas:
+            "register-header register-header"
+            "register-info register-info" 
+            "register-pricing register-pricing"
+            "register-footer register-footer"
+        ;
+        border-radius: 15px;
+        background-color: var(--bg-100);
+        overflow: hidden;
+    }
+
+    .register-header {
+        grid-area: register-header;
+    }
+
+    .register-footer {
+        grid-area: register-footer;
+    }
+
+    .register-info {
+        grid-area: register-info;
+    }
+
+    .register-pricing {
+        grid-area: register-pricing;
+    }
+
+    .register-header {
+        box-sizing: border-box;
+        padding: 2rem;
+    }
+
+    /* HEADER */
+
+    .register-header_logo {
+        display: flex;
+    }
+
+    .register-header .register-header_info .pill i {
+        display: flex;
+    }
+
+    .register-header .register-header_info .pill {
+        text-align: center;
+        white-space: nowrap;
+        font-size: .8rem;
+    }
+
+    /* REGISTER INFO */
+
+    .register-info {
+        display: flex;
+        /* flex-direction: column; */
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    .register-left,
+    .register-right {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        text-align: center;
+        padding: .5rem;
+        border-radius: 15px;
+        width: 100%;
+    }
+
+    .register-form {
+        padding: 1.5rem;
+    }
+
+    .register-form_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .1rem;
+    }
+
+    .register-form-header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: .5rem;
+    }
+
+    .register-forms-container {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+
+    /* PRICING */
+    .register-pricing {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-pricing-table {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        gap: 1rem;
+        text-align: center;
+        padding: 2rem;
+        border-radius: 15px;
+        margin-top: .5rem;
+
+    }
+
+    .register-pricing_cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        justify-items: center;
+        
+    }
+
+    .pricing_card {
+        height: 200px;
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s;
+        overflow: hidden;
+        flex: 0 0 calc(33.3% - 20px);
+    }
+
+    .pricing_card:hover {
+        transform: scale(1.03);
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--bg-100);
+        height: 100%;
+        width: 100%;
+        border-radius: 15px;
+        position: absolute;
+        cursor: pointer;
+        transition: all .3s;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .pricing_radio[type="radio"]::before {
+        content: "";
+        position: absolute;
+        height: 26px;
+        width: 26px;
+        background-color: #f9fafd;
+        border: 1px solid #e2e6f3;
+        border-radius: 50%;
+        top: 36px;
+        right: 20px;
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"]::after {
+        content: "";
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        background-color: transparent;
+        border-radius: 50%;
+        top: 41px;
+        right: 25.05px;
+        transition: all .3s;
+    }
+
+
+    .pricing_radio[type="radio"]:checked {
+        border: 3px solid var(--accent-100);
+        transition: all .05s;
+    }
+
+    .pricing_radio[type="radio"]:checked::after {
+        background-color: var(--accent-100);
+        transition: all .3s;
+    }
+
+    .pricing_content {
+        position: absolute;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        align-items: center;
+    }
+
+    .pricing_title_container {
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        margin-bottom: .5rem;
+    }
+
+    .pricing_title {
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        margin: 0;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        justify-content: center;
+        font-weight: 400;
+        gap: .3rem;
+        margin: 0;
+        margin-top: .57rem;
+        border-radius: 15px;
+        color: var(--text-200);
+        background-color: var(--bg-200);
+        width: fit-content;
+        padding: .5rem 1.5rem;
+
+    }
+
+    .pricing_price_symbol {
+        font-size: 1.5rem;
+    }
+
+    .pricing_price_amount {
+        font-weight: 500;
+        font-size: 2.5rem;
+    }
+
+    .pricing_price_cents {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-left: .1rem;
+    }
+
+    .pricing_price_currency {
+        font-size: 1rem;
+    }
+
+    .register-pricing_moreinfo {
+        display: flex;
+
+        justify-content: center;
+    }
+
+    .register-pricing_moreinfo span {
+        margin: 1.5rem 0 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* FOOTER */
+    .register-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: .5rem;
+        margin-top: 2rem;
+    }
+
+    .register-footer .description {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .register-form_subtitle {
+        font-size: 1.5rem;
+        text-align: left;
+        font-weight: 600;
+    }
 }
 
-.pricing_radio[type="radio"] {
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: var(--bg-100);
-    height: 100%;
-    width: 100%;
-    border-radius: 15px;
-    position: absolute;
-    cursor: pointer;
-    transition: all .3s;
+/* Breakpoint para pantallas muy grandes (1920px o superior) */
+@media screen and (min-width: 1440px) {
+    .register-body {
+        padding: 7rem 5rem;
+        margin: 0;
+        background: var(--bg-100);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-container {
+        display: grid;
+        box-sizing: border-box;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 0.3fr 1.7fr;
+        grid-template-areas:
+            "register-header register-header"
+            "register-info register-info" 
+            "register-pricing register-pricing"
+            "register-footer register-footer"
+        ;
+        border-radius: 15px;
+        background-color: var(--bg-100);
+        overflow: hidden;
+    }
+
+    .register-header {
+        grid-area: register-header;
+    }
+
+    .register-footer {
+        grid-area: register-footer;
+    }
+
+    .register-info {
+        grid-area: register-info;
+    }
+
+    .register-pricing {
+        grid-area: register-pricing;
+    }
+
+    .register-header {
+        box-sizing: border-box;
+        padding: 2rem;
+    }
+
+    /* HEADER */
+
+    .register-header_logo {
+        display: flex;
+    }
+
+    .register-header .register-header_info .pill i {
+        display: flex;
+    }
+
+    .register-header .register-header_info .pill {
+        text-align: center;
+        white-space: nowrap;
+        font-size: .8rem;
+    }
+
+    /* REGISTER INFO */
+
+    .register-info {
+        display: flex;
+        /* flex-direction: column; */
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    .register-left,
+    .register-right {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        text-align: center;
+        padding: .5rem;
+        border-radius: 15px;
+        width: 100%;
+    }
+
+    .register-form {
+        padding: 1.5rem;
+    }
+
+    .register-form_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .1rem;
+    }
+
+    .register-form-header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: .5rem;
+    }
+
+    .register-forms-container {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+
+    /* PRICING */
+    .register-pricing {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0;
+        margin-top: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .register-pricing-table {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-200);
+        gap: 1rem;
+        text-align: center;
+        padding: 2rem;
+        border-radius: 15px;
+        margin-top: .5rem;
+
+    }
+
+    .register-pricing_cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        justify-items: center;
+        
+    }
+
+    .pricing_card {
+        height: 200px;
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s;
+        overflow: hidden;
+        flex: 0 0 calc(33.3% - 20px);
+    }
+
+    .pricing_card:hover {
+        transform: scale(1.03);
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--bg-100);
+        height: 100%;
+        width: 100%;
+        border-radius: 15px;
+        position: absolute;
+        cursor: pointer;
+        transition: all .3s;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .pricing_radio[type="radio"]::before {
+        content: "";
+        position: absolute;
+        height: 26px;
+        width: 26px;
+        background-color: #f9fafd;
+        border: 1px solid #e2e6f3;
+        border-radius: 50%;
+        top: 36px;
+        right: 20px;
+        transition: all .3s;
+    }
+
+    .pricing_radio[type="radio"]::after {
+        content: "";
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        background-color: transparent;
+        border-radius: 50%;
+        top: 41px;
+        right: 25.05px;
+        transition: all .3s;
+    }
+
+
+    .pricing_radio[type="radio"]:checked {
+        border: 3px solid var(--accent-100);
+        transition: all .05s;
+    }
+
+    .pricing_radio[type="radio"]:checked::after {
+        background-color: var(--accent-100);
+        transition: all .3s;
+    }
+
+    .pricing_content {
+        position: absolute;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        align-items: center;
+    }
+
+    .pricing_title_container {
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        margin-bottom: .5rem;
+    }
+
+    .pricing_title {
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        margin: 0;
+    }
+
+
+    .pricing_price {
+        display: flex;
+        justify-content: center;
+        font-weight: 400;
+        gap: .3rem;
+        margin: 0;
+        margin-top: .57rem;
+        border-radius: 15px;
+        color: var(--text-200);
+        background-color: var(--bg-200);
+        width: fit-content;
+        padding: .5rem 1.5rem;
+
+    }
+
+    .pricing_price_symbol {
+        font-size: 1.5rem;
+    }
+
+    .pricing_price_amount {
+        font-weight: 500;
+        font-size: 2.5rem;
+    }
+
+    .pricing_price_cents {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-left: .1rem;
+    }
+
+    .pricing_price_currency {
+        font-size: 1rem;
+    }
+
+    .register-pricing_moreinfo {
+        display: flex;
+
+        justify-content: center;
+    }
+
+    .register-pricing_moreinfo span {
+        margin: 1.5rem 0 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* FOOTER */
+    .register-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: .5rem;
+        margin-top: 2rem;
+    }
+
+    .register-footer .description {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .register-form_subtitle {
+        font-size: 1.5rem;
+        text-align: left;
+        font-weight: 600;
+    }
 }
 
-.pricing_radio[type="radio"]::before {
-    content: "";
-    position: absolute;
-    height: 26px;
-    width: 26px;
-    background-color: #f9fafd;
-    border: 1px solid #e2e6f3;
-    border-radius: 50%;
-    top: 36px;
-    right: 20px;
-    transition: all .3s;
+/* Breakpoint para pantallas 2k (2048px o superior) */
+@media screen and (min-width: 2048px) {
+    .register-container {
+        zoom: 1.25;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    .register-body {
+        margin: 0;
+        background: var(--bg-100);
+        box-sizing: border-box;
+        overflow: hidden;
+        width: 100%;
+    }
 }
 
-.pricing_radio[type="radio"]::after {
-    content: "";
-    position: absolute;
-    height: 18px;
-    width: 18px;
-    background-color: transparent;
-    border-radius: 50%;
-    top: 41px;
-    right: 25.05px;
-    transition: all .3s;
-}
+/* Breakpoint para pantallas 4k (3840px o superior) */
+@media screen and (min-width: 3840px) {}
 
-
-.pricing_radio[type="radio"]:checked {
-    border: 3px solid var(--accent-100);
-    transition: all .05s;
-}
-
-.pricing_radio[type="radio"]:checked::after {
-    background-color: var(--accent-100);
-    transition: all .3s;
-}
-
-.pricing_content {
-    position: absolute;
-    cursor: pointer;
-    text-align: left;
-    padding: 2rem;
-}
-
-
-.pricing_price {
-    display: flex;
-    align-items: center;
-}
-
-.pricing_title {
-    font-weight: 600;
-    font-size: 18px;
-    letter-spacing: 0.5px;
-    margin: 0;
-}
-
-.pricing_price {
-    display: flex;
-    font-weight: 400;
-    gap: .3rem;
-    margin: 0;
-    margin-top: .57rem;
-    padding: .15rem .87rem;
-    border-radius: 15px;
-    color: var(--text-200);
-    background-color: var(--bg-200);
-}
-
-.pricing_price_symbol {
-    font-size: 1.5rem;
-}
-
-.pricing_price_amount {
-    font-weight: 500;
-    font-size: 3rem;
-}
-
-.pricing_price_cents {
-    font-size: 1.3rem;
-    font-weight: 400;
-    margin-left: .1rem;
-}
-
-.pricing_price_currency {
-    font-size: 1.2rem;
-}
-
-.register-pricing_moreinfo {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1.27rem;
-}
-
-.register-pricing_moreinfo span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-
-
-
-
-
-
-.register-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: .5rem;
-    padding: 0 3rem 3rem;
-}
-
-.register-footer .description {
-    text-align: center;
-}
-
-
-
-
-
-.register-form_subtitle {
-    color: white;
-    font-size: 1.5rem;
-    text-align: left;
-    font-weight: 600;
-}
-
-.register-pricing {
-    padding: 0 3rem 3rem;
-}
+/* ============================== BREAKPOINTS ============================== */

@@ -1,11 +1,8 @@
-
-
 .landing-header {
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)),
 
         url(img/portada3.jpg);
     background-position: center;
@@ -197,9 +194,7 @@
 }
 
 .beneficios_box-1:hover .box-1_content .box-1_text h3,
-.beneficios_box-1:hover .box-1_content .box-1_text p {
-    
-}
+.beneficios_box-1:hover .box-1_content .box-1_text p {}
 
 .beneficios_box-1 .box-1_content .box-1_text a {
     position: relative;
@@ -257,43 +252,488 @@
 }
 
 
+/* ============================== BREAKPOINTS ============================== */
+
+/* Breakpoint para dispositivos móviles pequeños (hasta 320px) */
+@media screen and (max-width: 320px) {
+    .landing-hero_title {
+        color: white;
+        text-align: center;
+        font-size: 3rem;
+        text-shadow: 0.05em 0.05em var(--primary-200);
+        margin: 0;
+        line-height: 3.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .landing-hero_description {
+        display: none;
+    }
+
+    .landing-hero_textbox .btn3 {
+        width: 70%;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .landing-beneficios {
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        background-color: var(--bg-100);
+        padding-top: 5.5rem;
+    }
+
+    .landing-beneficios_container {
+        padding: 2rem;
+    }
 
 
-  /* ============================== BREAKPOINTS ============================== */
+    .landing_title {
+        color: var(--text-100);
+        font-size: 3rem;
+        text-shadow: 0.02em 0.02em var(--text-200);
+        margin: 0;
+        line-height: 1rem;
+    }
 
-  /* Breakpoint para dispositivos móviles pequeños (hasta 320px) */
-  @media screen and (max-width: 320px) {
-    
-  }
-  
-  /* Breakpoint para dispositivos móviles de tamaño mediano (hasta 480px) */
-  @media screen and (max-width: 480px) {
-    /* Agrega aquí tus estilos para dispositivos móviles de tamaño mediano */
-  }
-  
-  /* Breakpoint para tablets y dispositivos similares (hasta 768px) */
-  @media screen and (max-width: 768px) {
-    /* Agrega aquí tus estilos para tablets y dispositivos similares */
-  }
-  
-  /* Breakpoint para pantallas de computadoras portátiles (hasta 1024px) */
-  @media screen and (max-width: 1024px) {
-    /* Agrega aquí tus estilos para computadoras portátiles */
-  }
-  
-  /* Breakpoint para pantallas de computadoras de escritorio (hasta 1200px) */
-  @media screen and (max-width: 1200px) {
-    /* Agrega aquí tus estilos para computadoras de escritorio */
-  }
-  
-  /* Breakpoint para pantallas de computadoras de escritorio más grandes (hasta 1440px) */
-  @media screen and (max-width: 1440px) {
-    /* Agrega aquí tus estilos para pantallas de computadoras de escritorio más grandes */
-  }
-  
-  /* Breakpoint para pantallas muy grandes (1920px o superior) */
-  @media screen and (min-width: 1920px) {
-    /* Agrega aquí tus estilos para pantallas muy grandes */
-  }
-  
-  /* ============================== BREAKPOINTS ============================== */
+    .landing_title-focus {
+        color: var(--primary-100);
+        font-size: 3rem;
+        text-shadow: 0.02em 0.02em var(--primary-200);
+        margin: 0;
+        line-height: 5.8rem;
+    }
+
+    .landing-description {
+        color: var(--text-200);
+        font-size: 1rem;
+    }
+
+    .beneficios_boxes-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 2rem 0;
+        gap: 2rem;
+    }
+}
+
+/* Breakpoint para dispositivos móviles de tamaño mediano (hasta 480px) */
+@media screen and (min-width: 321px) and (max-width: 480px) {
+    .landing-hero_title {
+        color: white;
+        text-align: center;
+        font-size: 3rem;
+        text-shadow: 0.05em 0.05em var(--primary-200);
+        margin: 0;
+        line-height: 3.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .landing-hero_description {
+        display: none;
+    }
+
+    .landing-hero_textbox .btn3 {
+        width: 70%;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .landing-beneficios {
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        background-color: var(--bg-100);
+        padding-top: 5.5rem;
+    }
+
+    .landing-beneficios_container {
+        padding: 2rem;
+    }
+
+
+    .landing_title {
+        color: var(--text-100);
+        font-size: 3rem;
+        text-shadow: 0.02em 0.02em var(--text-200);
+        margin: 0;
+        line-height: 1rem;
+    }
+
+    .landing_title-focus {
+        color: var(--primary-100);
+        font-size: 3rem;
+        text-shadow: 0.02em 0.02em var(--primary-200);
+        margin: 0;
+        line-height: 5.8rem;
+    }
+
+    .landing-description {
+        color: var(--text-200);
+        font-size: 1rem;
+    }
+
+    .beneficios_boxes-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 2rem 0;
+        gap: 2rem;
+    }
+}
+
+/* Breakpoint para tablets y dispositivos similares (hasta 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .landing-hero_title {
+        color: white;
+        text-align: center;
+        font-size: 3rem;
+        text-shadow: 0.05em 0.05em var(--primary-200);
+        margin: 0;
+        line-height: 3.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .landing-hero_description {
+        display: none;
+    }
+
+    .landing-hero_textbox .btn3 {
+        width: 70%;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .landing-beneficios {
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        background-color: var(--bg-100);
+        padding-top: 5.5rem;
+    }
+
+    .landing-beneficios_container {
+        padding: 2rem;
+    }
+
+
+    .landing_title {
+        color: var(--text-100);
+        font-size: 3.5rem;
+        text-shadow: 0.02em 0.02em var(--text-200);
+        margin: 0;
+        line-height: 1rem;
+    }
+
+    .landing_title-focus {
+        color: var(--primary-100);
+        font-size: 3.5rem;
+        text-shadow: 0.02em 0.02em var(--primary-200);
+        margin: 0;
+        line-height: 7.5rem;
+    }
+
+    .landing-description {
+        color: var(--text-200);
+        font-size: 1.3rem;
+    }
+
+    .beneficios_boxes-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 2rem 0;
+        gap: 2rem;
+    }
+}
+
+/* Breakpoint para pantallas de computadoras portátiles (hasta 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .landing-hero_title {
+        color: white;
+        text-align: center;
+        font-size: 4rem;
+        text-shadow: 0.05em 0.05em var(--primary-200);
+        margin: 0;
+        line-height: 4.5rem;
+    }
+
+    .landing-hero_textbox .btn3 {
+        width: 40%;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .landing-beneficios {
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        background-color: var(--bg-100);
+        padding-top: 5.5rem;
+    }
+
+    .landing-beneficios_container {
+        padding: 2rem;
+    }
+
+
+    .landing_title {
+        color: var(--text-100);
+        font-size: 3.5rem;
+        text-shadow: 0.02em 0.02em var(--text-200);
+        margin: 0;
+        line-height: 1rem;
+    }
+
+    .landing_title-focus {
+        color: var(--primary-100);
+        font-size: 3.5rem;
+        text-shadow: 0.02em 0.02em var(--primary-200);
+        margin: 0;
+        line-height: 7.5rem;
+    }
+
+    .landing-description {
+        color: var(--text-200);
+        font-size: 1.3rem;
+    }
+
+    .beneficios_boxes-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 2rem 0;
+        gap: 2rem;
+    }
+}
+
+/* Breakpoint para pantallas de computadoras de escritorio (hasta 1200px) */
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+    .landing-hero_title {
+        color: white;
+        text-align: center;
+        font-size: 4rem;
+        text-shadow: 0.05em 0.05em var(--primary-200);
+        margin: 0;
+        line-height: 4.5rem;
+    }
+
+    .landing-hero_textbox .btn3 {
+        width: 40%;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .landing-beneficios {
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        background-color: var(--bg-100);
+        padding-top: 5.5rem;
+    }
+
+    .landing-beneficios_container {
+        padding: 2rem 4rem;
+    }
+
+
+    .landing_title {
+        color: var(--text-100);
+        font-size: 4rem;
+        text-shadow: 0.02em 0.02em var(--text-200);
+        margin: 0;
+        line-height: 1rem;
+    }
+
+    .landing_title-focus {
+        color: var(--primary-100);
+        font-size: 4rem;
+        text-shadow: 0.02em 0.02em var(--primary-200);
+        margin: 0;
+        line-height: 7.5rem;
+    }
+
+    .landing-description {
+        color: var(--text-200);
+        font-size: 1.5rem;
+    }
+
+    .beneficios_boxes-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 2rem 0;
+        gap: 2rem;
+    }
+}
+
+/* Breakpoint para pantallas de computadoras de escritorio más grandes (hasta 1440px) */
+@media screen and (min-width: 1201px) and (max-width: 1440px) {
+    .landing-hero_title {
+        color: white;
+        text-align: center;
+        font-size: 5rem;
+        text-shadow: 0.05em 0.05em var(--primary-200);
+        margin: 0;
+        line-height: 6rem;
+    }
+
+    .landing-hero_textbox .btn3 {
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .landing-hero_description {
+        white-space: nowrap;
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .landing-beneficios {
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        background-color: var(--bg-100);
+        padding-top: 5.5rem;
+    }
+
+    .landing-beneficios_container {
+        padding: 2rem 4rem;
+    }
+
+
+    .landing_title {
+        color: var(--text-100);
+        font-size: 4rem;
+        text-shadow: 0.02em 0.02em var(--text-200);
+        margin: 0;
+        line-height: 1rem;
+    }
+
+    .landing_title-focus {
+        color: var(--primary-100);
+        font-size: 4rem;
+        text-shadow: 0.02em 0.02em var(--primary-200);
+        margin: 0;
+        line-height: 7.5rem;
+    }
+
+    .landing-description {
+        color: var(--text-200);
+        font-size: 1.5rem;
+    }
+
+    .beneficios_boxes-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 2rem 0;
+        gap: 2rem;
+    }
+}
+
+/* Breakpoint para pantallas muy grandes (1920px o superior) */
+@media screen and (min-width: 1440px) {
+    .landing-hero_title {
+        color: white;
+        text-align: center;
+        font-size: 5rem;
+        text-shadow: 0.05em 0.05em var(--primary-200);
+        margin: 0;
+        line-height: 6rem;
+    }
+
+    .landing-hero_textbox .btn3 {
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .landing-hero_description {
+        white-space: nowrap;
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .landing-beneficios {
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        background-color: var(--bg-100);
+        padding-top: 5.5rem;
+    }
+
+    .landing-beneficios_container {
+        padding: 2rem 6rem;
+    }
+
+
+    .landing_title {
+        color: var(--text-100);
+        font-size: 4rem;
+        text-shadow: 0.02em 0.02em var(--text-200);
+        margin: 0;
+        line-height: 1rem;
+    }
+
+    .landing_title-focus {
+        color: var(--primary-100);
+        font-size: 4rem;
+        text-shadow: 0.02em 0.02em var(--primary-200);
+        margin: 0;
+        line-height: 7.5rem;
+    }
+
+    .landing-description {
+        color: var(--text-200);
+        font-size: 1.5rem;
+    }
+
+    .beneficios_boxes-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 2rem 0;
+        gap: 2rem;
+    }
+}
+
+/* Breakpoint para pantallas 2k (2048px o superior) */
+@media screen and (min-width: 2048px) {
+    .landing-hero,
+    .landing-beneficios {
+        zoom: 1.25;
+    }
+}
+
+/* Breakpoint para pantallas 4k (3840px o superior) */
+@media screen and (min-width: 3840px) {
+    .landing-hero,
+    .landing-beneficios {
+        zoom: 1.5;
+    }
+}
+
+/* ============================== BREAKPOINTS ============================== */

@@ -32,11 +32,12 @@
 
 html {
     background: var(--bg-100);
+    scroll-behavior: smooth;
 }
 
 * {
     font-family: 'Poppins', sans-serif;
-
+    scroll-behavior: smooth;
 }
 
 /* ===== Scrollbar CSS ===== */
@@ -504,9 +505,6 @@ input[type="file"]::file-selector-button:hover {
     resize: vertical;
 }
 
-
-
-
 .file-input__label {
     cursor: pointer;
     display: inline-flex;
@@ -524,13 +522,6 @@ input[type="file"]::file-selector-button:hover {
 
 
 
-
-
-
-
-
-
-
 /* ============================== BREAKPOINTS ============================== */
 
 /* Breakpoint para dispositivos móviles pequeños (hasta 320px) */
@@ -539,43 +530,43 @@ input[type="file"]::file-selector-button:hover {
 }
 
 /* Breakpoint para dispositivos móviles de tamaño mediano (hasta 480px) */
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 321px) and (max-width: 480px) {
     
 }
 
 /* Breakpoint para tablets y dispositivos similares (hasta 768px) */
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
     
 }
 
 /* Breakpoint para pantallas de computadoras portátiles (hasta 1024px) */
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 769px) and (max-width: 1024px) {
     
 }
 
 /* Breakpoint para pantallas de computadoras de escritorio (hasta 1200px) */
-@media screen and (max-width: 1200px) {
-    
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+   
 }
 
 /* Breakpoint para pantallas de computadoras de escritorio más grandes (hasta 1440px) */
-@media screen and (max-width: 1440px) {
-    
+@media screen and (min-width: 1201px) and (max-width: 1440px) {
+   
 }
 
 /* Breakpoint para pantallas muy grandes (1920px o superior) */
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1440px) {
     
 }
 
 /* Breakpoint para pantallas 2k (2048px o superior) */
 @media screen and (min-width: 2048px) {
-
+    
 }
 
 /* Breakpoint para pantallas 4k (3840px o superior) */
-@media screen and (min-width: 2048px) {
-    
+@media screen and (min-width: 3840px) {
+   
 }
 
 /* ============================== BREAKPOINTS ============================== */
