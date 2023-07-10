@@ -9,6 +9,7 @@ import SimMenu from '../SimMenu';
 import { Tabs, TabList, Tab, TabPanel } from "https://cdn.skypack.dev/react-tabs@3.2.2";
 import StatsMenu from '../StatsMenu';
 import ZoomClass from '../ZoomClass';
+import UserConfig from '../UserConfig';
 
 function UserMenu({ userID, admin }) {
 
@@ -145,7 +146,7 @@ function UserMenu({ userID, admin }) {
                             </TabPanel>
 
                             <TabPanel>
-                                <p>Configuración</p>
+                                <UserConfig userID={userID}/>
                             </TabPanel>
 
                         </div>
