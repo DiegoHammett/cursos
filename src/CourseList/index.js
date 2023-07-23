@@ -6,6 +6,7 @@ import './courselist_styles.css';
 function CourseList({ id, admin, setItemID, setMenuSelect }) {
 
     const [cursos, setCursos] = useState([])
+    const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
         const getCourse = () => {
@@ -15,7 +16,7 @@ function CourseList({ id, admin, setItemID, setMenuSelect }) {
                 .catch(err => console.log(err))
         }
         getCourse()
-    }, [id])
+    }, [id, refresh])
 
     const handleGetCourse = (id) => {
         setItemID(id)
@@ -27,11 +28,21 @@ function CourseList({ id, admin, setItemID, setMenuSelect }) {
         setMenuSelect(2)
     }
 
+    const handleDeleteCourse = (id) => {
+        fetch(db.url + "?table=curso&id=" + id, {
+            method: 'DELETE'
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK") setRefresh(!refresh)
+                else console.log(res)
+            }).catch(err => console.log(err))
+    }
+
     return (
         <React.Fragment>
             {cursos.length > 0 ? cursos.map(curso => (
                 <div key={curso.id}>
-                    <div className='courseCard'>
+                    <div className={"courseCard" + (!curso.activo ? " inactive" : "")}>
                         <span className='courseHeading' onClick={() => { handleGetCourse(curso.id) }}>
                             {curso.nombre}
                         </span>
@@ -46,6 +57,7 @@ function CourseList({ id, admin, setItemID, setMenuSelect }) {
                         <div className='courseBtns'>
                             <button className='acceptButton' onClick={() => { handleGetCourse(curso.id) }}>Ir al curso</button>
                             {!!admin && <button className='acceptButton2' onClick={() => { handleEditCourse(curso.id) }}>Editar</button>}
+                            {!!admin && <button className='acceptButton2' onClick={() => { handleDeleteCourse(curso.id) }}>Eliminar</button>}
                         </div>
                     </div>
                 </div>

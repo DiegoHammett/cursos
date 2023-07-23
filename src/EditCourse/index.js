@@ -11,6 +11,7 @@ function EditCourse({ courseID, create }) {
     const [editClass, setEditClass] = useState(false)
     const [moduleID, setModuleID] = useState()
     const [modules, setModules] = useState([])
+    const [subjects, setSubjects] = useState([])
     const [editName, setEditName] = useState(false)
     const [editDesc, setEditDesc] = useState(false)
     const [editActive, setEditActive] = useState(false)
@@ -26,7 +27,14 @@ function EditCourse({ courseID, create }) {
                 .then(res => setModules(res))
                 .catch(err => setError(true))
         }
+        const getSubjects = () => {
+            fetch(db.url + '?table=asignatura')
+                .then(res => res.json())
+                .then(res => setSubjects(res))
+                .catch(err => setError(true))
+        }
         getModules()
+        getSubjects()
     }, [courseID, editTest, refresh, editClass])
 
     useEffect(() => {
@@ -170,7 +178,7 @@ function EditCourse({ courseID, create }) {
 
     const handleActive = () => {
         const formData = new FormData()
-        if(!course.activo) 
+        if (!course.activo)
             formData.append("activo", 1)
         else
             formData.append("activo", 0)
@@ -179,8 +187,24 @@ function EditCourse({ courseID, create }) {
             body: formData
         }).then(res => res.json())
             .then(res => {
-                if (res.status === "OK"){
-                    setEditActive(!editActive)}
+                if (res.status === "OK") {
+                    setEditActive(!editActive)
+                }
+                else setError(true)
+            }).catch(err => setError(true))
+    }
+
+    const handleUpdateSubject = (e) => {
+        const formData = new FormData()
+        formData.append("asignatura", subjects[e.target.options.selectedIndex].id)
+        fetch(db.url + "?mode=update&table=curso&id=id&condition=" + courseID, {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK") {
+                    setRefresh(!refresh)
+                }
                 else setError(true)
             }).catch(err => setError(true))
     }
@@ -249,6 +273,16 @@ function EditCourse({ courseID, create }) {
                                     }
                                 </div>
                                 <div>
+                                    <label className='input-label lbl'>Asignatura:</label>
+                                    <select onChange={handleUpdateSubject} >
+                                        {subjects.map(subject => (
+                                            <option key={subject.id} selected={subject.id === course.asignatura}>
+                                                {subject.nombre}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div>
                                     <label className='input-label lbl'>Activo:</label>
                                     <input
                                         type="checkbox"
@@ -259,7 +293,6 @@ function EditCourse({ courseID, create }) {
                                     />
                                 </div>
                             </div>
-
                         </div>
 
                         <div className='ec-datos-curso inset'>

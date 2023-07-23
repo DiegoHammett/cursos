@@ -7,6 +7,7 @@ function ZoomClass({ admin }) {
     const [zoom, setZoom] = useState([])
     const [menuSelect, setMenuSelect] = useState(0)
     const [zID, setZID] = useState()
+    const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
         const getZoom = () => {
@@ -16,7 +17,7 @@ function ZoomClass({ admin }) {
                 .catch(err => console.log(err))
         }
         getZoom()
-    }, [])
+    }, [menuSelect, refresh, admin])
 
     const handleInsertZoom = () => {
         const formData = new FormData()
@@ -35,6 +36,16 @@ function ZoomClass({ admin }) {
             }).catch(err => console.log(err))
     }
 
+    const handleDeleteZoom = (id) => {
+        fetch(db.url + "?table=zoom&id=" + id, {
+            method: 'DELETE'
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === "OK") setRefresh(!refresh)
+                else console.log(res)
+            }).catch(err => console.log(err))
+    }
+
     return (
         <React.Fragment>
             {menuSelect === 0 &&
@@ -46,7 +57,7 @@ function ZoomClass({ admin }) {
                     <section className='cursos-container'>
                         <div className='courseCards inset'>
                             {zoom.map(z => (
-                                <div className='courseCard' key={z.id}>
+                                <div className={"courseCard" + (!z.activo ? " inactive" : "")} key={z.id}>
                                     <p className='courseHeading'>
                                         {z.nombre}
                                     </p>
@@ -61,6 +72,7 @@ function ZoomClass({ admin }) {
                                     <div className='courseBtns'>
                                         <a className='acceptButton' href={z.link} target="_blank" rel="noreferrer">Ir a la clase</a>
                                         {!!admin && <button className='acceptButton2' onClick={() => { setMenuSelect(1); setZID(z.id) }}>Editar</button>}
+                                        {!!admin && <button className='acceptButton2' onClick={() => { handleDeleteZoom(z.id) }}>Eliminar</button>}
                                     </div>
                                 </div>
                             ))}
@@ -68,8 +80,12 @@ function ZoomClass({ admin }) {
                     </section>
                 </div>
             }
+
             {menuSelect === 1 &&
-                <EditZoom zoomID={zID} />
+                <div>
+                    <button className='btn-xs' onClick={() => {setMenuSelect(0)}}>Regresar</button>
+                    <EditZoom zoomID={zID} />
+                </div>
             }
         </React.Fragment>
     )
