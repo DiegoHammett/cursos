@@ -11,7 +11,7 @@ import StatsMenu from '../StatsMenu';
 import ZoomClass from '../ZoomClass';
 import UserConfig from '../UserConfig';
 
-function UserMenu({ userID, admin }) {
+function UserMenu({ userID, admin, plan }) {
 
     const [user, setUser] = useState([])
 
@@ -138,15 +138,21 @@ function UserMenu({ userID, admin }) {
                             </TabPanel>
 
                             <TabPanel>
-                                <SimMenu admin={admin} />
+                                {plan < 2 ?
+                                    <p>¡Te lo estás perdiendo! Mejora tu plan para acceder a los simuladores.</p> :
+                                    <SimMenu admin={admin} />
+                                }
                             </TabPanel>
 
                             <TabPanel>
-                                <ZoomClass admin={admin}></ZoomClass>
+                                {plan < 3 ?
+                                    <p>¡Te lo estás perdiendo! Mejora tu plan para acceder a las sesiones en vivo por ZOOM.</p> :
+                                    <ZoomClass admin={admin}></ZoomClass>
+                                }
                             </TabPanel>
 
                             <TabPanel>
-                                <UserConfig userID={userID}/>
+                                <UserConfig userID={userID} />
                             </TabPanel>
 
                         </div>

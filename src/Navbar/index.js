@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { db } from '../dbconnect';
 import './navbar_styles.css'
 import DarkMode from '../DarkMode';
 
 function Navbar() {
 
+    const [logged, setLogged] = useState(false)
+    const [error, setError] = useState(false)
     // change nav color when scrolling
     const [color, setColor] = useState(false)
     const changeColor = () => {
@@ -13,6 +16,20 @@ function Navbar() {
             setColor(false)
         }
     }
+
+    useEffect(() => {
+        const getUser = () => {
+            fetch(db.session, {
+                method: 'GET',
+                credentials: 'include'
+            }).then(res => res.json()).then(res => {
+                if (res.loggedin !== 0) {
+                    setLogged(true)
+                }
+            }).catch(err => setError(true))
+        }
+        getUser()
+    }, [])
 
     window.addEventListener('scroll', changeColor)
 
@@ -40,8 +57,17 @@ function Navbar() {
                     <div className='dm-container '>
                         <DarkMode />
                     </div>
-                    <a href='/registro' className='navbar-links_item-2'>Regístrate</a>
-                    <a href='/login' className='navbar-links_item-3'>Iniciar sesión</a>
+                    {logged ?
+                        <React.Fragment>
+                            <a href='/dashboard' className='navbar-links_item-2'>Mi tablero</a>
+                            <a href='/logout' className='navbar-links_item-2'>Cerrar sesión</a>
+                        </React.Fragment> :
+                        <React.Fragment>
+                            <a href='/registro' className='navbar-links_item-2'>Regístrate</a>
+                            <a href='/login' className='navbar-links_item-3'>Iniciar sesión</a>
+                        </React.Fragment>
+                    }
+
                 </nav>
             </header>
         </div>

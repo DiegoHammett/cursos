@@ -52,7 +52,7 @@ function ZoomClass({ admin }) {
                 <div>
                     <div className='coursemenu-header'>
                         <h1 className='title'>Sesiones en vivo ZOOM <i className='bx bxl-zoom'></i></h1>
-                        <button className='btn' onClick={handleInsertZoom}><i className='bx bx-plus-circle icon'></i>Agregar sesión de ZOOM</button>
+                        {admin && <button className='btn' onClick={handleInsertZoom}><i className='bx bx-plus-circle icon'></i>Agregar sesión de ZOOM</button>}
                     </div>
                     <section className='cursos-container'>
                         <div className='courseCards inset'>

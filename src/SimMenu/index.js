@@ -61,7 +61,7 @@ function SimMenu({ admin }) {
                 <div>
                     <div className='coursemenu-header'>
                         <h1 className='title'>Todos los simuladores</h1>
-                        <button className='btn' onClick={handleAddSim}><i className='bx bx-plus-circle icon'></i>Agregar simulador</button>
+                        {admin && <button className='btn' onClick={handleAddSim}><i className='bx bx-plus-circle icon'></i>Agregar simulador</button>}
                     </div>
                     <section className='cursos-container'>
                         <div className='courseCards inset'>

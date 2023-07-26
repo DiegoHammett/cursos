@@ -6,6 +6,7 @@ function Dashboard() {
 
     const [error, setError] = useState(false)
     const [admin, setAdmin] = useState(false)
+    const [plan, setPlan] = useState()
     const [id, setID] = useState()
     const [rendered, setRendered] = useState(false)
 
@@ -15,9 +16,8 @@ function Dashboard() {
                 method: 'GET',
                 credentials: 'include'
             }).then(res => res.json()).then(res => {
-                if (res.loggedin === 0) {
-                    console.log("NOT LOGGED")
-                } else {
+                if (res.loggedin !== 0){
+                    setPlan(res.plan)
                     if (parseInt(res.plan) === 0)
                         setAdmin(true)
                     else
@@ -33,7 +33,7 @@ function Dashboard() {
 
     return (
         <React.Fragment>
-            {!!rendered && <UserMenu userID={id} admin={admin}/>}
+            {!!rendered && <UserMenu userID={id} admin={admin} plan={plan}/>}
         </React.Fragment>
     )
 }

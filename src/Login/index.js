@@ -34,6 +34,10 @@ function Login() {
         }).catch(err => setError(true))
     }
 
+    const handleEnter = (e) => {
+        if(e.key === "Enter") handleLogin()
+    }
+
     return (
         <React.Fragment>
             <Navbar />
@@ -60,6 +64,7 @@ function Login() {
                                         type="email"
                                         id="typeEmail"
                                         onChange={(e) => { setUser(e.target.value); setLogAlert(false) }}
+                                        onKeyDown={handleEnter}
                                     />
 
                                 </div>
@@ -71,6 +76,7 @@ function Login() {
                                         type="password"
                                         id="typePassword"
                                         onChange={(e) => { setPass(e.target.value); setLogAlert(false) }}
+                                        onKeyDown={handleEnter}
                                     />
 
                                 </div>

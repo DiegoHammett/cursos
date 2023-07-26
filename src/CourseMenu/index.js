@@ -47,7 +47,7 @@ function CourseMenu({ admin, userID }) {
 
                     <div className='coursemenu-header'>
                         <h1 className='title'>Todos los cursos</h1>
-                        <button className='btn' onClick={handleAddCourse}><i className='bx bx-plus-circle icon'></i>Agregar curso</button>
+                        {admin && <button className='btn' onClick={handleAddCourse}><i className='bx bx-plus-circle icon'></i>Agregar curso</button>}
                     </div>
 
 
